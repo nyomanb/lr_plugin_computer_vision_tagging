@@ -57,4 +57,4 @@ Please note there are not any dates listed here. The developers have day jobs an
    - [ ] Allow selection of models/detections for override
  
  
- ![Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+ ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)

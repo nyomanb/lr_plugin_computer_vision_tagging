@@ -20,4 +20,4 @@ All code in this project is licensed under the GPLv3. The "GPLv3" file contains 
 All documentation is licensed under the Creative Commons Attribution, Non Commercial, Share Alike 4.0 International license (CC BY-NC-SA 4.0). The "CC_BY-NC-SA_4.0.html" file contains the full license.
 
 
-![Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
