@@ -4,7 +4,8 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 1
-- [ ] Version info / plugin blurb
+- [X] Version info
+- [ ] Plugin blurb
 - [ ] Basic Clarifai section
 - [ ] Basic Clarifai config elements
 - [ ] Verify button
