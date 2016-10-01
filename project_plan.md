@@ -4,8 +4,7 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 1.5
-- [ ] Usage stats available via Clarifai API?
-- [ ] Implement usage stats (if available) as menu item under help
+- [ ] Implement usage stats as menu item under help
 
 # Phase 2
 - [ ] Basic export plugin setup
