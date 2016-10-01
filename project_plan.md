@@ -67,6 +67,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 ## Phase 1.5
 - [X] Implement usage stats as menu item under help
+- [X] Add help menu items to file menu as well
  
  
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)

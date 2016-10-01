@@ -24,6 +24,10 @@ Summary information for computer vision tagging plugin
 
 ------------------------------------------------------------------------------]]
 
+local menuItems = { { title = 'Clarifai API Info', file = 'HelpClarifaiInfo.lua' },
+                    { title = 'Clarifai API Usage', file = 'HelpClarifaiUsage.lua' },
+}
+
 local version = { major=2016, minor=09, revision=30, build=1, };
 version.display = version.major .. version.minor .. version.revision .. '.' .. version.build;
 
@@ -40,11 +44,8 @@ return {
   
   LrInitPlugin = 'InitPlugin.lua',
   LrPluginInfoProvider = 'PluginInfoProvider.lua',
-  LrHelpMenuItems = { 
-    { title = 'Clarifai API Info', file = 'HelpClarifaiInfo.lua' },
-    { title = 'Clarifai API Usage', file = 'HelpClarifaiUsage.lua' },
-   },
-  
+  LrExportMenuItems = menuItems,
+  LrHelpMenuItems = menuItems,
   
   VERSION = version,
 
