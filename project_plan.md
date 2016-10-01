@@ -3,16 +3,9 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 1
-- [X] Version info
-- [X] Plugin blurb
-- [X] Basic Clarifai section
-- [X] Global settings section
-- [X] Basic Clarifai config elements
-- [X] Button to Verify API keys
-- [X] Button to [re]generate client access token
-- [X] Option to turn debug log on/off -- defaults to off
-- [X] Help Menu item to show Clarifai Info API call output as dialog
+# Phase 1.5
+- [ ] Usage stats available via Clarifai API?
+- [ ] Implement usage stats (if available) as menu item under help
 
 # Phase 2
 - [ ] Basic export plugin setup
@@ -37,17 +30,24 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Show probabilities in tag selection window
 - [ ] Preference to show probabilities in tag window (global)
 
+# Phase Future (Microsoft Computer Vision)
+- [ ] Base implementation
+
+# Phase Future (Google Vision)
+- [ ] Base implementation
+- [ ] Allow selecting detections (Google Vision)
+
 # Phase Future (All other features/enhancements go here)
 - [ ] Install document written
 - [ ] Usage document written
 - [ ] Concept of log levels and only showing selected level or higher in the log
 - [ ] Select language for Clarifai
-- [ ] Allow selecting models (Clarifai / Google Vision)
-- [ ] Allow selecting detections (Google Vision)
+- [ ] Allow selecting models (Clarifai)
 - [ ] Option to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
 - [ ] API keys stored as passwords (LR SDK has password management utils)
+- [ ] Show which service(s) a tag came through on
 - [ ] Progress Indicators
  - [ ] Upload status
  - [ ] Response processing status
@@ -55,6 +55,18 @@ Please note there are not any dates listed here. The developers have day jobs an
  - [ ] Status of saving keywords
  - [ ] Saving sidecar files
  - [ ] Any other operations that make sense
+ 
+ # Completed Phases
+ ## Phase 1
+- [X] Version info
+- [X] Plugin blurb
+- [X] Basic Clarifai section
+- [X] Global settings section
+- [X] Basic Clarifai config elements
+- [X] Button to Verify API keys
+- [X] Button to [re]generate client access token
+- [X] Option to turn debug log on/off -- defaults to off
+- [X] Help Menu item to show Clarifai Info API call output as dialog
  
  
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
