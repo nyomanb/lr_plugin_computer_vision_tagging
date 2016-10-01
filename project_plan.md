@@ -3,9 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 1.5
-- [ ] Implement usage stats as menu item under help
-
 # Phase 2
 - [ ] Basic export plugin setup
 - [ ] Fundamental "tunables" setup for export plugin
@@ -56,6 +53,7 @@ Please note there are not any dates listed here. The developers have day jobs an
  - [ ] Any other operations that make sense
  
  # Completed Phases
+ 
  ## Phase 1
 - [X] Version info
 - [X] Plugin blurb
@@ -66,6 +64,9 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Button to [re]generate client access token
 - [X] Option to turn debug log on/off -- defaults to off
 - [X] Help Menu item to show Clarifai Info API call output as dialog
+
+## Phase 1.5
+- [X] Implement usage stats as menu item under help
  
  
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)

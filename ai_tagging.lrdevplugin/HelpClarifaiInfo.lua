@@ -52,7 +52,7 @@ LrFunctionContext.callWithContext("get_info_result_table", function( context )
 end)
 
 LrFunctionContext.callWithContext( 'HelpClarifaiInfo', function( context )
-  LrFunctionContext.postAsyncTaskWithContext('ClarifaiSettings.VerifySettingsButton', function()
+  LrFunctionContext.postAsyncTaskWithContext('Help.Clarifai.APIInfo', function()
     local clarifaiInfo = ClarifaiAPI.getInfo();
         get_info_result.max_video_batch_size = clarifaiInfo.results.max_video_batch_size;
         get_info_result.max_image_size = clarifaiInfo.results.max_image_size;

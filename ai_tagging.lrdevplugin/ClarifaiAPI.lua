@@ -32,6 +32,7 @@ local KmnUtils = require 'KmnUtils'
 
 local tokenAPIURL = 'https://api.clarifai.com/v1/token/'
 local infoAPIURL = 'https://api.clarifai.com/v1/info/'
+local usageAPIURL = 'https://api.clarifai.com/v1/usage/'
 local tagAPIURL   = 'https://api.clarifai.com/v1/tag/'
 
 local prefs = LrPrefs.prefsForPlugin();
@@ -71,6 +72,31 @@ function ClarifaiAPI.getInfo()
   }
   
   local body, reshdrs = LrHttp.get(infoAPIURL, headers);
+  
+  KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
+  KmnUtils.log(KmnUtils.LogInfo, body);
+
+  -- FIXME: Handle 401 status error messages properly (invalid token is a case that needs to be properly addressed)
+
+  if reshdrs.status == 401 then
+    KmnUtils.log(KmnUtils.LogDebug, '401 status');
+    return nil;
+  end
+  
+  return JSON:decode(body);
+end
+
+function ClarifaiAPI.getUsage()
+  -- FIXME: This block blows up with a "hidden" error if the API keys are incorrect in settings
+  if prefs.clarifai_accesstoken == nil then
+    ClarifaiAPI.getTokenUnsafe();
+  end
+
+  local headers = {
+    { field = 'Authorization', value = 'Bearer ' .. prefs.clarifai_accesstoken }, 
+  }
+  
+  local body, reshdrs = LrHttp.get(usageAPIURL, headers);
   
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);

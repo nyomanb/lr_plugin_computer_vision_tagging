@@ -42,6 +42,7 @@ return {
   LrPluginInfoProvider = 'PluginInfoProvider.lua',
   LrHelpMenuItems = { 
     { title = 'Clarifai API Info', file = 'HelpClarifaiInfo.lua' },
+    { title = 'Clarifai API Usage', file = 'HelpClarifaiUsage.lua' },
    },
   
   
