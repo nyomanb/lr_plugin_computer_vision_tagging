@@ -12,7 +12,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Button to Verify API keys
 - [X] Button to [re]generate client access token
 - [X] Option to turn debug log on/off -- defaults to off
-- [ ] Menu item to show Clarifai Info API call output as dialog
+- [X] Help Menu item to show Clarifai Info API call output as dialog
 
 # Phase 2
 - [ ] Basic export plugin setup

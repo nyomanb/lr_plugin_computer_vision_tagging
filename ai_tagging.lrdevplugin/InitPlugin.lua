@@ -1,7 +1,7 @@
 --[[----------------------------------------------------------------------------
 
-Info.lua
-Summary information for computer vision tagging plugin
+InitPlugin.lua
+What to do when plugin is loaded?
 
 --------------------------------------------------------------------------------
 
@@ -24,27 +24,5 @@ Summary information for computer vision tagging plugin
 
 ------------------------------------------------------------------------------]]
 
-local version = { major=2016, minor=09, revision=30, build=1, };
-version.display = version.major .. version.minor .. version.revision .. '.' .. version.build;
-
-return {
-
-  LrSdkVersion = 6.0,
-  LrSdkMinimumVersion = 5.0,
-
-  LrToolkitIdentifier = 'info.kemonine.lrcvt',
-  LrPluginName = LOC "$$$/ComputerVisionTagging/PluginName=Computer Vision Tagging",
-  
-  LrAlsoUseBuiltInTranslations = true,
-  LrLimitNumberOfTempRenditions = true,
-  
-  LrInitPlugin = 'InitPlugin.lua',
-  LrPluginInfoProvider = 'PluginInfoProvider.lua',
-  LrHelpMenuItems = { 
-    { title = 'Clarifai API Info', file = 'HelpClarifaiInfo.lua' },
-   },
-  
-  
-  VERSION = version,
-
-}
+local KmnUtils = require 'KmnUtils'
+KmnUtils.enableDisableLogging();
