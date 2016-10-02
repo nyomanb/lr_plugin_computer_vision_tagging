@@ -24,8 +24,8 @@ Summary information for computer vision tagging plugin
 
 ------------------------------------------------------------------------------]]
 
-local menuItems = { { title = 'Clarifai API Info', file = 'HelpClarifaiInfo.lua' },
-                    { title = 'Clarifai API Usage', file = 'HelpClarifaiUsage.lua' },
+local menuItems = { { title = LOC '$$$/ComputerVisionTagging/MenuClarifaiInfo=Clarifai API Info', file = 'MenuClarifaiInfo.lua' },
+                    { title = LOC '$$$/ComputerVisionTagging/menuClarifaiUsage=Clarifai API Usage', file = 'MenuClarifaiUsage.lua' },
 }
 
 local version = { major=2016, minor=09, revision=30, build=1, };
@@ -43,9 +43,17 @@ return {
   LrLimitNumberOfTempRenditions = true,
   
   LrInitPlugin = 'InitPlugin.lua',
-  LrPluginInfoProvider = 'PluginInfoProvider.lua',
+
   LrExportMenuItems = menuItems,
   LrHelpMenuItems = menuItems,
+
+  LrPluginInfoProvider = 'PluginInfoProvider.lua',
+  
+  LrExportServiceProvider = {
+    title = LOC '$$$/ComputerVisionTagging/Title=Computer Vision Tagging',
+    file = 'ExportServiceProvider.lua',
+    builtInPresetsDir = 'cvtPresets',
+  },
   
   VERSION = version,
 

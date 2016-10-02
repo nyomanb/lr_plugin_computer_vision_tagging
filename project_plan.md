@@ -3,17 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 2
-- [ ] Basic export plugin setup
-- [ ] Fundamental "tunables" setup for export plugin
-- [ ] Verify ability to save multiple export profiles
-- [ ] Photo size to upload (px x px) option
-- [ ] Photo creation for upload -- create resized version of image based on preference
-- [ ] Store photo created in temp folder
-- [ ] Cleanup stored photo (verify created photo is valid and works with Clarifai manual upload first)
-- [ ] Slider to adjust quality of JPEG sent to services (if NOT jpegmini)
-- [ ] Strip metadata from output photo before send (option in settings)
-
 # Phase 3
 - [ ] Submission of temp photo to AI service
 - [ ] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
@@ -37,8 +26,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Install document written
 - [ ] Usage document written
 - [ ] Concept of log levels and only showing selected level or higher in the log
-- [ ] Select language for Clarifai
-- [ ] Allow selecting models (Clarifai)
+- [ ] Option to strip ALL metadata (beyond normal metadata section in export dialog)
 - [ ] Option to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
@@ -68,6 +56,21 @@ Please note there are not any dates listed here. The developers have day jobs an
 ## Phase 1.5
 - [X] Implement usage stats as menu item under help
 - [X] Add help menu items to file menu as well
- 
+
+## Phase 2
+- [X] Basic export plugin setup
+- [X] Fundamental "tunables" setup for export plugin
+- [X] Select language for Clarifai
+- [X] Allow selecting models (Clarifai)
+- [X] Photo size to upload (px x px) option
+- [X] Slider for quality of JPEG sent to services
+- [X] Verify ability to save multiple export profiles
+- [X] Photo creation for upload -- create resized version of image based on preference
+- [X] Store photo created in temp folder
+- [X] Swap JPEG quality in export to slider
+- [X] Allow strip of metadata from output photo before send -- using default metadata handler
+- [X] Allow watermarking -- using default watermarking handler
+- [X] Allow sharpening -- using default sharpening handler
+- [X] Cleanup stored photo (verify created photo is valid and works with Clarifai manual upload first) 
  
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
