@@ -4,25 +4,36 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 5 - Fix
-- [ ] Fixup Clarifai API to properly handle 401 status responses properly
-- [ ] API keys stored as passwords (LR SDK has password management utils)
+- [ ] Branch
+- [ ] Update README install to reference releases instead of master version
+- [ ] Break install/setup and usage into own documents
+- [ ] Fix start up crash
 - [ ] Clarifai usage dialog have better field naming/titles
+- [ ] API keys stored as passwords (LR SDK has password management utils)
+- [ ] Fixup Clarifai API to properly handle 401 status responses properly
+- [ ] Version bump
 
 # Phase 6 - Feature
+- [ ] Branch
 - [ ] Concept of log levels and corresponding preference
 - [ ] Update preference to be just "Logging", not "Debug" -- rename preference variable name accordingly
 - [ ] Export option to strip ALL metadata (beyond normal metadata section in export dialog)
+- [ ] Version bump
 
 # Phase 7 - Feature
+- [ ] Branch
 - [ ] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
 - [ ] Ability to sort tags alphabetically or by probability
 - [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
+- [ ] Version bump
 
 # Phase 8 - Feature/Fix
+- [ ] Branch
 - [ ] Verify jpeg mini output support
 - [ ] Progress indicator showing status of applying tags to images (increment on image)
 - [ ] Ensure all strings are localized
+- [ ] Version bump
 
 # Phase Future (enhancements / features)
 - [ ] Base implementation of Microsoft computer vision
