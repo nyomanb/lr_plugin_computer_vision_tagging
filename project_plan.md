@@ -21,13 +21,10 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Allow selecting detections (Google Vision)
 
 # Bug Fixes / Cleanup
-- [ ] Verify / cleanup readme
 - [ ] Clarifai usage dialog have better field naming/titles
 - [ ] Ensure all strings are localized
 
-# Phase Future (All other features/enhancements go here)
-- [ ] Install document written
-- [ ] Usage document written
+# Phase Future (enhancements / features)
 - [ ] Option to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
@@ -41,9 +38,17 @@ Please note there are not any dates listed here. The developers have day jobs an
  - [ ] Saving sidecar files
  - [ ] Any other operations that make sense
  
- # Completed Phases
+# Completed Phases
+This section is basically the changelog in reverse chronological order
+
+## Phase 4.1
+- [X] Verify / cleanup readme
+- [X] Add screenshots of UI
+- [X] Basic install section to README
+- [X] Basic setup section to README
+- [X] Basic usage section to README 
  
- ## Phase 4
+## Phase 4
 - [X] Tag selection window (saves selected computer vision tags)
 - [X] Bold existing tags
 - [X] Preference to bold existing tags (global)
@@ -52,12 +57,12 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Option to set dialog height / width via global preferences
 - [X] Option to set thumbnail size via global preferences
  
- ## Phase 3
+## Phase 3
 - [X] Submission of temp photo to AI service
 - [X] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
 - [X] Option to save response data as json sidecar files (on by default)
  
- ## Phase 2
+## Phase 2
 - [X] Basic export plugin setup
 - [X] Fundamental "tunables" setup for export plugin
 - [X] Select language for Clarifai
@@ -73,11 +78,11 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Allow sharpening -- using default sharpening handler
 - [X] Cleanup stored photo (verify created photo is valid and works with Clarifai manual upload first) 
  
- ## Phase 1.5
+## Phase 1.5
 - [X] Implement usage stats as menu item under help
 - [X] Add help menu items to file menu as well
  
- ## Phase 1
+## Phase 1
 - [X] Version info
 - [X] Plugin blurb
 - [X] Basic Clarifai section
@@ -88,4 +93,5 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Option to turn debug log on/off -- defaults to off
 - [X] Help Menu item to show Clarifai Info API call output as dialog
 
- ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
