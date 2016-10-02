@@ -3,41 +3,35 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 4.5 - Fixes
-- [ ] Add export option to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
-- [ ] Option to be able to set megapixels = 0 which means sending the full resolution image to services
-
-# Phase 5
-- [ ] Verify jpeg mini output support
-- [ ] Concept of log levels and only showing selected level or higher in the log
-- [ ] Option to strip ALL metadata (beyond normal metadata section in export dialog)
+# Phase 5 - Fix
+- [ ] Fixup Clarifai API to properly handle 401 status responses properly
 - [ ] API keys stored as passwords (LR SDK has password management utils)
-
-# Phase Future (Microsoft Computer Vision)
-- [ ] Base implementation
-
-# Phase Future (Google Vision)
-- [ ] Base implementation
-- [ ] Allow selecting detections (Google Vision)
-
-# Bug Fixes / Cleanup
 - [ ] Clarifai usage dialog have better field naming/titles
+
+# Phase 6 - Feature
+- [ ] Concept of log levels and corresponding preference
+- [ ] Update preference to be just "Logging", not "Debug" -- rename preference variable name accordingly
+- [ ] Export option to strip ALL metadata (beyond normal metadata section in export dialog)
+
+# Phase 7 - Feature
+- [ ] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
+- [ ] Ability to sort tags alphabetically or by probability
+- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
+- [ ] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
+
+# Phase 8 - Feature/Fix
+- [ ] Verify jpeg mini output support
+- [ ] Progress indicator showing status of applying tags to images (increment on image)
 - [ ] Ensure all strings are localized
 
 # Phase Future (enhancements / features)
-- [ ] Option to auto apply tags with a given minimum p value (disables tagging pop up)
+- [ ] Base implementation of Microsoft computer vision
+- [ ] Base implementation of Google vision
+- [ ] Option to show service(s) that a tag was suggested by
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
-- [ ] Show which service(s) a tag came through on
 - [ ] Allow resizing of the tagging dialog
-- [ ] Progress Indicators
- - [ ] Upload status
- - [ ] Response processing status
- - [ ] Service sends (on service 1 of 2 for example)
- - [ ] Status of saving keywords
- - [ ] Saving sidecar files
- - [ ] Any other operations that make sense
- 
+
 # Completed Phases
 This section is basically the changelog in reverse chronological order
 
