@@ -57,6 +57,21 @@ local function lookup_ui_user_throttles_tooltip(component)
   return nil;
 end
 
+local function lookup_ui_user_throttles_title(component)
+  if component == 'wait' then
+    return "Wait (s)";
+  elseif component == 'units' then
+    return "Units";
+  elseif component == 'consumed' then
+    return 'Consumed Amount';
+  elseif component == 'limit' then
+    return 'Limit Per Unit';
+  elseif component == 'consumed_percentage' then
+    return 'Consumed (%)';
+  end
+  return nil;
+end
+
 local function ui_group_user_throttles(vf, bind)
   local detail_rows = {};
   local row_count = 1;
@@ -68,7 +83,7 @@ local function ui_group_user_throttles(vf, bind)
       nested_detail_rows[nested_row_count] = vf:row {
         bind_to_object = values,
         vf:static_text {
-          title = throttle,
+          title = lookup_ui_user_throttles_title(throttle),
           font = '<system/bold>',
           tooltip = lookup_ui_user_throttles_tooltip(throttle),
         },
