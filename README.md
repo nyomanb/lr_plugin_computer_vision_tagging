@@ -8,8 +8,8 @@ Welcome to the Computer Vision Lightroom plugin project page. This project aims 
 
 # Install
 To install follow the procedure below
-1. Click the "Clone or download" button
-1. Click "Download Zip"
+1. Click the "releases" tab
+1. Click "Zip" icon for the latest release to download
 1. Extract the downloaded zip file somewhere on your computer
 1. Open Lightroom
 1. File -> Plugin Manager
