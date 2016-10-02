@@ -34,7 +34,6 @@ local KmnUtils = require 'KmnUtils'
 local ClarifaiAPI = require 'ClarifaiAPI'
 
 local prefs = LrPrefs.prefsForPlugin();
-local get_token_success = false;
 
 local function currentOrDefaultValue(value, default)
    if value == nil then
@@ -42,15 +41,6 @@ local function currentOrDefaultValue(value, default)
    end
    return value
 end
-
--- Setup observer pattern so results of verification of API can be marked success/fail
-local get_info_result;
-LrFunctionContext.callWithContext("get_info_result_table", function( context )
-  get_info_result = LrBinding.makePropertyTable( context );
-  get_info_result.message = 'Success';
-  get_info_result.color = LrColor('green');
-  get_info_result.visible = false;
-end)
 
 local function sectionsForTopOfDialog(viewFactory, properties)
   local vf = viewFactory;
@@ -63,6 +53,15 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
   prefs.tag_window_show_probabilities = currentOrDefaultValue(prefs.tag_window_show_probabilities, true);
   prefs.bold_existing_tags = currentOrDefaultValue(prefs.bold_existing_tags, true);
+  
+  -- Setup observer pattern so results of verification of API can be marked success/fail
+  local get_info_result;
+  LrFunctionContext.callWithContext("get_info_result_table", function( context )
+    get_info_result = LrBinding.makePropertyTable( context );
+    get_info_result.message = 'Success';
+    get_info_result.color = LrColor('green');
+    get_info_result.visible = false;
+  end)
   
   return {
     {

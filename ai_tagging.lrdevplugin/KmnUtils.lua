@@ -102,7 +102,7 @@ end
 
 function KmnUtils.enableDisableLogging() 
   -- Debugging bits
-  if prefs.debug == true then
+  if prefs ~= nil and prefs.debug == true then
     logger:enable( 'logfile' );
     KmnUtils.log(KmnUtils.LogInfo, 'Debug log enabled');
   else

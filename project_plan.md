@@ -3,11 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 4.9
-- [ ] Branch
-- [ ] Fix start up crash
-- [ ] Version bump
-
 # Phase 5 - Fix
 - [ ] Branch
 - [ ] Update README install to reference releases instead of master version
@@ -49,6 +44,11 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 4.9
+- [X] Branch
+- [X] Fix start up crash
+- [X] Version bump
 
 ## Phase 4.1
 - [X] Verify / cleanup readme
