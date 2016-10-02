@@ -10,6 +10,17 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Show probabilities in tag selection window
 - [ ] Preference to show probabilities in tag window (global)
 
+# Phase 4.5 - Fixes
+- [ ] Add option to use unique naming for sidecar files (iso date + HHMMSS)
+- [ ] Option should be export setting and default to off
+- [ ] Option to be able to set megapixels = 0 which means sending the full resolution image to services
+
+# Phase 5
+- [ ] Verify jpeg mini output support
+- [ ] Concept of log levels and only showing selected level or higher in the log
+- [ ] Option to strip ALL metadata (beyond normal metadata section in export dialog)
+- [ ] API keys stored as passwords (LR SDK has password management utils)
+
 # Phase Future (Microsoft Computer Vision)
 - [ ] Base implementation
 
@@ -17,15 +28,15 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Base implementation
 - [ ] Allow selecting detections (Google Vision)
 
+# Bug Fixes / Cleanup
+- [ ] Verify / cleanup readme
+
 # Phase Future (All other features/enhancements go here)
 - [ ] Install document written
 - [ ] Usage document written
-- [ ] Concept of log levels and only showing selected level or higher in the log
-- [ ] Option to strip ALL metadata (beyond normal metadata section in export dialog)
 - [ ] Option to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
-- [ ] API keys stored as passwords (LR SDK has password management utils)
 - [ ] Show which service(s) a tag came through on
 - [ ] Progress Indicators
  - [ ] Upload status
