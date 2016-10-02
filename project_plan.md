@@ -3,11 +3,15 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
+# Phase 4.9
+- [ ] Branch
+- [ ] Fix start up crash
+- [ ] Version bump
+
 # Phase 5 - Fix
 - [ ] Branch
 - [ ] Update README install to reference releases instead of master version
 - [ ] Break install/setup and usage into own documents
-- [ ] Fix start up crash
 - [ ] Clarifai usage dialog have better field naming/titles
 - [ ] API keys stored as passwords (LR SDK has password management utils)
 - [ ] Fixup Clarifai API to properly handle 401 status responses properly
