@@ -36,6 +36,13 @@ local ClarifaiAPI = require 'ClarifaiAPI'
 local prefs = LrPrefs.prefsForPlugin();
 local get_token_success = false;
 
+local function currentOrDefaultValue(value, default)
+   if value == nil then
+      return default
+   end
+   return value
+end
+
 -- Setup observer pattern so results of verification of API can be marked success/fail
 local get_info_result;
 LrFunctionContext.callWithContext("get_info_result_table", function( context )
@@ -46,14 +53,16 @@ LrFunctionContext.callWithContext("get_info_result_table", function( context )
 end)
 
 local function sectionsForTopOfDialog(viewFactory, properties)
-  -- Ensure debug checkbox is not showing the odd icon for default value
-  -- TODO: Make sure this is actually doing something and having an affect; if not -- fix
-  if prefs.debug == nil then
-    prefs.debug = false;
-  end
-  
   local vf = viewFactory;
   local bind = LrView.bind;
+  
+  -- Ensure various default values are setup
+  prefs.debug = currentOrDefaultValue(prefs.debug, false);
+  prefs.thumbnail_size = currentOrDefaultValue(prefs.thumbnail_size, 256);
+  prefs.tag_window_width = currentOrDefaultValue(prefs.tag_window_width, 1024);
+  prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
+  prefs.tag_window_show_probabilities = currentOrDefaultValue(prefs.tag_window_show_probabilities, true);
+  prefs.bold_existing_tags = currentOrDefaultValue(prefs.bold_existing_tags, true);
   
   return {
     {
@@ -75,14 +84,89 @@ local function sectionsForTopOfDialog(viewFactory, properties)
       vf:row {
         spacing = vf:control_spacing(),
         vf:checkbox {
-          title = '',
+          title = 'Bold exising keywords/tags',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'bold_existing_tags',
+        },
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:checkbox {
+          title = LOC '$$$/ComputerVisionTagging/Preferences/Global/DebugLog=Enable Debug Log',
           checked_value = true,
           unchecked_value = false,
           value = bind 'debug',
         },
-        vf:static_text {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/Global/DebugLog=Enable Debug Log',
+      },
+    },
+    {
+      title = LOC '$$$/ComputerVisionTagging/Preferences/TagWindow=Tag Window',
+      bind_to_object = prefs,
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:checkbox {
+          title = 'Show Probabilities in Tag Window',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'tag_window_show_probabilities',
         },
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Thumbnail size',
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
+        },
+        vf:slider {
+          value = bind 'thumbnail_size',
+          min = 128,
+          max = 512,
+          integral = true,
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
+        },
+        vf:edit_field {
+          value = bind 'thumbnail_size',
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog',
+          fill_horizonal = 1,
+          width_in_chars = 4,
+          min = 128,
+          max = 512,
+          increment = 1,
+          precision = 0,
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Tagging window width',
+          tooltip = 'Width (px) of the tagging window',
+        },
+        vf:edit_field {
+          value = bind 'tag_window_width',
+          tooltip = 'Width (px) of the tagging window',
+          min = 512,
+          max = 999999,
+          width_in_chars = 7,
+          increment = 1,
+          precision = 0,
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Tagging window height',
+          tooltip = 'Height (px) of the tagging window',
+        },
+        vf:edit_field {
+          value = bind 'tag_window_height',
+          tooltip = 'Height (px) of the tagging window',
+          min = 384,
+          max = 999999,
+          width_in_chars = 7,
+          increment = 1,
+          precision = 0,
+        }
       },
     },
     {

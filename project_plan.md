@@ -3,16 +3,8 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 4
-- [ ] Tag selection window (saves selected computer vision tags)
-- [ ] Bold existing tags
-- [ ] Preference to bold existing tags (global)
-- [ ] Show probabilities in tag selection window
-- [ ] Preference to show probabilities in tag window (global)
-
 # Phase 4.5 - Fixes
-- [ ] Add option to use unique naming for sidecar files (iso date + HHMMSS)
-- [ ] Option should be export setting and default to off
+- [ ] Add export option to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
 - [ ] Option to be able to set megapixels = 0 which means sending the full resolution image to services
 
 # Phase 5
@@ -30,6 +22,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Bug Fixes / Cleanup
 - [ ] Verify / cleanup readme
+- [ ] Clarifai usage dialog have better field naming/titles
+- [ ] Ensure all strings are localized
 
 # Phase Future (All other features/enhancements go here)
 - [ ] Install document written
@@ -38,6 +32,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
 - [ ] Show which service(s) a tag came through on
+- [ ] Allow resizing of the tagging dialog
 - [ ] Progress Indicators
  - [ ] Upload status
  - [ ] Response processing status
@@ -48,22 +43,21 @@ Please note there are not any dates listed here. The developers have day jobs an
  
  # Completed Phases
  
- ## Phase 1
-- [X] Version info
-- [X] Plugin blurb
-- [X] Basic Clarifai section
-- [X] Global settings section
-- [X] Basic Clarifai config elements
-- [X] Button to Verify API keys
-- [X] Button to [re]generate client access token
-- [X] Option to turn debug log on/off -- defaults to off
-- [X] Help Menu item to show Clarifai Info API call output as dialog
-
-## Phase 1.5
-- [X] Implement usage stats as menu item under help
-- [X] Add help menu items to file menu as well
-
-## Phase 2
+ ## Phase 4
+- [X] Tag selection window (saves selected computer vision tags)
+- [X] Bold existing tags
+- [X] Preference to bold existing tags (global)
+- [X] Show probabilities in tag selection window
+- [X] Preference to show probabilities in tag window (global)
+- [X] Option to set dialog height / width via global preferences
+- [X] Option to set thumbnail size via global preferences
+ 
+ ## Phase 3
+- [X] Submission of temp photo to AI service
+- [X] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
+- [X] Option to save response data as json sidecar files (on by default)
+ 
+ ## Phase 2
 - [X] Basic export plugin setup
 - [X] Fundamental "tunables" setup for export plugin
 - [X] Select language for Clarifai
@@ -78,10 +72,20 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Allow watermarking -- using default watermarking handler
 - [X] Allow sharpening -- using default sharpening handler
 - [X] Cleanup stored photo (verify created photo is valid and works with Clarifai manual upload first) 
-
-## Phase 3
-- [X] Submission of temp photo to AI service
-- [X] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
-- [X] Option to save response data as json sidecar files (on by default)
  
+ ## Phase 1.5
+- [X] Implement usage stats as menu item under help
+- [X] Add help menu items to file menu as well
+ 
+ ## Phase 1
+- [X] Version info
+- [X] Plugin blurb
+- [X] Basic Clarifai section
+- [X] Global settings section
+- [X] Basic Clarifai config elements
+- [X] Button to Verify API keys
+- [X] Button to [re]generate client access token
+- [X] Option to turn debug log on/off -- defaults to off
+- [X] Help Menu item to show Clarifai Info API call output as dialog
+
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)

@@ -140,4 +140,13 @@ function ClarifaiAPI.getTags(photoPath, model, language)
   return JSON:decode(body);
 end
 
+function ClarifaiAPI.processTagsProbibilities(response)
+  local processedTagsProbabilities = {}
+  for i, tag in ipairs(response['results'][1]['result']['tag']['classes']) do
+    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag, probability = response['results'][1]['result']['tag']['probs'][i] };
+  end
+  
+  return processedTagsProbabilities;
+end
+
 return ClarifaiAPI;

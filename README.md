@@ -2,8 +2,16 @@
 Welcome to the Computer Vision Lightroom plugin project page. This project aims to provide a Lightroom plugin that lets you submit photos to the Clarifai and Google Vision platforms. The idea is to leverage AI to help improve photo tagging.
 
 # Compatibility
-- Lightroom XX
+- Lightroom 5.0
 - Windows (Mac untested)
+
+# Pro Tips
+## Tagging Window Preferences
+If you have a 1080p monitor, the following values work great for the tagging window and thumbnail sizes:
+
+- Thumbnail size: 256
+- Tagging Window Width: 1850
+- Tagging Window Height: 875
 
 # Roadmap / Project Plan
 See the "roadmap.md" file for more details on the current state of the project and what is on the roadmap for development.

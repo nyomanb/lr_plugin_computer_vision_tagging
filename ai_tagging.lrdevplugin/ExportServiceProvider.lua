@@ -32,6 +32,7 @@ local LrFileUtils = import 'LrFileUtils'
 local LrDialogs = import 'LrDialogs'
 local KmnUtils = require 'KmnUtils'
 local ClarifaiAPI = require 'ClarifaiAPI'
+local DialogTagging = require 'DialogTagging'
 
 local prefs = LrPrefs.prefsForPlugin();
 
@@ -86,9 +87,15 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
           integral = true,
           tooltip = 'Quality of the JPEG to send'
         },
-        vf:static_text {
-          title = bind 'global_jpeg_quality',
-          tooltip = 'Quality of the JPEG to send'
+        vf:edit_field {
+          value = bind 'global_jpeg_quality',
+          tooltip = 'Quality of the JPEG to send',
+          fill_horizonal = 1,
+          width_in_chars = 4,
+          min = 15,
+          max = 100,
+          increment = 1,
+          precision = 0,
         }
       },
     },
@@ -181,6 +188,7 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
                  or LOC "$$$/ComputerVisionTagging/Upload/Progress/One=Uploading one photo for computer vision",
           };
   
+  local photosToTag = {};
   local failures = {};
   
   for _, rendition in exportContext:renditions{ stopIfCanceled = true } do
@@ -205,7 +213,9 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
         end
       end
       
-      if not success then
+      if success then
+        photosToTag[rendition.photo] = result;
+      else
         table.insert( failures, filename );
       end
       
@@ -223,6 +233,8 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
       message = LOC ( "$$$/ComputerVisionTagging/Upload/Errors/SomeFileFailed=^1 files failed to upload correctly.", #failures );
     end
     LrDialogs.message( message, table.concat( failures, "\n" ) );
+  else
+    DialogTagging.buildDialog(photosToTag, exportParams);
   end
 end
 

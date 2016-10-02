@@ -110,4 +110,16 @@ function KmnUtils.enableDisableLogging()
   end
 end
 
+function KmnUtils.photoHasKeyword(photo, keyword)
+  local keywords = photo:getRawMetadata('keywords');
+  
+  for _, k in ipairs(keywords) do
+    if k:getName() == keyword then
+      return true
+    end
+  end  
+  
+  return false;
+end
+
 return KmnUtils;
