@@ -6,7 +6,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 # Phase 5 - Fix
 - [X] Branch
 - [X] Update README install to reference releases instead of master version
-- [ ] Break install/setup and usage into own documents
+- [X] Break install/setup and usage into own documents
 - [ ] Clarifai usage dialog have better field naming/titles
 - [ ] API keys stored as passwords (LR SDK has password management utils)
 - [ ] Fixup Clarifai API to properly handle 401 status responses properly

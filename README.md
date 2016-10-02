@@ -7,36 +7,10 @@ Welcome to the Computer Vision Lightroom plugin project page. This project aims 
 - Mac is untested but will likely work, please let me know if it works on a Mac
 
 # Install
-To install follow the procedure below
-1. Click the "releases" tab
-1. Click "Zip" icon for the latest release to download
-1. Extract the downloaded zip file somewhere on your computer
-1. Open Lightroom
-1. File -> Plugin Manager
-1. Click Add and select the ai_tagging.lrdevplugin folder that is in the unzipped directory
-
-# Setup
-1. Open Plugin Manager in Lightroom
-1. Select the "Computer Vision Tagging" plugin
-1. Configure your computer vision API settings (each has it's own section)
-1. Configure other settings as you see fit
+See the "INSTALL.md" file for install instructions
 
 # Usage
-## API Usage/Info
-API usage stats and general information is available under the Plugin Extras menu item in the File or Help menus of Lightroom.
-
-## Tagging
-This plugin is implemented as an export plugin in Lightroom. It works the same way as other, standard export plugins. Follow the procedure below to tag photos.
-
-1. Select photos in your library/catalog/collection
-1. Open the export dialog using the standard mechanism(s)
-1. Select the "Computer Vision Tagging" value at the top next to "Export To"
-1. Tune any export settings as you see fit
-1. Click the "Export" button
-1. A dialog will pop up with all of the selected images (scroll right if necessary) and tags returned by the APIs
-1. Check or uncheck any tags you'd like to include or remove
-1. Click OK
-1. The tags will be added/removed as appropriate
+See the "USAGE.md" file for usage instructions
 
 # Pro Tips
 ## Tagging Window Preferences
