@@ -29,17 +29,19 @@ local LrView = import 'LrView'
 local LrBinding = import 'LrBinding'
 local LrPathUtils = import 'LrPathUtils'
 local LrFileUtils = import 'LrFileUtils'
+local LrDialogs = import 'LrDialogs'
 local KmnUtils = require 'KmnUtils'
+local ClarifaiAPI = require 'ClarifaiAPI'
 
 local prefs = LrPrefs.prefsForPlugin();
 
 local exportServiceProvider = {}
--- FIXME: Add 'exportLocation' to hideSections
-exportServiceProvider.hideSections = { 'fileNaming', 'fileSettings', 'imageSettings', 'video' }
+exportServiceProvider.hideSections = { 'fileNaming', 'exportLocation', 'fileSettings', 'imageSettings', 'video' }
 exportServiceProvider.hidePrintResolution = true
 exportServiceProvider.canExportToTemporaryLocation = true
 exportServiceProvider.canExportVideo = false
 exportServiceProvider.exportPresetFields = {
+  { key = 'global_save_sidecar', default = true },
   { key = 'global_size_mpx', default = 2 },
   { key = 'global_jpeg_quality', default = 50 },
   { key = 'clarifai_model', default = 'general-v1.3' },
@@ -52,6 +54,15 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
   return {
     {
       title = LOC '$$$/ComputerVisionTagging/ExportDialog/Global=Global Settings',
+      vf:row {
+        vf:checkbox {
+          title = 'Save sidecar json files',
+          tooltip = 'Save json responses from APIs as sidecar files',
+          value = bind 'global_save_sidecar',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
       vf:row {
         vf:static_text {
           title = 'Size (Mpx)',
@@ -141,7 +152,7 @@ end
 
 function exportServiceProvider.updateExportSettings( exportSettings )
   -- Ensure these files never get saved
-  --exportSettings.LR_export_destinationType = 'tempFolder';
+  exportSettings.LR_export_destinationType = 'tempFolder';
   -- APIs use JPEGs, ensure sending the right type
   exportSettings.LR_format = 'JPEG';
   -- Ensure image is resized down (if necessary)
@@ -178,7 +189,21 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
     if progressScope:isCanceled() then break end
     
     if success then
-      local success = true; -- FIXME: Upload to API's goes here
+      local filename = LrPathUtils.leafName( pathOrMessage );
+      
+      local success = false;
+      local result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+      
+      if result ~= nil then
+        success = true;
+        if exportParams.global_save_sidecar then
+          local sidecarPath = LrPathUtils.replaceExtension(rendition.photo.path, 'clarifai.json');
+          local out = io.open(sidecarPath, 'w');
+          io.output(out);
+          io.write(table.tostring(result));
+          io.close(out);
+        end
+      end
       
       if not success then
         table.insert( failures, filename );

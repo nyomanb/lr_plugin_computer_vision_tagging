@@ -27,6 +27,7 @@ Clarifai API implementation in pure lua
 local LrPrefs = import 'LrPrefs'
 local LrHttp = import 'LrHttp'
 local LrTasks = import 'LrTasks'
+local LrPathUtils = import 'LrPathUtils'
 local JSON = require 'JSON'
 local KmnUtils = require 'KmnUtils'
 
@@ -108,6 +109,34 @@ function ClarifaiAPI.getUsage()
     return nil;
   end
   
+  return JSON:decode(body);
+end
+
+function ClarifaiAPI.getTags(photoPath, model, language)
+
+  if prefs.clarifai_accesstoken == nil then
+    ClarifaiAPI.getTokenUnsafe();
+  end
+  
+  local fileName = LrPathUtils.leafName(photoPath);
+
+  local headers = {
+    { field = 'Authorization', value = 'Bearer ' .. prefs.clarifai_accesstoken },
+  };
+  
+  local mimeChunks = {
+    { name = 'model', value = model },
+    { name = 'language', value = language },
+    { name = 'encoded_data', fileName = fileName, filePath = photoPath, contentType = 'application/octet-stream' };
+  };
+
+  local body, reshdrs = LrHttp.postMultipart(tagAPIURL, mimeChunks, headers);
+  
+  if reshdrs.status == 401 then
+    KmnUtils.log(KmnUtils.LogDebug, '401 status');
+    return nil;
+  end
+
   return JSON:decode(body);
 end
 

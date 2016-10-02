@@ -3,13 +3,8 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 3
-- [ ] Submission of temp photo to AI service
-- [ ] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
-- [ ] Option to save response data as json sidecar files (on by default)
-
 # Phase 4
-- [ ] Tag selection window
+- [ ] Tag selection window (saves selected computer vision tags)
 - [ ] Bold existing tags
 - [ ] Preference to bold existing tags (global)
 - [ ] Show probabilities in tag selection window
@@ -72,5 +67,10 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Allow watermarking -- using default watermarking handler
 - [X] Allow sharpening -- using default sharpening handler
 - [X] Cleanup stored photo (verify created photo is valid and works with Clarifai manual upload first) 
+
+## Phase 3
+- [X] Submission of temp photo to AI service
+- [X] Save response as sidecar file -- next to image like xmp (use service + date (iso) + time (HHMMSS) for file naming
+- [X] Option to save response data as json sidecar files (on by default)
  
  ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
