@@ -3,14 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 5 - Fix
-- [X] Branch
-- [X] Update README install to reference releases instead of master version
-- [X] Break install/setup and usage into own documents
-- [X] Clarifai usage dialog have better field naming/titles
-- [ ] Fixup Clarifai API to properly handle 401 status responses properly
-- [ ] Version bump
-
 # Phase 6 - Feature
 - [ ] Branch
 - [ ] Concept of log levels and corresponding preference
@@ -43,6 +35,14 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 5 - Fix
+- [X] Branch
+- [X] Update README install to reference releases instead of master version
+- [X] Break install/setup and usage into own documents
+- [X] Clarifai usage dialog have better field naming/titles
+- [X] Fixup Clarifai API to properly handle 401 status responses properly
+- [X] Version bump
 
 # Phase 4.9
 - [X] Branch

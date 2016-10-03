@@ -25,9 +25,11 @@ Clarifai API implementation in pure lua
 ------------------------------------------------------------------------------]]
 
 local LrPrefs = import 'LrPrefs'
+local LrDialogs = import 'LrDialogs'
 local LrHttp = import 'LrHttp'
 local LrTasks = import 'LrTasks'
 local LrPathUtils = import 'LrPathUtils'
+local LrRecursionGuard = import 'LrRecursionGuard'
 local JSON = require 'JSON'
 local KmnUtils = require 'KmnUtils'
 
@@ -51,6 +53,13 @@ function ClarifaiAPI.getTokenUnsafe()
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);
 
+  if reshdrs.status == 401
+    --and (reshdrs.status_code == 'TOKEN_APP_INVALID' or reshdrs.status_code == 'TOKEN_INVALID' or reshdrs.status_code == 'TOKEN_NONE' or reshdrs.status_code == 'TOKEN_NO_SCOPE')
+  then
+    LrDialogs.showError('Bad Clarifai Client ID or Client Secret. Please check your settings and try again');
+    return
+  end
+
   local json = JSON:decode(body);
   prefs.clarifai_accesstoken = json.access_token;
 end
@@ -63,7 +72,6 @@ function ClarifaiAPI.getToken()
 end
 
 function ClarifaiAPI.getInfo()
-  -- FIXME: This block blows up with a "hidden" error if the API keys are incorrect in settings
   if prefs.clarifai_accesstoken == nil then
     ClarifaiAPI.getTokenUnsafe();
   end
@@ -77,18 +85,15 @@ function ClarifaiAPI.getInfo()
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);
 
-  -- FIXME: Handle 401 status error messages properly (invalid token is a case that needs to be properly addressed)
-
   if reshdrs.status == 401 then
-    KmnUtils.log(KmnUtils.LogDebug, '401 status');
-    return nil;
+    ClarifaiAPI.getTokenUnsafe();
+    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getInfo());
   end
   
   return JSON:decode(body);
 end
 
 function ClarifaiAPI.getUsage()
-  -- FIXME: This block blows up with a "hidden" error if the API keys are incorrect in settings
   if prefs.clarifai_accesstoken == nil then
     ClarifaiAPI.getTokenUnsafe();
   end
@@ -102,18 +107,15 @@ function ClarifaiAPI.getUsage()
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);
 
-  -- FIXME: Handle 401 status error messages properly (invalid token is a case that needs to be properly addressed)
-
   if reshdrs.status == 401 then
-    KmnUtils.log(KmnUtils.LogDebug, '401 status');
-    return nil;
+    ClarifaiAPI.getTokenUnsafe();
+    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getUsage());
   end
   
   return JSON:decode(body);
 end
 
 function ClarifaiAPI.getTags(photoPath, model, language)
-
   if prefs.clarifai_accesstoken == nil then
     ClarifaiAPI.getTokenUnsafe();
   end
@@ -133,8 +135,8 @@ function ClarifaiAPI.getTags(photoPath, model, language)
   local body, reshdrs = LrHttp.postMultipart(tagAPIURL, mimeChunks, headers);
   
   if reshdrs.status == 401 then
-    KmnUtils.log(KmnUtils.LogDebug, '401 status');
-    return nil;
+    ClarifaiAPI.getTokenUnsafe();
+    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getTags(photoPath, model, language));
   end
 
   return JSON:decode(body);
