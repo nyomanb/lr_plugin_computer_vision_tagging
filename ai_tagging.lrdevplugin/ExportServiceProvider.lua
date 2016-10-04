@@ -67,12 +67,12 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
       vf:row {
         vf:static_text {
           title = 'Size (Mpx)',
-          tooltip = 'Size of the image to send in megapixels',
+          tooltip = 'Size of the image to send in megapixels. Specify \'0\' for no resizing.',
         },
         vf:edit_field {
           value = bind 'global_size_mpx',
           width_in_digits = 3,
-          tooltip = 'Size of the image to send in megapixels',
+          tooltip = 'Size of the image to send in megapixels. Specify \'0\' for no resizing.',
         },
       },
       vf:row {
@@ -165,8 +165,10 @@ function exportServiceProvider.updateExportSettings( exportSettings )
   -- Ensure image is resized down (if necessary)
   exportSettings.LR_size_doConstrain = true;
   --LR_size_maxHeight / LR_size_maxWidth not necessary, use megapixel resize option built into LightRoom
-  exportSettings.LR_size_megapixels = exportSettings.global_size_mpx;
-  exportSettings.LR_size_resizeType = 'megapixels';
+  if exportSettings.global_size_mpx > 0 then
+    exportSettings.LR_size_megapixels = exportSettings.global_size_mpx;
+    exportSettings.LR_size_resizeType = 'megapixels';
+  end
   -- Ensure image quality is set properly
   exportSettings.LR_jpeg_quality = exportSettings.global_jpeg_quality / 100.0;
   -- We don't want to scale an image up in size, override defaults

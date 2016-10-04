@@ -4,8 +4,8 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 7 - Feature
-- [ ] Branch
-- [ ] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
+- [X] Branch
+- [X] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
 - [ ] Ability to sort tags alphabetically or by probability
 - [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
