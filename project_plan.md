@@ -3,13 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 6 - Feature
-- [ ] Branch
-- [ ] Concept of log levels and corresponding preference
-- [ ] Update preference to be just "Logging", not "Debug" -- rename preference variable name accordingly
-- [ ] Export option to strip ALL metadata (beyond normal metadata section in export dialog)
-- [ ] Version bump
-
 # Phase 7 - Feature
 - [ ] Branch
 - [ ] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
@@ -35,6 +28,12 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 6 - Feature
+- [X] Branch
+- [X] Concept of log levels and corresponding preference
+- [X] Update preference to be just "Logging", not "Debug" -- rename preference variable name accordingly
+- [X] Version bump
 
 # Phase 5 - Fix
 - [X] Branch

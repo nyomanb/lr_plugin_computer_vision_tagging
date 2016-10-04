@@ -47,7 +47,7 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   local bind = LrView.bind;
   
   -- Ensure various default values are setup
-  prefs.debug = currentOrDefaultValue(prefs.debug, false);
+  --prefs.log_level = currentOrDefaultValue(prefs.logLevel, 2);
   prefs.thumbnail_size = currentOrDefaultValue(prefs.thumbnail_size, 256);
   prefs.tag_window_width = currentOrDefaultValue(prefs.tag_window_width, 1024);
   prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
@@ -91,11 +91,22 @@ local function sectionsForTopOfDialog(viewFactory, properties)
       },
       vf:row {
         spacing = vf:control_spacing(),
-        vf:checkbox {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/Global/DebugLog=Enable Debug Log',
-          checked_value = true,
-          unchecked_value = false,
-          value = bind 'debug',
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/Preferences/Global/LogLevel=Log Level',
+          tooltip = 'How verbose the log output will be',
+        },
+        vf:popup_menu {
+          tooltip = 'How verbose the log output will be',
+          items = {
+            { title = 'Fatal', value = KmnUtils.LogFatal },
+            { title = 'Error', value = KmnUtils.LogError },
+            { title = 'Warn', value = KmnUtils.LogWarn },
+            { title = 'Info', value = KmnUtils.LogInfo },
+            { title = 'Debug', value = KmnUtils.LogDebug },
+            { title = 'Trace ', value = KmnUtils.LogTrace  },
+            { title = 'Disabled', value = 0 },
+          },
+          value = bind 'log_level',
         },
       },
     },

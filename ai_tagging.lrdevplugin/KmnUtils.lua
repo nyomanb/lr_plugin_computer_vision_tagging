@@ -75,34 +75,36 @@ end
 
 KmnUtils = {}
 
-KmnUtils.LogTrace = 'trace'
-KmnUtils.LogDebug = 'debug'
-KmnUtils.LogInfo = 'info'
-KmnUtils.LogWarn = 'warn'
-KmnUtils.LogError = 'error'
-KmnUtils.LogFatal = 'fatal'
+KmnUtils.LogTrace = 6;
+KmnUtils.LogDebug = 5;
+KmnUtils.LogInfo = 4;
+KmnUtils.LogWarn = 3;
+KmnUtils.LogError = 2;
+KmnUtils.LogFatal = 1;
 
 function KmnUtils.log(level, value)
-  if prefs.debug == true then
-    if level == 'fatal' then
-      logger:fatal(value);
-    elseif level == 'error' then
-      logger:error(value)
-    elseif level == 'warn' then
-      logger:warn(value)
-    elseif level == 'info' then
-      logger:info(value)
-    elseif level == 'debug' then
-      logger:debug(value)
-    else
-      logger:trace(value)
-    end
+  -- Don't log if it's not turned on OR the log level in preferences isn't set high enough
+  if level < prefs.log_level then
+    return;
+  end
+
+  if level == KmnUtils.LogFatal then
+    logger:fatal(value);
+  elseif level == KmnUtils.LogError then
+    logger:error(value)
+  elseif level == KmnUtils.LogWarn then
+    logger:warn(value)
+  elseif level == KmnUtils.LogInfo then
+    logger:info(value)
+  elseif level == KmnUtils.LogDebug then
+    logger:debug(value)
+  else
+    logger:trace(value)
   end
 end
 
 function KmnUtils.enableDisableLogging() 
-  -- Debugging bits
-  if prefs ~= nil and prefs.debug == true then
+  if prefs ~= nil and prefs.log_level > 0 then
     logger:enable( 'logfile' );
     KmnUtils.log(KmnUtils.LogInfo, 'Debug log enabled');
   else
