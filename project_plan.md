@@ -4,8 +4,8 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 9 - Feature/Fix
-- [ ] Branch
-- [ ] Verify jpeg mini output support
+- [X] Branch
+- [X] Verify jpeg mini output support
 - [ ] Progress indicator showing status of applying tags to images (increment on image)
 - [ ] Version bump
 
