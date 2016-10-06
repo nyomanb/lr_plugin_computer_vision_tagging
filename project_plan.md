@@ -7,8 +7,11 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Branch
 - [ ] Verify jpeg mini output support
 - [ ] Progress indicator showing status of applying tags to images (increment on image)
+- [ ] Version bump
+
+# Phase 9 - Feature
+- [ ] Branch
 - [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
-- [ ] Ensure all strings are localized
 - [ ] Version bump
 
 # Phase Future (enhancements / features)
@@ -17,6 +20,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Option to show service(s) that a tag was suggested by
 - [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
+- [ ] Ensure all strings are localized
 - [ ] Allow resizing of the tagging dialog
 
 # Completed Phases
