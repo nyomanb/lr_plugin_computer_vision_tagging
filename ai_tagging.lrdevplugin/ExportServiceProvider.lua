@@ -43,6 +43,7 @@ exportServiceProvider.canExportToTemporaryLocation = true
 exportServiceProvider.canExportVideo = false
 exportServiceProvider.exportPresetFields = {
   { key = 'global_save_sidecar', default = true },
+  { key = 'global_save_sidecar_unique', default = false },
   { key = 'global_size_mpx', default = 2 },
   { key = 'global_jpeg_quality', default = 50 },
   { key = 'clarifai_model', default = 'general-v1.3' },
@@ -60,6 +61,15 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
           title = 'Save sidecar json files',
           tooltip = 'Save json responses from APIs as sidecar files',
           value = bind 'global_save_sidecar',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Save sidecars with timestamped names',
+          tooltip = 'Use mm/dd/yyyy.HHMMSS for uniqueness of sidecar names',
+          value = bind 'global_save_sidecar_unique',
           checked_value = true,
           unchecked_value = false,
         },
@@ -208,6 +218,11 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
         success = true;
         if exportParams.global_save_sidecar then
           local sidecarPath = LrPathUtils.replaceExtension(rendition.photo.path, 'clarifai.json');
+          if exportParams.global_save_sidecar_unique then
+            local uniqueExtension = os.date('%Y%m%d') .. '.' .. os.date('%H%M%S') .. '.json';
+            KmnUtils.log(KmnUtils.LogTrace, uniqueExtension);
+            sidecarPath = LrPathUtils.replaceExtension(sidecarPath, uniqueExtension);
+          end
           local out = io.open(sidecarPath, 'w');
           io.output(out);
           io.write(table.tostring(result));
