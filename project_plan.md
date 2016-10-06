@@ -3,19 +3,11 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 7 - Feature
-- [X] Branch
-- [X] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
-- [X] Fix bug when calling recursion guard when Clarifai 401 error occurs
-- [X] Ability to sort tags alphabetically or by probability
-- [X] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
-- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
-- [ ] Version bump
-
 # Phase 8 - Feature/Fix
 - [ ] Branch
 - [ ] Verify jpeg mini output support
 - [ ] Progress indicator showing status of applying tags to images (increment on image)
+- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Ensure all strings are localized
 - [ ] Version bump
 
@@ -29,6 +21,14 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 7 - Feature
+- [X] Branch
+- [X] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
+- [X] Fix bug when calling recursion guard when Clarifai 401 error occurs
+- [X] Ability to sort tags alphabetically or by probability
+- [X] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
+- [X] Version bump
 
 # Phase 6 - Feature
 - [X] Branch
