@@ -3,11 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 8 - Fix
-- [ ] Branch
-- [ ] Fix default log level
-- [ ] Version bump
-
 # Phase 9 - Feature/Fix
 - [ ] Branch
 - [ ] Verify jpeg mini output support
@@ -30,6 +25,11 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 8 - Fix
+- [X] Branch
+- [X] Fix default log level
+- [X] Version bump
 
 # Phase 7 - Feature
 - [X] Branch

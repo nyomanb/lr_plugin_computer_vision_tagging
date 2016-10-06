@@ -86,6 +86,7 @@ KmnUtils.LogInfo = 4;
 KmnUtils.LogWarn = 3;
 KmnUtils.LogError = 2;
 KmnUtils.LogFatal = 1;
+KmnUtils.LogDisabled = -1;
 
 function KmnUtils.log(level, value)
   -- Don't log if it's not turned on OR the log level in preferences isn't set high enough

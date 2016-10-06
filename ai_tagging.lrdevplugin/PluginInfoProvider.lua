@@ -47,7 +47,7 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   local bind = LrView.bind;
   
   -- Ensure various default values are setup
-  --prefs.log_level = currentOrDefaultValue(prefs.logLevel, 2);
+  prefs.log_level = currentOrDefaultValue(prefs.log_level, KmnUtils.LogError);
   prefs.sort = currentOrDefaultValue(prefs.sort, KmnUtils.SortProb);
   prefs.thumbnail_size = currentOrDefaultValue(prefs.thumbnail_size, 256);
   prefs.tag_window_width = currentOrDefaultValue(prefs.tag_window_width, 1024);
@@ -120,7 +120,7 @@ local function sectionsForTopOfDialog(viewFactory, properties)
             { title = 'Info', value = KmnUtils.LogInfo },
             { title = 'Debug', value = KmnUtils.LogDebug },
             { title = 'Trace ', value = KmnUtils.LogTrace  },
-            { title = 'Disabled', value = 0 },
+            { title = 'Disabled', value = KmnUtils.LogDisabled },
           },
           value = bind 'log_level',
         },
