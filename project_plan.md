@@ -3,13 +3,18 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 8 - Feature/Fix
+# Phase 8 - Fix
+- [ ] Branch
+- [ ] Fix default log level
+- [ ] Version bump
+
+# Phase 9 - Feature/Fix
 - [ ] Branch
 - [ ] Verify jpeg mini output support
 - [ ] Progress indicator showing status of applying tags to images (increment on image)
 - [ ] Version bump
 
-# Phase 9 - Feature
+# Phase 10 - Feature
 - [ ] Branch
 - [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Version bump
