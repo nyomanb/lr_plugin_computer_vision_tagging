@@ -46,10 +46,30 @@ local DialogTagging = {};
 function DialogTagging.buildTagGroup(photo, tags, propertyTable)
   local tagRows = {};
   
-  for _, tag in ipairs(tags) do
-    local tagName = tag['tag']
-    local fontString = '<system>'
-    local tagRow = {}
+  KmnUtils.log(KmnUtils.LogTrace, prefs.sort);
+  
+  if prefs.sort == KmnUtils.SortProb then
+    table.sort(tags, function(a, b) 
+                        if (a.probability > b.probability) then
+                          return true;
+                        end
+                        return false;
+                     end
+    );
+  elseif prefs.sort == KmnUtils.SortAlpha then
+    table.sort(tags, function(a, b) 
+                        if (a.tag < b.tag) then
+                          return true;
+                        end
+                        return false;
+                     end
+    );
+  end
+  
+  for i=1, #tags do
+    local tagName = tags[i]['tag'];
+    local fontString = '<system>';
+    local tagRow = {};
     
     propertyTable[tagName] = false;
     
@@ -71,7 +91,7 @@ function DialogTagging.buildTagGroup(photo, tags, propertyTable)
     
     if prefs.tag_window_show_probabilities then 
       tagRow[#tagRow + 1] = vf:static_text {
-        title = string.format('(%2.1f)', tag['probability'] * 100),
+        title = string.format('(%2.1f)', tags[i]['probability'] * 100),
       };
     end
     
@@ -79,6 +99,7 @@ function DialogTagging.buildTagGroup(photo, tags, propertyTable)
   end
   
   tagRows['title'] = 'Tags/Probabilities';
+  
   return vf:group_box(tagRows);
 end
 

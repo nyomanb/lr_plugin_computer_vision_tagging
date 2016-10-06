@@ -87,7 +87,7 @@ function ClarifaiAPI.getInfo()
 
   if reshdrs.status == 401 then
     ClarifaiAPI.getTokenUnsafe();
-    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getInfo());
+    return LrRecursionGuard:performWithGuard(ClarifaiAPI.getInfo());
   end
   
   return JSON:decode(body);
@@ -109,7 +109,7 @@ function ClarifaiAPI.getUsage()
 
   if reshdrs.status == 401 then
     ClarifaiAPI.getTokenUnsafe();
-    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getUsage());
+    return LrRecursionGuard:performWithGuard(ClarifaiAPI.getUsage());
   end
   
   return JSON:decode(body);
@@ -136,7 +136,7 @@ function ClarifaiAPI.getTags(photoPath, model, language)
   
   if reshdrs.status == 401 then
     ClarifaiAPI.getTokenUnsafe();
-    return LrRecursionGuard.performWithGuard(ClarifaiAPI.getTags(photoPath, model, language));
+    return LrRecursionGuard:performWithGuard(ClarifaiAPI.getTags(photoPath, model, language));
   end
 
   return JSON:decode(body);
@@ -145,7 +145,7 @@ end
 function ClarifaiAPI.processTagsProbibilities(response)
   local processedTagsProbabilities = {}
   for i, tag in ipairs(response['results'][1]['result']['tag']['classes']) do
-    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag, probability = response['results'][1]['result']['tag']['probs'][i] };
+    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag, probability = response['results'][1]['result']['tag']['probs'][i], service = KmnUtils.SrvClarifai };
   end
   
   return processedTagsProbabilities;

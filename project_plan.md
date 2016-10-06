@@ -6,9 +6,10 @@ Please note there are not any dates listed here. The developers have day jobs an
 # Phase 7 - Feature
 - [X] Branch
 - [X] Export option to be able to set megapixels = 0 which means sending the full resolution image to services
-- [ ] Ability to sort tags alphabetically or by probability
-- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
+- [X] Fix bug when calling recursion guard when Clarifai 401 error occurs
+- [X] Ability to sort tags alphabetically or by probability
 - [ ] Preference to use unique naming for sidecar files (iso date + HHMMSS) -- default to false
+- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
 - [ ] Version bump
 
 # Phase 8 - Feature/Fix

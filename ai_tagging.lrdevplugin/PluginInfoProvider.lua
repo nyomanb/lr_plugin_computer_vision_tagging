@@ -48,6 +48,7 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   
   -- Ensure various default values are setup
   --prefs.log_level = currentOrDefaultValue(prefs.logLevel, 2);
+  prefs.sort = currentOrDefaultValue(prefs.sort, KmnUtils.SortProb);
   prefs.thumbnail_size = currentOrDefaultValue(prefs.thumbnail_size, 256);
   prefs.tag_window_width = currentOrDefaultValue(prefs.tag_window_width, 1024);
   prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
@@ -87,6 +88,21 @@ local function sectionsForTopOfDialog(viewFactory, properties)
           checked_value = true,
           unchecked_value = false,
           value = bind 'bold_existing_tags',
+        },
+      },
+      vf:row { 
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/preferences/Global/TagSort=Tag Sorting',
+          tooltip = 'How to sort tags in tagging dialog',
+        },
+        vf:popup_menu {
+          tooltip = 'How to sort tags in tagging dialog',
+          items = {
+            { title = 'Probability', value = KmnUtils.SortProb },
+            { title = 'Alphabetical', value = KmnUtils.SortAlpha },
+          },
+          value = bind 'sort',
         },
       },
       vf:row {
