@@ -196,8 +196,8 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
   
   local progressScope = exportContext:configureProgress {
             title = nPhotos > 1
-                 and LOC( "$$$/ComputerVisionTagging/Upload/Progress=Uploading ^1 photos for computer vision", nPhotos )
-                 or LOC "$$$/ComputerVisionTagging/Upload/Progress/One=Uploading one photo for computer vision",
+                 and LOC( "$$$/ComputerVisionTagging/Upload/Progress=Processing ^1 photos", nPhotos )
+                 or LOC "$$$/ComputerVisionTagging/Upload/Progress/One=Processing one photo",
           };
   
   local photosToTag = {};
@@ -245,13 +245,13 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
   if #failures > 0 then
     local message
     if #failures == 1 then
-      message = LOC "$$$/ComputerVisionTagging/Upload/Errors/OneFileFailed=1 file failed to upload correctly.";
+      message = LOC "$$$/ComputerVisionTagging/Upload/Errors/OneFileFailed=1 file failed to process correctly.";
     else
-      message = LOC ( "$$$/ComputerVisionTagging/Upload/Errors/SomeFileFailed=^1 files failed to upload correctly.", #failures );
+      message = LOC ( "$$$/ComputerVisionTagging/Upload/Errors/SomeFileFailed=^1 files failed to process correctly.", #failures );
     end
     LrDialogs.message( message, table.concat( failures, "\n" ) );
   else
-    DialogTagging.buildDialog(photosToTag, exportParams);
+    DialogTagging.buildDialog(photosToTag, exportParams, progressScope);
   end
 end
 

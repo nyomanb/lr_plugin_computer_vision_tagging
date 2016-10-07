@@ -3,12 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 9 - Feature/Fix
-- [X] Branch
-- [X] Verify jpeg mini output support
-- [ ] Progress indicator showing status of applying tags to images (increment on image)
-- [ ] Version bump
-
 # Phase 10 - Feature
 - [ ] Branch
 - [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
@@ -25,6 +19,14 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 9 - Feature/Fix
+- [X] Branch
+- [X] Verify jpeg mini output support
+- [X] Progress indicator showing status of applying tags to images (increment on image)
+- [X] Setup tag (by image) progress indicator as a sub to the export indicator (allows seeing progress while tags are being applied)
+- [X] Test cancel function of progress during tagging
+- [X] Version bump
 
 # Phase 8 - Fix
 - [X] Branch

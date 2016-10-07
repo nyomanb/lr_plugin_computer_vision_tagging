@@ -29,6 +29,7 @@ local LrView = import 'LrView'
 local LrBinding = import 'LrBinding'
 local LrDialogs = import 'LrDialogs'
 local LrFunctionContext = import 'LrFunctionContext'
+local LrProgressScope = import 'LrProgressScope'
 local LrPathUtils = import 'LrPathUtils'
 local LrPrefs = import 'LrPrefs'
 local LrTasks = import 'LrTasks'
@@ -163,7 +164,7 @@ function DialogTagging.buildColumn(context, exportParams, properties, photo, tag
   };
 end
 
-function DialogTagging.buildDialog(photosToTag, exportParams)
+function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
   LrFunctionContext.callWithContext('DialogTagger', function(context)
     local properties = {};
     local columns = {};
@@ -191,8 +192,24 @@ function DialogTagging.buildDialog(photosToTag, exportParams)
     });
     
     if result == 'ok' then
+      local taggingProgress = LrProgressScope({ title = 'Tagging photo(s)', parent = mainProgress });
+      local photosProcessed = 1;
+      local totalPhotosToTag = 0;
+      -- FIXME: #properties will return 0 for some reason
       for photo, tagvalues in pairs(properties) do
+        totalPhotosToTag = totalPhotosToTag + 1;
+      end
+      KmnUtils.log(KmnUtils.LogTrace, '# images to tag: ' .. totalPhotosToTag);
+      for photo, tagvalues in pairs(properties) do
+        if taggingProgress:isCanceled() then
+          break;
+        end
+        taggingProgress:setPortionComplete( photosProcessed, totalPhotosToTag )
         for _, taginfo in ipairs(processedTags[photo]) do
+          if taggingProgress:isCanceled() then
+            break;
+          end
+          mainProgress:setCaption('Tagging ' .. photo:getFormattedMetadata( 'fileName' ));
           local catalog = LrApplication.activeCatalog();
           local catalogKeywords = catalog:getKeywords();
           local newKeywords = {};
@@ -214,7 +231,9 @@ function DialogTagging.buildDialog(photosToTag, exportParams)
             end
           end);
         end
+        photosProcessed = photosProcessed + 1;
       end
+      taggingProgress:done();
     end
   end);
 end
