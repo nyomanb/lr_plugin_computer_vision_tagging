@@ -3,11 +3,48 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
+# Phase 11 - Feature
+- [ ] Branch
+- [ ] Show service(s) that a tag was suggested by in tagging dialog
+- [ ] Export option to only send to selected services (checkboxes for each configured service)
+- [ ] Version Bump
+
+# Phase 12 - Feature
+- [ ] Branch
+- [ ] Implement Microsoft Computer Vision API (new service)
+- [ ] Save response as side car file
+- [ ] Add tags to main tagging dialog
+- [ ] Add tags to auto tagging
+- [ ] Version Bump
+
+# Phase 13 - Feature
+- [ ] Branch
+- [ ] Show service specific data in tagging window after tag group
+- [ ] Version Bump
+
+# Phase 14 - Feature
+- [ ] Branch
+- [ ] Option to show a dialog with service specific data if auto-tagging 
+- [ ] Version Bump
+
+# Phase 15 - Feature
+- [ ] Branch
+- [ ] Implement Microsoft Emotion API (new service)
+- [ ] Save response as side car file
+- [ ] Show service specific data in tagging dialog
+- [ ] Show service specific data in auto tag dialog
+- [ ] Version Bump
+
+# Phase 16 - Feature
+- [ ] Branch
+- [ ] Implement Microsoft Face API (new service)
+- [ ] Save response as side car file
+- [ ] Show service specific data in tagging dialog
+- [ ] Show service specific data in auto tag dialog
+- [ ] Version Bump
+
 # Phase Future (enhancements / features)
-- [ ] Base implementation of Microsoft computer vision
 - [ ] Base implementation of Google vision
-- [ ] Option to show service(s) that a tag was suggested by
-- [ ] Option to only send to selected services
 - [ ] Option to submit selected tags back to upstream service to help with their training
 - [ ] Ensure all strings are localized
 - [ ] Allow resizing of the tagging dialog
