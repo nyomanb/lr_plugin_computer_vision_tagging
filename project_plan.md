@@ -3,11 +3,6 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 10 - Feature
-- [ ] Branch
-- [ ] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
-- [ ] Version bump
-
 # Phase Future (enhancements / features)
 - [ ] Base implementation of Microsoft computer vision
 - [ ] Base implementation of Google vision
@@ -19,6 +14,11 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Completed Phases
 This section is basically the changelog in reverse chronological order
+
+# Phase 10 - Feature
+- [X] Branch
+- [X] Preference to auto apply tags with a given minimum p value (disables tagging pop up)
+- [X] Version bump
 
 # Phase 9 - Feature/Fix
 - [X] Branch

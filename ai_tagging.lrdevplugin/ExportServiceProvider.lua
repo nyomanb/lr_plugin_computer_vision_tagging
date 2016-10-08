@@ -46,6 +46,8 @@ exportServiceProvider.exportPresetFields = {
   { key = 'global_save_sidecar_unique', default = false },
   { key = 'global_size_mpx', default = 2 },
   { key = 'global_jpeg_quality', default = 50 },
+  { key = 'global_auto_save_tags', default = false },
+  { key = 'global_auto_save_tags_p_min', default = 95 },
   { key = 'clarifai_model', default = 'general-v1.3' },
   { key = 'clarifai_language', default = 'en' },
 }
@@ -56,6 +58,38 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
   return {
     {
       title = LOC '$$$/ComputerVisionTagging/ExportDialog/Global=Global Settings',
+      vf:row {
+        vf:checkbox {
+          title = 'Auto save tags',
+          tooltip = 'Automatically save tags (no dialog) with minimum probability',
+          value = bind 'global_auto_save_tags',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:static_text {
+          title = 'Auto save minimum probability (inclusive)',
+          tooltip = 'The minimum probability (inclusive) used to determine if a tag is auto-saved'
+        },
+        vf:slider {
+          value = bind 'global_auto_save_tags_p_min',
+          min = 1,
+          max = 100,
+          integral = true,
+          tooltip = 'The minimum probability (inclusive) used to determine if a tag is auto-saved'
+        },
+        vf:edit_field {
+          value = bind 'global_auto_save_tags_p_min',
+          tooltip = 'The minimum probability (inclusive) used to determine if a tag is auto-saved',
+          fill_horizonal = 1,
+          width_in_chars = 4,
+          min = 1,
+          max = 100,
+          increment = 1,
+          precision = 0,
+        }
+      },
       vf:row {
         vf:checkbox {
           title = 'Save sidecar json files',
@@ -251,7 +285,30 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
     end
     LrDialogs.message( message, table.concat( failures, "\n" ) );
   else
-    DialogTagging.buildDialog(photosToTag, exportParams, progressScope);
+    if exportParams.global_auto_save_tags then
+      local tagsByPhoto = {};
+      local tagSelectionsByPhoto = {};
+    
+      for photo, apiResult in pairs(photosToTag) do
+        tagsByPhoto[photo] = {};
+        local tagDetails = ClarifaiAPI.processTagsProbibilities(apiResult);
+        for _, tag in ipairs(tagDetails) do
+          tagsByPhoto[photo][tag.tag] = tag;
+        end
+      end
+      
+      for photo, tagValues in pairs(tagsByPhoto) do
+        tagSelectionsByPhoto[photo] = {}
+        for _, taginfo in pairs(tagValues) do
+          tagSelectionsByPhoto[photo][taginfo.tag] = exportParams.global_auto_save_tags_p_min < taginfo.probability * 100;
+        end
+      end
+      KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagsByPhoto));
+      KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagSelectionsByPhoto));
+      Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, progressScope);
+    else 
+      DialogTagging.buildDialog(photosToTag, exportParams, progressScope);
+    end
   end
 end
 
