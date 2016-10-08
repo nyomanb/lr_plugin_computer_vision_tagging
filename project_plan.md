@@ -46,6 +46,9 @@ Please note there are not any dates listed here. The developers have day jobs an
 # Phase Documentation (ongoing)
 - [ ] Create docs folder with existing usage / install / setup / protips information
 - [ ] Call out docs folder in README
+- [ ] Protip on tagging window size for 1280x800 monitors
+- [ ] Protip on tagging window size for 1366x768 monitors
+- [ ] Error 1004 and jpegmini protip
 - [ ] How to create Clarifai account
 - [ ] How to create Clarifai application
 - [ ] Setting up Clarifai API in Lightroom plugin preferences
