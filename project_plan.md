@@ -43,6 +43,18 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Show service specific data in auto tag dialog
 - [ ] Version Bump
 
+# Phase Documentation (ongoing)
+- [ ] Create docs folder with existing usage / install / setup / protips information
+- [ ] Call out docs folder in README
+- [ ] How to create Clarifai account
+- [ ] How to create Clarifai application
+- [ ] Setting up Clarifai API in Lightroom plugin preferences
+- [ ] Walk through of Lightroom plugin preferences
+- [ ] Basic usage of menu items (File/Help)
+- [ ] Basic walk through of photo submissions and tagging
+- [ ] Walk through of export settings
+- [ ] Walk through of tagging dialog
+
 # Phase Future (enhancements / features)
 - [ ] Base implementation of Google vision
 - [ ] Option to submit selected tags back to upstream service to help with their training
