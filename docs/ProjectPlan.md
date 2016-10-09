@@ -44,8 +44,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Version Bump
 
 # Phase Documentation (ongoing)
-- [ ] Create docs folder with existing usage / install / setup / protips information
-- [ ] Call out docs folder in README
+- [X] Create docs folder with existing usage / install / setup / protips information
+- [X] Call out docs folder in README
 - [ ] Protip on tagging window size for 1280x800 monitors
 - [ ] Protip on tagging window size for 1366x768 monitors
 - [ ] Error 1004 and jpegmini protip

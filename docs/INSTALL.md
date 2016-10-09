@@ -1,5 +1,6 @@
 # Install
 To install follow the procedure below
+
 1. Click the "releases" tab
 1. Click "Zip" icon for the latest release to download
 1. Extract the downloaded zip file somewhere on your computer

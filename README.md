@@ -6,22 +6,11 @@ Welcome to the Computer Vision Lightroom plugin project page. This project aims 
 - Windows 10 (lower versions of Windows likely work but are untested, please let me know if you have success with other versions of Windows)
 - Mac is untested but will likely work, please let me know if it works on a Mac
 
-# Install
-See the "INSTALL.md" file for install instructions
-
-# Usage
-See the "USAGE.md" file for usage instructions
-
-# Pro Tips
-## Tagging Window Preferences
-If you have a 1080p monitor, the following values work great for the tagging window and thumbnail sizes:
-
-- Thumbnail size: 256
-- Tagging Window Width: 1850
-- Tagging Window Height: 875
+# Documentation
+See the "docs" folder or http://mcrosson.github.io/lr_plugin_computer_vision_tagging for more details.
 
 # Roadmap / Project Plan
-See the "project_plan.md" file for more details on the current state of the project and what is on the roadmap for development.
+See the "docs/ProjectPlan.md" file for more details on the current state of the project and what is on the roadmap for development.
 
 # Contributing
 Contributions to this project are welcome and appreciated. Please create a pull request with any changes you'd like to see included. The developers(s) will review the pull request and make any necessary comments/approvals after review.
