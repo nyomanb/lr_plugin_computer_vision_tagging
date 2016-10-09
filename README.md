@@ -7,7 +7,7 @@ Welcome to the Computer Vision Lightroom plugin project page. This project aims 
 - Mac is untested but will likely work, please let me know if it works on a Mac
 
 # Documentation
-See the "docs" folder or http://mcrosson.github.io/lr_plugin_computer_vision_tagging for more details.
+See the "docs" folder or https://mcrosson.github.io/lr_plugin_computer_vision_tagging/ for more details.
 
 # Roadmap / Project Plan
 See the "docs/ProjectPlan.md" file for more details on the current state of the project and what is on the roadmap for development.
