@@ -7,7 +7,7 @@ email: mcrosson_lrcvt [at] nusku.net
 description: A computer vision plugin for Adobe Lightroom
 #baseurl: {{ github.baseurl }}
 #url: {{ github.url }}
-url: "http://localhost:4000" # Deal with Windows/bash stupidity
+#url: "http://localhost:4000" # Deal with Windows/bash stupidity
 permalink: pretty
 paginate: 3
 twitter_username: kemoninephotos
