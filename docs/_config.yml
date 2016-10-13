@@ -1,12 +1,12 @@
 # Pull in Github metadata
-#repository: mcrosson/lr_plugin_computer_vision_tagging
+repository: mcrosson/lr_plugin_computer_vision_tagging
 
 # Site settings
 title: Computer Vision Tagging (LR Plugin)
 email: mcrosson_lrcvt [at] nusku.net
 description: A computer vision plugin for Adobe Lightroom
-baseurl: ""
-#url: {{ site.github.url }}
+#baseurl:
+#url:
 permalink: pretty
 paginate: 3
 twitter_username: kemoninephotos
@@ -16,25 +16,22 @@ google_analytics: UA-NNNNNNNN-N
 # Build settings
 markdown: kramdown
 theme: minima
-#timezone: America/Detroit
 
 # Github tunables
-#github: [metadata]
 kramdown:
   input: GFM
   hard_wrap: false
 gems:
   - jekyll-paginate
-#  - jekyll-coffeescript
+  - jekyll-coffeescript
 
 
 # Github NON tunables (per docs, copied here for reference and local testing)
-lsi: false
-safe: true
-#source: [your repo's top level directory]
-incremental: false
-highlighter: rouge
-gist:
-  noscript: false
-kramdown:
-  math_engine: mathjax
+#lsi: false
+#safe: true
+#incremental: false
+#highlighter: rouge
+#gist:
+#  noscript: false
+#kramdown:
+#  math_engine: mathjax
