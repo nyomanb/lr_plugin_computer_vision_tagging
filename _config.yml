@@ -1,37 +1,188 @@
-# Pull in Github metadata
-repository: mcrosson/lr_plugin_computer_vision_tagging
+# --- General options --- #
 
-# Site settings
-title: Computer Vision Tagging (LR Plugin)
-email: mcrosson_lrcvt [at] nusku.net
-description: A computer vision plugin for Adobe Lightroom
+# url is the full website URL
+# baseurl is the website's URL without the hostname
+
+# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
+#url: "http://username.github.io"
+#baseurl: ""
+
+# If you are building a GitHub project page then use these settings:
 #url: {{ github.url }}
 baseurl: "/lr_plugin_computer_vision_tagging"
-permalink: pretty
-paginate: 3
-twitter_username: kemoninephotos
-github_username:  mcrosson
-google_analytics: UA-NNNNNNNN-N
 
-# Build settings
+# Of course don't forget to change the username and projectname to YOUR username and project
+
+# Name of website
+title: LR Computer Vision Tagging
+
+# Short description of your site
+description: Export photos from Lightroom to Computer Vision APIs for help with tagging
+
+# --- Navigation bar options --- #
+
+# List of links in the navigation bar
+navbar-links:
+  About Me: "aboutme"
+  Resources:
+    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
+    - Learn markdown: "http://www.markdowntutorial.com/"
+    - GitHub Pages: "https://pages.github.com/"
+  Author's home: "http://deanattali.com"
+
+# Image to show in the navigation bar - image must be a square (width = height)
+# Remove this parameter if you don't want an image in the navbar
+#avatar: "/img/avatar-icon.png"
+
+# --- Footer options --- #
+
+# Change all these values or delete the ones you don't want.
+# Important: you must keep the "name" parameter, everything else you can remove
+author:
+  name: Mike C
+  email: "mcrosson_lrcvt [at] nusku.net"
+  facebook: kemoninephotos  # eg. daattali
+  github: mcrosson/lr_plugin_computer_vision_tagging    # eg. daattali
+  twitter: kemoninephotos   # eg. daattali
+  google-plus: 107916389844471414728   # eg. +DeanAttali or 109424658772469020925
+#  linkedin: yourname  # eg. daattali
+#  xing: yourname      # eg. daattali
+#  stackoverflow: yourlink  # eg. "3943160/daattali"
+#  snapchat: yourname  # eg. daattali
+#  instagram: yourname # eg. daattali
+#  youtube: yourlink   # eg. user/daattali or channel/daattali
+#  spotify: yourname   # eg. daattali
+
+# Select which links to show in the footer
+footer-links-active:
+  rss: true
+  facebook: true
+  email: true
+  twitter: true
+  google-plus: true
+  github: true
+  linkedin: false
+  xing: false
+  stackoverflow: false
+  snapchat: false
+  instagram: false
+  youtube: false
+  spotify: false
+
+# Select which share links to show in posts
+share-links-active:
+  twitter: true
+  facebook: true
+  google: true
+  linkedin: false
+
+# How to display the link to the website in the footer
+# Remove this if you don't want a link in the footer
+#url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
+
+# --- Misc --- #
+# Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
+#disqus: ""
+
+# Fill in your Google Analytics ID to track your website using GA
+google_analytics: "UA-80567025-5"
+
+# Facebook App ID
+# fb_app_id: ""
+
+# Excerpt Word Length
+# Truncates the excerpt to the specified number of words on the index page
+excerpt_length: 50
+
+# --- Don't need to touch anything below here (but you can if you want) --- #
+
+# Output options (more information on Jekyll's site)
+timezone: "America/Detroit"
 markdown: kramdown
-theme: minima
+highlighter: rouge
+permalink: /:year-:month-:day-:title/
+paginate: 5
 
-# Github tunables
 kramdown:
   input: GFM
-  hard_wrap: false
+
+# Default YAML values (more information on Jekyll's site)
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
+  -
+    scope:
+      path: "" # all files
+    values:
+      layout: "page"
+      show-avatar: false
+
+# Use tags pages (not recommended if you are deploying via GitHub pages, only set to true if deploying locally with ruby)
+link-tags: false
+
+# Exclude these files from production site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - ThemeREADME.md
+  - CNAME
+  - Vagrantfile
+
+# prose.io config
+prose:
+  rooturl: '_posts'
+  media: 'img'
+  ignore:
+    - 404.html
+    - LICENSE
+    - feed.xml
+    - _config.yml
+    - /_layouts
+    - /_includes
+    - /css
+    - /img
+    - /js
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+      - name: "subtitle"
+        field:
+          element: "textarea"
+          label: "Subtitle"
+          placeholder: "A description of your post."
+          alterable: true
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          help: "Enter date of post."
+          placeholder: "yyyy-mm-dd"
+          alterable: true
+      - name: "published"
+        field:
+          element: "checkbox"
+          label: "Publish"
+          help: "Check to publish post, uncheck to hide."
+
 gems:
   - jekyll-paginate
-  - jekyll-coffeescript
 
-
-# Github NON tunables (per docs, copied here for reference and local testing)
-#lsi: false
-#safe: true
-#incremental: false
-#highlighter: rouge
-#gist:
-#  noscript: false
-#kramdown:
-#  math_engine: mathjax
+# Beautiful Jekyll / Dean Attali
+# 2fc73a3a967e97599c9763d05e564189

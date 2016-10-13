@@ -1,11 +1,6 @@
-source "https://rubygems.org"
-ruby RUBY_VERSION
+source 'https://rubygems.org'
 
-# Themes
-gem "minima"
-
-# Github related
-gem "github-pages", group: :jekyll_plugins
-group :jekyll_plugins do
-  gem "jekyll-github-metadata"
-end
+gem 'execjs'
+gem 'therubyracer'
+gem 'github-pages'
+gem 'jekyll-paginate'
