@@ -21,8 +21,11 @@ email: mcrosson_lrcvt [at] nusku.net
 description: > # this means to ignore newlines until "baseurl:"
   A computer vision plugin for Adobe Lightroom.
   It leverages the Clarifai API for tagging photos from a Lightroom catalog.
-#baseurl: "" # the subpath of your site, e.g. /blog
+#baseurl: / # the subpath of your site, e.g. /blog
 #url: {{ site.github.url }}
+permalink: pretty
+paginate: 3
+author: Mike C
 twitter_username: kemoninephotos
 github_username:  mcrosson
 google_analytics: UA-NNNNNNNN-N
