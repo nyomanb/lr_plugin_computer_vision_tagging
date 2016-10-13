@@ -1,0 +1,51 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Pull in Github metadata
+repository: mcrosson/lr_plugin_computer_vision_tagging
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Computer Vision Tagging (LR Plugin)
+email: mcrosson_lrcvt [at] nusku.net
+description: > # this means to ignore newlines until "baseurl:"
+  A computer vision plugin for Adobe Lightroom.
+  It leverages the Clarifai API for tagging photos from a Lightroom catalog.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: {{ site.github.url }}
+twitter_username: kemoninephotos
+github_username:  mcroson
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Github tunables
+#github: [metadata]
+kramdown:
+  input: GFM
+  hard_wrap: false
+gems:
+  - jekyll-coffeescript
+  - jekyll-paginate
+
+# Github NON tunables (per docs, copied here for reference and local testing)
+lsi: false
+safe: true
+#source: [your repo's top level directory]
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
