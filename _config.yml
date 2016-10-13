@@ -5,9 +5,8 @@ repository: mcrosson/lr_plugin_computer_vision_tagging
 title: Computer Vision Tagging (LR Plugin)
 email: mcrosson_lrcvt [at] nusku.net
 description: A computer vision plugin for Adobe Lightroom
-#baseurl: {{ github.baseurl }}
 #url: {{ github.url }}
-#url: "http://localhost:4000" # Deal with Windows/bash stupidity
+baseurl: "/lr_plugin_computer_vision_tagging"
 permalink: pretty
 paginate: 3
 twitter_username: kemoninephotos
