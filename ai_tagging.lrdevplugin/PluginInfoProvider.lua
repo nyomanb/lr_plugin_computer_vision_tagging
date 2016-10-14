@@ -54,6 +54,8 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
   prefs.tag_window_show_probabilities = currentOrDefaultValue(prefs.tag_window_show_probabilities, true);
   prefs.bold_existing_tags = currentOrDefaultValue(prefs.bold_existing_tags, true);
+  prefs.clarifai_clientid = currentOrDefaultValue(prefs.clarifai_clientid, '');
+  prefs.clarifai_clientsecret = currentOrDefaultValue(prefs.clarifai_clientsecret, '');
   
   -- Setup observer pattern so results of verification of API can be marked success/fail
   local get_info_result;
