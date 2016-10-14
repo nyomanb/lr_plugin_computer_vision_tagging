@@ -63,6 +63,9 @@ Please note there are not any dates listed here. The developers have day jobs an
 # Phase 17 - Docs
 - [ ] Create docs for setup of Microsoft Computer Vision services (use Clarifai docs as template/model)
 
+# Phase Fixes (ongoing)
+- [ ] Github issue tracker has more details
+
 # Phase Documentation (ongoing)
 - [ ] Clarifai API setup (account, app creation, plugin prefs) documentation
 - [ ] Basic usage of menu items (File/Help)

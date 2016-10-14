@@ -4,6 +4,14 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Fixes - Various fixes related to first launch/post install
+- [X] Fixup preference defaults
+- [X] Fixup showing preferences after fresh install
+- [X] Fixup menu item errors when no valid API keys setup
+- [X] Fixup export API usage if API isn't setup
+- [X] Fixup tagging dialog if no tags returned for photos
+- [X] Version bump
+
 # Phase Docs - Docs/website updates
 - [X] Finalize gh-pages branch / theme / etc
 - [X] Setup release posts for existing releases
