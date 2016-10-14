@@ -14,7 +14,7 @@ baseurl: "/lr_plugin_computer_vision_tagging"
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: LR Computer Vision Tagging
+title: Lr Computer Vision Tagging
 
 # Short description of your site
 description: Export photos from Lightroom to Computer Vision APIs for help with tagging
@@ -23,12 +23,21 @@ description: Export photos from Lightroom to Computer Vision APIs for help with 
 
 # List of links in the navigation bar
 navbar-links:
-  Resources:
+  Documentation: 
     - Install: "docs/install"
+    - Clarifai API Setup: "docs/clarifai_api_setup"
     - Usage: "docs/usage"
     - Pro Tips: "docs/pro_tips"
-  About: "about"
+    - Plugin Preferences: "docs/plugin_prefs"
+    - Export Settings: "docs/export_settings"
+    - Screenshots: "docs/screenshots"
+  Resources: 
+    - Project Plan: "project_plan"
+    - Changelog: "changelog"
+    - Release Archive: "releases"
   Source Code: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging"
+  Download: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/releases"
+
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
@@ -92,7 +101,7 @@ google_analytics: "UA-80567025-5"
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 50
+excerpt_length: 10
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
@@ -102,6 +111,7 @@ markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
 paginate: 5
+paginate_path: "/releases/page:num/"
 
 kramdown:
   input: GFM
