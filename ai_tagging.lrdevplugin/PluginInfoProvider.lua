@@ -24,7 +24,6 @@ Plugin settings / info UI
 
 ------------------------------------------------------------------------------]]
 
-local LrPrefs = import 'LrPrefs'
 local LrBinding = import 'LrBinding'
 local LrFunctionContext = import 'LrFunctionContext'
 local LrView = import 'LrView'
@@ -33,27 +32,12 @@ local PlugInfo = require 'Info'
 local KmnUtils = require 'KmnUtils'
 local ClarifaiAPI = require 'ClarifaiAPI'
 
-local prefs = LrPrefs.prefsForPlugin();
+local prefs = import 'LrPrefs'.prefsForPlugin(_PLUGIN.id)
+local InfoProvider = {}
 
-local function currentOrDefaultValue(value, default)
-   if value == nil then
-      return default
-   end
-   return value
-end
-
-local function sectionsForTopOfDialog(viewFactory, properties)
-  local vf = viewFactory;
-  local bind = LrView.bind;
-  
-  -- Ensure various default values are setup
-  prefs.log_level = currentOrDefaultValue(prefs.log_level, KmnUtils.LogError);
-  prefs.sort = currentOrDefaultValue(prefs.sort, KmnUtils.SortProb);
-  prefs.thumbnail_size = currentOrDefaultValue(prefs.thumbnail_size, 256);
-  prefs.tag_window_width = currentOrDefaultValue(prefs.tag_window_width, 1024);
-  prefs.tag_window_height = currentOrDefaultValue(prefs.tag_window_height, 768);
-  prefs.tag_window_show_probabilities = currentOrDefaultValue(prefs.tag_window_show_probabilities, true);
-  prefs.bold_existing_tags = currentOrDefaultValue(prefs.bold_existing_tags, true);
+function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
+  local vf = viewFactory
+  local bind = LrView.bind
   
   -- Setup observer pattern so results of verification of API can be marked success/fail
   local get_info_result;
@@ -270,7 +254,7 @@ local function sectionsForTopOfDialog(viewFactory, properties)
   }
 end
 
-local function sectionsForBottomOfDialog(viewFactory, properties)
+function InfoProvider.sectionsForBottomOfDialog(viewFactory, properties)
   local vf = viewFactory;
   
   return {
@@ -290,7 +274,7 @@ local function sectionsForBottomOfDialog(viewFactory, properties)
   }
 end
 
-local function endDialog(properties)
+function InfoProvider.endDialog(properties)
   -- Ensure logging is turned on/off if pref changed
   KmnUtils.enableDisableLogging();
   
@@ -301,8 +285,4 @@ local function endDialog(properties)
 end
 
 
-return {
-  sectionsForTopOfDialog = sectionsForTopOfDialog,
-  sectionsForBottomOfDialog = sectionsForBottomOfDialog,
-  endDialog = endDialog,
-}
+return InfoProvider
