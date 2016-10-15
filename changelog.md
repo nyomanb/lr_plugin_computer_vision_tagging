@@ -4,6 +4,11 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Next Release
+- [X] Convert sources to UTF8 encoding
+- [X] Convert sources to Unix line endings
+- [X] Remove auto generation of Clarifai API token when closing preferences dialog
+
 # Phase Fixes - Various fixes related to first launch/post install
 - [X] Fixup preference defaults
 - [X] Fixup showing preferences after fresh install
