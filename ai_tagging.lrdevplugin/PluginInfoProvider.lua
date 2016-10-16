@@ -51,7 +51,7 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
   
   return {
     {
-      title = LOC '$$$/ComputerVisionTagging/Preferences/Info=Computer Vision Tagging Plugin',
+      title = LOC '$$$/ComputerVisionTagging/Preferences/VersionTitle=Computer Vision Tagging Plugin',
       vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
@@ -252,7 +252,7 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
       },
     },
-  }
+  };
 end
 
 function InfoProvider.sectionsForBottomOfDialog(viewFactory, properties)
