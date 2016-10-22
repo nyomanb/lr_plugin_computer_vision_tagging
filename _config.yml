@@ -145,6 +145,7 @@ exclude:
   - ThemeREADME.md
   - CNAME
   - Vagrantfile
+  - Attic
 
 # prose.io config
 prose:
