@@ -4,10 +4,11 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
-# Next Release
+# Phase OSX - Various fixes for OSX compatibility
 - [X] Convert sources to UTF8 encoding
 - [X] Convert sources to Unix line endings
 - [X] Remove auto generation of Clarifai API token when closing preferences dialog
+- [X] Fix plugin preferences so they no longer use an invalid option on OSX
 
 # Phase Fixes - Various fixes related to first launch/post install
 - [X] Fixup preference defaults
