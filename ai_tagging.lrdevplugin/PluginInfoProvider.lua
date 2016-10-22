@@ -200,7 +200,6 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/ClientSecret=Client Secret',
         },
         vf:password_field {
-          fill_horizontal = true,
           width_in_chars = 35,
           value = bind 'clarifai_clientsecret',
         },
@@ -212,7 +211,6 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
         vf:edit_field {
           enabled = false,
-          fill_horizontal = true,
           width_in_chars = 35,
           value = bind 'clarifai_accesstoken',
         },
