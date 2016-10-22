@@ -4,7 +4,7 @@ Welcome to the Computer Vision Lightroom plugin project page. This project aims 
 # Compatibility
 - Lightroom 5 and higher
 - Windows 10 (lower versions of Windows likely work but are untested, please let me know if you have success with other versions of Windows)
-- Mac is untested but will likely work, please let me know if it works on a Mac
+- OSX El Capitan (lower version of OSX likely work but are untested, please let me know if you have success with other versions of OSX)
 
 # Documentation
 See the main website [here (link)](https://mcrosson.github.io/lr_plugin_computer_vision_tagging/) or 'gh-pages' branch for all documentation including the project plan.
