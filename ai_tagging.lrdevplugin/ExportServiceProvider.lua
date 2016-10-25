@@ -49,6 +49,7 @@ exportServiceProvider.exportPresetFields = {
   { key = 'global_auto_save_tags_p_min', default = 95 },
   { key = 'clarifai_model', default = 'general-v1.3' },
   { key = 'clarifai_language', default = 'en' },
+  { key = 'enable_api_clarifai', default = true },
 }
 
 function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
@@ -58,6 +59,25 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
   return {
     {
       title = LOC '$$$/ComputerVisionTagging/ExportDialog/Global=Global Settings',
+      vf:row {
+        vf:group_box {
+          title = 'Enabled APIs / Services',
+          vf:row {
+            vf:static_text {
+              title = 'Select which APIs and services will be used by the plugin',
+            },
+          },
+          vf:row {
+            vf:checkbox {
+              title = 'Clarifai',
+              enabled = false, -- TODO: Re-enable field when more APIs are implemented
+              checked_value = true,
+              unchecked_value = false,
+              value = bind 'enable_api_clarifai',
+            },
+          },
+        },
+      },
       vf:row {
         vf:checkbox {
           title = 'Auto save tags',
@@ -248,7 +268,10 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
       local filename = LrPathUtils.leafName( pathOrMessage );
       
       local success = false;
-      local result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+      local result = nil;
+      if exportParams.enable_api_clarifai then
+        result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+      end
       
       if result ~= nil then
         success = true;
