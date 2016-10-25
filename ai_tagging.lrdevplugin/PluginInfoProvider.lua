@@ -124,6 +124,31 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
       },
       vf:row {
+        vf:checkbox {
+          title = 'Auto-Select tags with p values greater than or equal to ',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'tag_window_auto_select',
+        },
+        vf:slider {
+          value = bind 'tag_window_auto_select_threshold',
+          min = 0,
+          max = 100,
+          integral = true,
+          tooltip = 'p value for auto-selection threshold'
+        },
+        vf:edit_field {
+          value = bind 'tag_window_auto_select_threshold',
+          tooltip = 'p value for auto-selection threshold',
+          fill_horizonal = 1,
+          width_in_chars = 4,
+          min = 0,
+          max = 100,
+          increment = 1,
+          precision = 0,
+        }
+      },
+      vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
           title = 'Thumbnail size',
@@ -189,7 +214,7 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/ClientID=Client ID',
         },
         vf:edit_field {
-          fill_horizonal = true,
+          fill_horizonal = 1,
           width_in_chars = 35,
           value = bind 'clarifai_clientid',
         },

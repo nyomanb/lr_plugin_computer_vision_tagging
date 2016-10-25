@@ -39,7 +39,8 @@ local defaultPrefValues = {
    tag_window_height = 768,
    tag_window_show_probabilities = true,
    bold_existing_tags = true,
-   -- auto_select_probability_level = 85,
+   tag_window_auto_select = false,
+   tag_window_auto_select_threshold = 85,
    -- ignore_keyword_branches = '',
    -- auto_select_existing_keywords = true,
 }

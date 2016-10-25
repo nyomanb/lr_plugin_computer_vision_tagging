@@ -74,7 +74,12 @@ function DialogTagging.buildTagGroup(photo, tags, propertyTable)
     local tagRow = {};
 
     propertyTable[tagName] = false;
-
+    -- Auto select tag if probability is above threshold
+    if prefs.tag_window_auto_select and (tags[i]['probability'] * 100) >= prefs.tag_window_auto_select_threshold then
+      propertyTable[tagName] = true;
+    end
+    
+    -- Auto select tag if it's existing
     if KmnUtils.photoHasKeyword(photo, tagName) then
       if prefs.bold_existing_tags then
         fontString = '<system/bold>'
