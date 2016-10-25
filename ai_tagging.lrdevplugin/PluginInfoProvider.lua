@@ -253,6 +253,12 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
                       ClarifaiAPI.getToken()
                    end
         },
+        vf:push_button {
+          title = 'Clear Access Token',
+          action = function(button)
+                      prefs.clarifai_accesstoken = '';
+                   end
+        },
       },
       vf:row {
         spacing = vf:label_spacing(),
