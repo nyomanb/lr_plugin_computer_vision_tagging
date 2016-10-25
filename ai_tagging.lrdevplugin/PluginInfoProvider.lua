@@ -68,30 +68,6 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
       bind_to_object = prefs,
       vf:row {
         spacing = vf:control_spacing(),
-        vf:checkbox {
-          title = 'Bold exising keywords/tags',
-          checked_value = true,
-          unchecked_value = false,
-          value = bind 'bold_existing_tags',
-        },
-      },
-      vf:row { 
-        spacing = vf:control_spacing(),
-        vf:static_text {
-          title = LOC '$$$/ComputerVisionTagging/preferences/Global/TagSort=Tag Sorting',
-          tooltip = 'How to sort tags in tagging dialog',
-        },
-        vf:popup_menu {
-          tooltip = 'How to sort tags in tagging dialog',
-          items = {
-            { title = 'Probability', value = KmnUtils.SortProb },
-            { title = 'Alphabetical', value = KmnUtils.SortAlpha },
-          },
-          value = bind 'sort',
-        },
-      },
-      vf:row {
-        spacing = vf:control_spacing(),
         vf:static_text {
           title = LOC '$$$/ComputerVisionTagging/Preferences/Global/LogLevel=Log Level',
           tooltip = 'How verbose the log output will be',
@@ -114,6 +90,30 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
     {
       title = LOC '$$$/ComputerVisionTagging/Preferences/TagWindow=Tag Window',
       bind_to_object = prefs,
+      vf:row { 
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Tag Sorting',
+          tooltip = 'How to sort tags in tagging dialog',
+        },
+        vf:popup_menu {
+          tooltip = 'How to sort tags in tagging dialog',
+          items = {
+            { title = 'Probability', value = KmnUtils.SortProb },
+            { title = 'Alphabetical', value = KmnUtils.SortAlpha },
+          },
+          value = bind 'tag_window_sort',
+        },
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:checkbox {
+          title = 'Bold exising keywords/tags',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'tag_window_bold_existing_tags',
+        },
+      },
       vf:row {
         spacing = vf:control_spacing(),
         vf:checkbox {
@@ -124,53 +124,13 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
       },
       vf:row {
+        spacing = vf:control_spacing(),
         vf:checkbox {
-          title = 'Auto-Select tags with p values greater than or equal to ',
+          title = 'Show service(s) that a tag was suggested by',
           checked_value = true,
           unchecked_value = false,
-          value = bind 'tag_window_auto_select',
+          value = bind 'tag_window_show_services',
         },
-        vf:slider {
-          value = bind 'tag_window_auto_select_threshold',
-          min = 0,
-          max = 100,
-          integral = true,
-          tooltip = 'p value for auto-selection threshold'
-        },
-        vf:edit_field {
-          value = bind 'tag_window_auto_select_threshold',
-          tooltip = 'p value for auto-selection threshold',
-          fill_horizonal = 1,
-          width_in_chars = 4,
-          min = 0,
-          max = 100,
-          increment = 1,
-          precision = 0,
-        }
-      },
-      vf:row {
-        spacing = vf:control_spacing(),
-        vf:static_text {
-          title = 'Thumbnail size',
-          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
-        },
-        vf:slider {
-          value = bind 'thumbnail_size',
-          min = 128,
-          max = 512,
-          integral = true,
-          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
-        },
-        vf:edit_field {
-          value = bind 'thumbnail_size',
-          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog',
-          fill_horizonal = 1,
-          width_in_chars = 4,
-          min = 128,
-          max = 512,
-          increment = 1,
-          precision = 0,
-        }
       },
       vf:row {
         spacing = vf:control_spacing(),
@@ -200,6 +160,30 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           min = 384,
           max = 999999,
           width_in_chars = 7,
+          increment = 1,
+          precision = 0,
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Thumbnail size',
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
+        },
+        vf:slider {
+          value = bind 'tag_window_thumbnail_size',
+          min = 128,
+          max = 512,
+          integral = true,
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog'
+        },
+        vf:edit_field {
+          value = bind 'tag_window_thumbnail_size',
+          tooltip = 'Size (px) for the smallest edge of thumbnails in the tagging dialog',
+          fill_horizonal = 1,
+          width_in_chars = 4,
+          min = 128,
+          max = 512,
           increment = 1,
           precision = 0,
         }
