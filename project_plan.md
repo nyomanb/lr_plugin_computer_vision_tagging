@@ -77,6 +77,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Protip on tagging window size for 1366x768 monitors
 
 # Phase Future (enhancements / features)
+- [ ] Self update support based on feed.xml from main website
 - [ ] Custom metadata
     - [ ] Field(s) for tracking which services submitted to -- helps with smart collections
     - [ ] Field(s) to hold raw service response data
