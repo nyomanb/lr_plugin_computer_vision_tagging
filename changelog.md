@@ -4,6 +4,14 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase GH Issue #3 - Bug fix + Auto select tags with minimum p value
+- [X] Branch phase_gh_3
+- [X] Fix recursion guard error
+- [X] Auto select tags with minimum p value
+- [X] Version Bump
+- [X] Update Project Plan
+- [X] Post on docs site
+
 # Phase OSX - Various fixes for OSX compatibility
 - [X] Convert sources to UTF8 encoding
 - [X] Convert sources to Unix line endings
