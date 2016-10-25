@@ -28,6 +28,7 @@ local LrBinding = import 'LrBinding'
 local LrFunctionContext = import 'LrFunctionContext'
 local LrView = import 'LrView'
 local LrColor = import 'LrColor'
+local LrHttp = import 'LrHttp'
 local PlugInfo = require 'Info'
 local KmnUtils = require 'KmnUtils'
 local ClarifaiAPI = require 'ClarifaiAPI'
@@ -52,6 +53,46 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
   return {
     {
       title = LOC '$$$/ComputerVisionTagging/Preferences/VersionTitle=Computer Vision Tagging Plugin',
+      vf:row {
+        vf:static_text {
+          title = 'Website',
+          text_color = LrColor('blue'),
+          font = '<system/bold>',
+          mouse_down = function (clickedview)
+            LrHttp.openUrlInBrowser( 'https://mcrosson.github.io/lr_plugin_computer_vision_tagging/' );
+          end
+        },
+        vf:static_text {
+          title = 'Changelog',
+          text_color = LrColor('blue'),
+          font = '<system/bold>',
+          mouse_down = function (clickedview)
+            LrHttp.openUrlInBrowser( 'https://mcrosson.github.io/lr_plugin_computer_vision_tagging/changelog/' );
+          end
+        },
+        vf:picture {
+          value = _PLUGIN:resourceId('icon_download.png'),
+        },
+        vf:static_text {
+          title = 'Releases',
+          text_color = LrColor('blue'),
+          font = '<system/bold>',
+          mouse_down = function (clickedview)
+            LrHttp.openUrlInBrowser( 'https://mcrosson.github.io/lr_plugin_computer_vision_tagging/releases/' );
+          end
+        },
+        vf:picture {
+          value = _PLUGIN:resourceId('icon_rss.png'),
+        },
+        vf:static_text {
+          title = 'Subscribe (Releases)',
+          text_color = LrColor('blue'),
+          font = '<system/bold>',
+          mouse_down = function (clickedview)
+            LrHttp.openUrlInBrowser( 'https://mcrosson.github.io/lr_plugin_computer_vision_tagging/feed.xml' );
+          end
+        },
+      },
       vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
