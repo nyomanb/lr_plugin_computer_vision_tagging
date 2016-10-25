@@ -247,7 +247,12 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           action = function(button)
                       LrFunctionContext.postAsyncTaskWithContext('ClarifaiSettings.VerifySettingsButton', function()
                         local clarifaiInfo = ClarifaiAPI.getInfo();
-                        if clarifaiInfo ~= nil then
+                        local hasClarifaiInfo = false; -- do this the "dumb" way thanks to #clarifaiInfo not working properly
+                        for _,__ in pairs(clarifaiInfo) do
+                          hasClarifaiInfo = true;
+                          break;
+                        end
+                        if clarifaiInfo ~= nil and hasClarifaiInfo then
                           get_info_result.message = 'Success';
                           get_info_result.color = LrColor('green');
                         else
