@@ -4,6 +4,12 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Fixes - Fix 'Verify Settings' button in prefs
+- [X] Fix 'Verify Settings' button in Clarifai section of preferences
+- [X] Version Bump
+- [X] Update Project Plan
+- [X] Post on docs site
+
 # Phase GH Issue #3 - Bug fix + Auto select tags with minimum p value
 - [X] Branch phase_gh_3
 - [X] Fix recursion guard error
