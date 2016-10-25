@@ -4,6 +4,17 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase 11 - Feature, Misc Updates
+- [X] Branch
+- [X] Minor preference/export dialog UI cleanup
+- [X] Move tag auto selection to export preferences
+- [X] Show service(s) that a tag was suggested by in tagging dialog
+- [X] Export option to only send to selected services (checkboxes for each configured service)
+- [X] Dialog UI cleanup
+- [X] Version Bump
+- [X] Update Project Plan
+- [X] Post on docs site
+
 # Phase Fixes - Fix 'Verify Settings' button in prefs
 - [X] Fix 'Verify Settings' button in Clarifai section of preferences
 - [X] Version Bump

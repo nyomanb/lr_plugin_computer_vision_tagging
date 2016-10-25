@@ -8,17 +8,10 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
-# Phase 11 - Feature
-- [ ] Branch
-- [ ] Show service(s) that a tag was suggested by in tagging dialog
-- [ ] Export option to only send to selected services (checkboxes for each configured service)
-- [ ] Version Bump
-- [ ] Update Project Plan
-- [ ] Post on docs site
-
 # Phase 12 - Feature
 - [ ] Branch
 - [ ] Implement Microsoft Computer Vision API (new service)
+- [ ] Allow selection of MS/Clarifai APIs in preferences
 - [ ] Save response as side car file
 - [ ] Add tags to main tagging dialog
 - [ ] Add tags to auto tagging
