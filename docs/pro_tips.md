@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Pro Tips
+title: FAQ/Pro Tips
 subtitle: Various tips/tricks to make life easier while using the plugin
 ---
 

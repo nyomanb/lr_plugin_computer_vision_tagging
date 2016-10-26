@@ -27,7 +27,7 @@ navbar-links:
     - Install: "docs/install"
     - Clarifai API Setup: "docs/clarifai_api_setup"
     - Usage: "docs/usage"
-    - Pro Tips: "docs/pro_tips"
+    - FAQ/Pro Tips: "docs/pro_tips"
     - Plugin Preferences: "docs/plugin_prefs"
     - Export Settings: "docs/export_settings"
     - Screenshots: "docs/screenshots"

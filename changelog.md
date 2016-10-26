@@ -4,6 +4,10 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Docs - Docs/website updates
+- [X] Enhance Install/Setup documentation
+- [X] Clarifai API setup (account, app creation, plugin prefs) documentation
+
 # Phase 12 - Features
 - [X] Add ability to clear Clarifai access token
 - [X] Add links to website/releases/etc to preferences

@@ -71,7 +71,6 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Github issue tracker has more details
 
 # Phase Documentation (ongoing)
-- [ ] Clarifai API setup (account, app creation, plugin prefs) documentation
 - [ ] Basic usage of menu items (File/Help)
 - [ ] Basic walk through of photo submissions and tagging
 - [ ] Full walk through of Lightroom plugin preferences
