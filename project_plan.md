@@ -16,6 +16,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Add tags to main tagging dialog
 - [ ] Add tags to auto tagging
 - [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
@@ -23,6 +25,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Branch
 - [ ] Show service specific data in tagging window after tag group
 - [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
@@ -30,6 +34,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Branch
 - [ ] Option to show a dialog with service specific data if auto-tagging 
 - [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
@@ -40,6 +46,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Show service specific data in tagging dialog
 - [ ] Show service specific data in auto tag dialog
 - [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
@@ -50,11 +58,14 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Show service specific data in tagging dialog
 - [ ] Show service specific data in auto tag dialog
 - [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
 # Phase 17 - Docs
 - [ ] Create docs for setup of Microsoft Computer Vision services (use Clarifai docs as template/model)
+- [ ] Update screenshots of application dialogs/windows/etc
 
 # Phase Fixes (ongoing)
 - [ ] Github issue tracker has more details

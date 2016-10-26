@@ -4,6 +4,10 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase 12 - Features
+- [X] Add ability to clear Clarifai access token
+- [X] Add links to website/releases/etc to preferences
+
 # Phase 11 - Feature, Misc Updates
 - [X] Branch
 - [X] Minor preference/export dialog UI cleanup

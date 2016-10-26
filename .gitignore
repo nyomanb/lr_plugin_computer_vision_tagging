@@ -3,6 +3,7 @@ _site
 .sass-cache
 .vagrant
 docker_machine_env.txt
+.jekyll-metadata
 
 # general
 .DS_Store

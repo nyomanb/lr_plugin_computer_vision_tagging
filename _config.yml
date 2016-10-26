@@ -36,6 +36,7 @@ navbar-links:
     - Changelog: "changelog"
     - Release Archive: "releases"
   Source Code: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging"
+  Issues/Bugs: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/issues"
   Download: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/releases"
 
 
@@ -146,6 +147,8 @@ exclude:
   - CNAME
   - Vagrantfile
   - Attic
+  - jekyll.sh
+  - jekyll_update.sh
 
 # prose.io config
 prose:
