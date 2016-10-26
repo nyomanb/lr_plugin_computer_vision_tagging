@@ -98,3 +98,4 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Ensure all strings are localized
 - [ ] Allow resizing of the tagging dialog
 - [ ] Solve error 1004 and jpegmini
+- [ ] Look at the Clarifai API for feedback mechanisms and training. Implement if there is a good way to introduce the feedback and training into the standard plugin workflow(s). This may need a separate plugin of some form.
