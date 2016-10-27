@@ -66,6 +66,16 @@ Please note there are not any dates listed here. The developers have day jobs an
 # Phase 17 - Docs
 - [ ] Create docs for setup of Microsoft Computer Vision services (use Clarifai docs as template/model)
 - [ ] Update screenshots of application dialogs/windows/etc
+- [ ] Update other pages under "Documentation" to fill in new information specific to Microsoft Comptuer Vision services
+
+# Phase 18 - Clarifai API v2
+- [ ] Branch
+- [ ] Clarifai API v2
+- [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
+- [ ] Update Project Plan
+- [ ] Post on docs site
 
 # Phase Fixes (ongoing)
 - [ ] Github issue tracker has more details
@@ -86,6 +96,7 @@ Please note there are not any dates listed here. The developers have day jobs an
     - [ ] Field(s) to hold raw service response data
     - [ ] Field(s) to hold/show service specific data elements (processed to something human readable/sane -- everything but tags)
     - [ ] Field(s) to hold/show tags returned by services (show service + tag tuple)
+    - [ ] Menu items for saving custom metadata fields as json side cars (think XMP sidecars)
 - [ ] Way to add keyboard shortcut - ctrl - alt - a - i ?
 - [ ] Badge/overlay for files sent to services
 - [ ] Badge/overlay for each service
