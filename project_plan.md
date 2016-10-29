@@ -77,18 +77,6 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Update Project Plan
 - [ ] Post on docs site
 
-# Phase Fixes (ongoing)
-- [ ] Github issue tracker has more details
-
-# Phase Documentation (ongoing)
-- [ ] Basic usage of menu items (File/Help)
-- [ ] Basic walk through of photo submissions and tagging
-- [ ] Full walk through of Lightroom plugin preferences
-- [ ] Full walk through of export settings
-- [ ] Full walk through of tagging dialog
-- [ ] Protip on tagging window size for 1280x800 monitors
-- [ ] Protip on tagging window size for 1366x768 monitors
-
 # Phase Future (enhancements / features)
 - [ ] Self update support based on feed.xml from main website
 - [ ] Custom metadata

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Usage
+title: Menu Items
 subtitle: Information on how to use the plugin
 ---
 

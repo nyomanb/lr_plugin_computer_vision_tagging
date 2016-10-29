@@ -5,6 +5,13 @@ subtitle: Changes / updates / fixes by phase
 ---
 
 # Phase Docs - Docs/website updates
+- [X] Basic usage of menu items (File/Help)
+- [X] Basic walk through of photo submissions and tagging
+- [X] Full walk through of Lightroom plugin preferences
+- [X] Full walk through of export settings
+- [X] Full walk through of tagging dialog
+
+# Phase Docs - Docs/website updates
 - [X] Enhance Install/Setup documentation
 - [X] Clarifai API setup (account, app creation, plugin prefs) documentation
 
