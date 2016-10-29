@@ -26,15 +26,16 @@ navbar-links:
   Documentation: 
     - Install: "docs/install"
     - Clarifai API Setup: "docs/clarifai_api_setup"
-    - Usage: "docs/usage"
+    - Tagging Photos: "docs/tagging_photos"
     - FAQ/Pro Tips: "docs/pro_tips"
     - Plugin Preferences: "docs/plugin_prefs"
     - Export Settings: "docs/export_settings"
-    - Screenshots: "docs/screenshots"
+    - Menu Items: "docs/menu_items"
   Resources: 
     - Project Plan: "project_plan"
     - Changelog: "changelog"
     - Release Archive: "releases"
+    - Screenshots: "docs/screenshots"
   Source Code: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging"
   Issues/Bugs: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/issues"
   Download: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/releases"
