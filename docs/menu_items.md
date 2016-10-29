@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Menu Items
-subtitle: Information on how to use the plugin
+subtitle: Information on menu items registered by the plugin
 ---
 
 *Note: you can click the screen shots for larger versions*

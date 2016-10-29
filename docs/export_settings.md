@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Plugin Preferences
-subtitle: A breakdown of the preferences available for this plugin
+title: Export Settings
+subtitle: A breakdown of the export settings available for this plugin
 ---
 
 *Note: you can click the screen shots for larger versions*
