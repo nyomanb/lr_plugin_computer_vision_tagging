@@ -85,6 +85,7 @@ Please note there are not any dates listed here. The developers have day jobs an
     - [ ] Field(s) to hold/show service specific data elements (processed to something human readable/sane -- everything but tags)
     - [ ] Field(s) to hold/show tags returned by services (show service + tag tuple)
     - [ ] Menu items for saving custom metadata fields as json side cars (think XMP sidecars)
+- [ ] Additional filters for search
 - [ ] Way to add keyboard shortcut - ctrl - alt - a - i ?
 - [ ] Badge/overlay for files sent to services
 - [ ] Badge/overlay for each service

@@ -4,6 +4,12 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Fixes - Fix Recursion Guard Error
+- [X] Fix error when Clarifai API token expires (GitHub Issue #7)
+- [X] Version Bump
+- [X] Update Project Plan
+- [X] Post on docs site
+
 # Phase Docs - Docs/website updates
 - [X] Basic usage of menu items (File/Help)
 - [X] Basic walk through of photo submissions and tagging
