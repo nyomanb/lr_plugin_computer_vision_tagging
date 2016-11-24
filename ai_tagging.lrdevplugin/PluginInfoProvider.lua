@@ -311,6 +311,40 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
       },
     },
+    {
+      title = LOC '$$$/ComputerVisionTagging/Preferences/MicrosoftSettings=Microsoft API Settings',
+      bind_to_object = prefs,
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/Preferences/MicrosoftSettings/ComputerVision=Computer Vision API key',
+        },
+        vf:password_field {
+          width_in_chars = 35,
+          value = bind 'ms_key_computervision',
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/Preferences/MicrosoftSettings/Emotion=Emotion API key',
+        },
+        vf:password_field {
+          width_in_chars = 35,
+          value = bind 'ms_key_emotion',
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/Preferences/MicrosoftSettings/Face=Face API key',
+        },
+        vf:password_field {
+          width_in_chars = 35,
+          value = bind 'ms_key_face',
+        }
+      },
+    },
   };
 end
 

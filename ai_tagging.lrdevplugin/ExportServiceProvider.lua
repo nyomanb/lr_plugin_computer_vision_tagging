@@ -31,6 +31,7 @@ local LrFileUtils = import 'LrFileUtils'
 local LrDialogs = import 'LrDialogs'
 local KmnUtils = require 'KmnUtils'
 local ClarifaiAPI = require 'ClarifaiAPI'
+local MicrosoftCognativeServicesAPI = require 'MicrosoftCognativeServicesAPI'
 local DialogTagging = require 'DialogTagging'
 
 local prefs = import 'LrPrefs'.prefsForPlugin(_PLUGIN.id)
@@ -51,7 +52,26 @@ exportServiceProvider.exportPresetFields = {
   { key = 'global_auto_save_tags_p_min', default = 95 },
   { key = 'clarifai_model', default = 'general-v1.3' },
   { key = 'clarifai_language', default = 'en' },
-  { key = 'enable_api_clarifai', default = true },
+  { key = 'enable_api_clarifai', default = false },
+  { key = 'enable_ms_computervision', default = false },
+  { key = 'ms_computervision_visual_feature_categories', default = true },
+  { key = 'ms_computervision_visual_feature_tags', default = true },
+  { key = 'ms_computervision_visual_feature_description', default = false },
+  { key = 'ms_computervision_visual_feature_faces', default = false },
+  { key = 'ms_computervision_visual_feature_image_type', default = false },
+  { key = 'ms_computervision_visual_feature_color', default = true },
+  { key = 'ms_computervision_visual_feature_adult', default = true },
+  { key = 'ms_computervision_visual_feature_celebrities', default = false },
+  { key = 'enable_ms_emotion', default = false },
+  { key = 'enable_ms_face', default = false },
+  { key = 'ms_face_face_ids', default = true },
+  { key = 'ms_face_landmarks', default = false },
+  { key = 'ms_face_attribute_age', default = true },
+  { key = 'ms_face_attribute_gender', default = true },
+  { key = 'ms_face_attribute_head_pose', default = false },
+  { key = 'ms_face_attribute_smile', default = true },
+  { key = 'ms_face_attribute_facial_hair', default = true },
+  { key = 'ms_face_attribute_glasses', default = true },
 }
 
 function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
@@ -69,10 +89,29 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
       vf:row {
         vf:checkbox {
           title = 'Clarifai',
-          enabled = false, -- TODO: Re-enable field when more APIs are implemented
           checked_value = true,
           unchecked_value = false,
           value = bind 'enable_api_clarifai',
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Microsoft Computer Vision',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'enable_ms_computervision',
+        },
+        vf:checkbox {
+          title = 'Microsoft Face',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'enable_ms_face',
+        },
+        vf:checkbox {
+          title = 'Microsoft Emotion',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'enable_ms_emotion',
         },
       },
     },
@@ -201,7 +240,7 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
       },
     },
     {
-      title = LOC "$$$/ComputerVisionTagging/ExportDialog/Clarifai=Clarifai Settings",
+      title = LOC '$$$/ComputerVisionTagging/ExportDialog/Clarifai=Clarifai Settings',
       vf:row {
         vf:static_text {
           title = 'Model',
@@ -254,7 +293,137 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
           },
         },
       },
-    }
+    },
+    { 
+      title = LOC '$$$/ComputerVisionTagging/ExportDialog/MSComputerVision=Microsoft Computer Vision Settings',
+      vf:row {
+        vf:checkbox {
+          title = 'Enable Categories',
+          tooltip = 'Categorize based on taxonomy (see MS API docs)',
+          value = bind 'ms_computervision_visual_feature_categories',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Tags',
+          tooltip = 'Tag the image with words related to image content',
+          value = bind 'ms_computervision_visual_feature_tags',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Description Generation',
+          tooltip = 'Generate a short description of the image',
+          value = bind 'ms_computervision_visual_feature_description',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Enable Color Detection',
+          tooltip = 'Determines accent color, dominant color or if an image is B&W',
+          value = bind 'ms_computervision_visual_feature_color',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable NSFW Detection',
+          tooltip = 'Check if image is NSFW',
+          value = bind 'ms_computervision_visual_feature_adult',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Face Detection',
+          tooltip = 'Detect faces with coordinates, gender, age',
+          value = bind 'ms_computervision_visual_feature_faces',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Enable Image Type',
+          tooltip = 'Detect if an image is clipart or line drawing',
+          value = bind 'ms_computervision_visual_feature_image_type',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Celebrity Detection',
+          tooltip = 'Identify celebrities detected in the image',
+          value = bind 'ms_computervision_visual_feature_celebrities',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+    },
+    { 
+      title = LOC '$$$/ComputerVisionTagging/ExportDialog/MSFace=Microsoft Face Settings',
+      vf:row {
+        vf:checkbox {
+          title = 'Enable IDs',
+          tooltip = 'Include the faceds of the detected faces (you probably want this)',
+          value = bind 'ms_face_face_ids',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Landmarks',
+          tooltip = 'Include the detected facial landmarks',
+          value = bind 'ms_face_landmarks',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Enable Smile Detection',
+          tooltip = 'Detect if a face is smiling',
+          value = bind 'ms_face_attribute_smile',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Gender Detection',
+          tooltip = 'Detect the gender of a face',
+          value = bind 'ms_face_attribute_gender',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Age Detection',
+          tooltip = 'Detect the age of a face',
+          value = bind 'ms_face_attribute_age',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+      vf:row {
+        vf:checkbox {
+          title = 'Enable Glasses Detection',
+          tooltip = 'Detect if a face is wearing glasses',
+          value = bind 'ms_face_attribute_glasses',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Facial Hair Detection',
+          tooltip = 'Detect if a face has facial hair',
+          value = bind 'ms_face_attribute_facial_hair',
+          checked_value = true,
+          unchecked_value = false,
+        },
+        vf:checkbox {
+          title = 'Enable Head Pose Detection',
+          tooltip = 'Detect if a face has a head pose',
+          value = bind 'ms_face_attribute_head_pose',
+          checked_value = true,
+          unchecked_value = false,
+        },
+      },
+    },
   }
 end
 
@@ -306,23 +475,48 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
       
       local success = false;
       local result = nil;
-      if exportParams.enable_api_clarifai then
-        result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+      
+      -- Process Microsoft Cognative Services Emotion
+      if exportParams.enable_ms_emotion then
+        result = MicrosoftCognativeServicesAPI.detectEmotion(pathOrMessage)
+        if result ~=nil then
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_emotion.json', exportParams.global_save_sidecar_unique);
+          end
+        end
+        result = nil;
       end
       
-      if result ~= nil then
-        success = true;
-        if exportParams.global_save_sidecar then
-          local sidecarPath = LrPathUtils.replaceExtension(rendition.photo.path, 'clarifai.json');
-          if exportParams.global_save_sidecar_unique then
-            local uniqueExtension = os.date('%Y%m%d') .. '.' .. os.date('%H%M%S') .. '.json';
-            KmnUtils.log(KmnUtils.LogTrace, uniqueExtension);
-            sidecarPath = LrPathUtils.replaceExtension(sidecarPath, uniqueExtension);
+      -- Process Microsoft Cognative Services Faces
+      if exportParams.enable_ms_face then
+        result = MicrosoftCognativeServicesAPI.detectFace(pathOrMessage, exportParams.ms_face_face_ids, exportParams.ms_face_landmarks, exportParams.ms_face_attribute_age, exportParams.ms_face_attribute_gender, exportParams.ms_face_attribute_head_pose, exportParams.ms_face_attribute_smile, exportParams.ms_face_attribute_facial_hair, exportParams.ms_face_attribute_glasses);
+        if result ~= nil then
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_faces.json', exportParams.global_save_sidecar_unique);
           end
-          local out = io.open(sidecarPath, 'w');
-          io.output(out);
-          io.write(table.tostring(result));
-          io.close(out);
+        end
+        result = nil;
+      end
+      
+      -- Microsoft Computer Vision processing
+      if exportParams.enable_ms_computervision then
+        result = MicrosoftCognativeServicesAPI.computerVision(pathOrMessage, exportParams.ms_computervision_visual_feature_categories, exportParams.ms_computervision_visual_feature_tags, exportParams.ms_computervision_visual_feature_description, exportParams.ms_computervision_visual_feature_faces, exportParams.ms_computervision_visual_feature_image_type, exportParams.ms_computervision_visual_feature_color, exportParams.ms_computervision_visual_feature_adult, exportParams.ms_computervision_visual_feature_celebrities);
+        if result ~= nil then
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_vision.json', exportParams.global_save_sidecar_unique);
+          end
+        end
+        result = nil;
+      end
+      
+      -- Get Clarifai API tags
+      if exportParams.enable_api_clarifai then
+        result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+        if result ~= nil then
+          success = true;
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'clarifai.json', exportParams.global_save_sidecar_unique);
+          end
         end
       end
       
