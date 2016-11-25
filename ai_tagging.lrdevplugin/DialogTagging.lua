@@ -191,6 +191,16 @@ function DialogTagging.buildColumn(context, exportParams, properties, photo, tag
 
   contents[#contents + 1] = DialogTagging.buildTagGroup(photo, processedTags, imageProperties, exportParams);
 
+  local existingTagRows = {title = 'Existing Tags'};
+  for _, keyword in ipairs(KmnUtils.sortedPhotoKeywords(photo)) do
+    existingTagRows[#existingTagRows + 1] = vf:row {
+      vf:static_text {
+        title = keyword
+      },
+    };
+  end
+  contents[#contents +1] = vf:group_box(existingTagRows);
+
   contents['height'] = prefs.tag_window_height - 50;
   contents['horizontal_scroller'] = false;
   contents['vertical_scroller'] = true;
