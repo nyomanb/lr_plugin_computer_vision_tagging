@@ -9,10 +9,10 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask. 
 
 # Phase 12 - Feature
-- [ ] Branch
-- [ ] Implement Microsoft Computer Vision API (new service)
-- [ ] Allow selection of MS/Clarifai APIs in preferences
-- [ ] Save response as side car file
+- [X] Branch
+- [X] Implement Microsoft Computer Vision API (new service)
+- [X] Allow selection of MS/Clarifai APIs in preferences
+- [X] Save response as side car file
 - [ ] Add tags to main tagging dialog
 - [ ] Add tags to auto tagging
 - [ ] Version Bump

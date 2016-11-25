@@ -4,6 +4,11 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase GitHub Misc - Misc GitHub issues fixed/addressed
+- [X] Add group to bottom of tagging dialog columns with the existing keywords for a photo (GitHub #9)
+- [X] Add add button that opens a dialog with a larger version of the image in Tagging Dialog. Dialog size is tunable via preferences (GitHub #10)
+- [X] Add debugging support via http://www.johnrellis.com/lightroom/debugging-toolkit.htm (GitHub #12)
+
 # Phase Fixes - Fix Recursion Guard Error
 - [X] Fix error when Clarifai API token expires (GitHub Issue #7)
 - [X] Version Bump
