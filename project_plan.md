@@ -78,6 +78,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Post on docs site
 
 # Phase Future (enhancements / features)
+- [ ] Preference to show only non-API suggested, existing key words in tagging dialog
+- [ ] Ability to edit existing keywords (select/de-select) from the tagging dialog
 - [ ] Self update support based on feed.xml from main website
 - [ ] Custom metadata
     - [ ] Field(s) for tracking which services submitted to -- helps with smart collections
