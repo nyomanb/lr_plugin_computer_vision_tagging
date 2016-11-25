@@ -140,6 +140,24 @@ function DialogTagging.buildColumn(context, exportParams, properties, photo, tag
     }
   };
   
+  contents[#contents + 1] = vf:row {
+    vf:push_button {
+      title = 'View Full Size Image',
+      action = function (clickedview)
+        LrDialogs.presentModalDialog({
+          title = 'Review Image',
+          contents = vf:catalog_photo {
+            photo = photo,
+            width = prefs.image_preview_window_width,
+            height = prefs.image_preview_window_height,
+          },
+          cancelVerb = '< exclude >',
+          actionVerb = 'Close Window',
+        });
+        end
+    },
+  };
+  
   -- There are circumstances where no tags will be returned, be sure to avoid a null crash on tags.meta
   --    in case that happens
   if tags.meta ~= nil then 
