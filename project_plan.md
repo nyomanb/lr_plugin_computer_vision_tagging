@@ -96,6 +96,7 @@ Please note there are not any dates listed here. The developers have day jobs an
    - [ ] Collection for each service and the images sent to the service
 - [ ] Samples to try with services added to project (pick non-special shots taken by KmN, apply CC Non Commercial license [docs, photo metadata])
 - [ ] Base implementation of Google vision
+- [ ] Base implementation of Amazon Computer Vision (https://aws.amazon.com/rekognition/)
 - [ ] Option to submit selected tags back to upstream service to help with their training
 - [ ] Ensure all strings are localized
 - [ ] Allow resizing of the tagging dialog
