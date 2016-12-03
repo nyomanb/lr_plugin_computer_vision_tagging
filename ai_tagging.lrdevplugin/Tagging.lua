@@ -23,17 +23,22 @@ Various tagging functionality / features
 
 
 ------------------------------------------------------------------------------]]
+-- local Require = require 'Require'.path("../../debugscript.lrdevplugin")
+-- local Debug = require 'Debug'.init()
+-- require 'strict'
 
 local LrApplication = import 'LrApplication'
 local LrProgressScope = import 'LrProgressScope'
 local KmnUtils = require 'KmnUtils'
+local KwUtils = require 'KwUtils'
+local LUTILS = require 'LUTILS'
 
 Tagging = {}
 
 function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
   KmnUtils.log(KmnUtils.LogTrace, 'Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)');
-  KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagsByPhoto));
-  KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagSelectionsByPhoto));
+  -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagsByPhoto));
+  -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagSelectionsByPhoto));
 
   local taggingProgress = LrProgressScope({ title = 'Tagging photo(s)', parent = parentProgress });
   local numPhotosToProcess = 0;
@@ -47,43 +52,59 @@ function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
   KmnUtils.log(KmnUtils.LogDebug, '# images to tag: ' .. numPhotosToProcess);
   
   local catalog = LrApplication.activeCatalog();
-  local catalogKeywords = catalog:getKeywords();
   local newKeywords = {};
   
-  for photo, tags in pairs(tagsByPhoto) do
-    if taggingProgress:isCanceled() then
-      break;
-    end
-    
-    taggingProgress:setPortionComplete( photosProcessed, numPhotosToProcess );
-    parentProgress:setCaption('Tagging ' .. photo:getFormattedMetadata( 'fileName' ));
-    
-    KmnUtils.log(KmnUtils.LogDebug, 'Tagging ' .. photo:getFormattedMetadata( 'fileName' ));
-    
-    for tag, taginfo in pairs(tags) do
+  catalog:withWriteAccessDo('writePhotosKeywords', function(context)
+    for photo, tags in pairs(tagsByPhoto) do
       if taggingProgress:isCanceled() then
         break;
       end
-      
-      catalog:withWriteAccessDo('writePhotosKeywords', function(context)
-        if tagSelectionsByPhoto[photo][taginfo.tag] ~= KmnUtils.photoHasKeyword(photo, taginfo.tag) then
-          local keyword = catalog:createKeyword(taginfo.tag, {}, false, nil, true);
-          if keyword == false then -- This keyword was created in the current withWriteAccessDo block, so we can't get by using `returnExisting`.
-            keyword = newKeywords[taginfo.tag];
-          else
-            newKeywords[taginfo.tag] = keyword;
+
+      local existingPhotoKeywordString = photo:getFormattedMetadata('keywordTags');
+      local existingPhotoKeywordNames = LUTILS.split(existingPhotoKeywordString, ', ');
+      local existingPhotoKeywordNamesLower = LUTILS.split(string.lower(existingPhotoKeywordString), ', ');
+    
+      taggingProgress:setPortionComplete( photosProcessed, numPhotosToProcess );
+      parentProgress:setCaption('Tagging ' .. photo:getFormattedMetadata( 'fileName' ));
+    
+      KmnUtils.log(KmnUtils.LogDebug, 'Tagging ' .. photo:getFormattedMetadata( 'fileName' ));
+    
+      for tag, taginfo in pairs(tags) do
+        local tagName = taginfo.tag;
+        local tagLower = string.lower(tagName)
+        local keywordsByName = _G.AllKeys[tagLower]
+        local numKeysByName = keywordsByName ~= nil and #keywordsByName or 0
+        -- First deal with the issue of adding a keyword that was not in the Lightroom library before:
+        if numKeysByName == 0 then
+          local checkboxState = tagSelectionsByPhoto[photo][tagName][1];
+          if checkboxState == true then
+            local keyword = catalog:createKeyword(tagName, {}, false, nil, true);
+            if keyword == false then -- This keyword was created in the current withWriteAccessDo block, so we can't get by using `returnExisting`.
+              keyword = newKeywords[tagName];
+            else
+              newKeywords[tagName] = keyword;
+            end
+            photo:addKeyword(keyword)
           end
-          
-          if tagSelectionsByPhoto[photo][taginfo.tag] then
-            photo:addKeyword(keyword);
-          else
-            photo:removeKeyword(keyword);
+        else
+          for i=1, numKeysByName do
+            local checkboxState = tagSelectionsByPhoto[photo][tagName][i];
+            local keyword = _G.AllKeys[tagLower][i];
+            if numKeysByName == 1 and (checkboxState ~= LUTILS.inTable(tagLower, existingPhotoKeywordNamesLower)) then
+              KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
+            elseif numKeysByName > 1 then
+            -- We need to use more accurate (less performant) means to verify the actual keyword
+            -- is (or is not) already associated with the photo.
+              if checkboxState ~= KwUtils.hasKeywordById(photo, keyword) then
+                KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
+              end
+            end
           end
         end
-      end);
+      end
+      photosProcessed = photosProcessed + 1;
     end
-    photosProcessed = photosProcessed + 1;
-  end
+  end);
   taggingProgress:done();
 end
 
