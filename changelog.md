@@ -4,6 +4,10 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Contrib - Lowell Montgomery Contributions
+- [X] Merge support for keyword hierarchies (By Lowell Montgomery)
+- [X] Merge misc fixes / updates (By Lowell Montgomery)
+
 # Phase GitHub Misc - Misc GitHub issues fixed/addressed
 - [X] Add group to bottom of tagging dialog columns with the existing keywords for a photo (GitHub #9)
 - [X] Add add button that opens a dialog with a larger version of the image in Tagging Dialog. Dialog size is tunable via preferences (GitHub #10)
