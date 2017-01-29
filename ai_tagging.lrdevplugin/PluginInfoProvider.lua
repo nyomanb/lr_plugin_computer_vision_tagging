@@ -108,6 +108,22 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
       title = LOC '$$$/ComputerVisionTagging/Preferences/Global=Global',
       bind_to_object = prefs,
       vf:row {
+        spacing = vf:label_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/preferences/ignoreKeywordTreeBranches=Ignore keywords branches:',
+          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
+          alignment = 'left',
+        },
+        viewFactory:edit_field {
+          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
+          width_in_chars = 35,
+          height_in_lines = 4,
+          enabled = true,
+          alignment = 'left',
+          value = bind 'ignore_keyword_branches',
+        },
+      },      
+      vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
           title = LOC '$$$/ComputerVisionTagging/Preferences/Global/LogLevel=Log Level',
@@ -147,9 +163,19 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         },
       },
       vf:row {
+      spacing = vf:control_spacing(),
+        vf:checkbox {
+          title = LOC '$$$/ComputerVisionTagging/preferences/autoSelectExistingKeywords=Automatically Select Existing Keywords',
+          checked_value = true,
+          unchecked_value = false,
+          tooltip = "Selecting this option will auto-select keyword checkboxes which would *not* create a new term in your keyword list.",
+          value = bind 'auto_select_existing_keywords',
+        },
+      },
+      vf:row {
         spacing = vf:control_spacing(),
         vf:checkbox {
-          title = 'Bold exising keywords/tags',
+          title = 'Bold existing keywords/tags',
           checked_value = true,
           unchecked_value = false,
           value = bind 'tag_window_bold_existing_tags',
@@ -187,9 +213,7 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           width_in_chars = 7,
           increment = 1,
           precision = 0,
-        }
-      },
-      vf:row {
+        },
         spacing = vf:control_spacing(),
         vf:static_text {
           title = 'Tagging window height',
@@ -225,6 +249,36 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           width_in_chars = 4,
           min = 128,
           max = 512,
+          increment = 1,
+          precision = 0,
+        }
+      },
+      vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Image preview window width',
+          tooltip = 'Width (px) of the image preview window',
+        },
+        vf:edit_field {
+          value = bind 'image_preview_window_width',
+          tooltip = 'Width (px) of the image preview window',
+          min = 512,
+          max = 999999,
+          width_in_chars = 7,
+          increment = 1,
+          precision = 0,
+        },
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Image preview window height',
+          tooltip = 'Height (px) of the image preview window',
+        },
+        vf:edit_field {
+          value = bind 'image_preview_window_height',
+          tooltip = 'Height (px) of the image preview window',
+          min = 384,
+          max = 999999,
+          width_in_chars = 7,
           increment = 1,
           precision = 0,
         }
@@ -349,21 +403,43 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
 end
 
 function InfoProvider.sectionsForBottomOfDialog(viewFactory, properties)
+  local KwUtilsAttribution = require 'KwUtils'.Attribution
+  local LutilsAttribution = require 'LUTILS'.Attribution
   KmnUtils.log(KmnUtils.LogTrace, 'InfoProvider.sectionsForBottomOfDialog(viewFactory, properties)');
   local vf = viewFactory;
   
   return {
     {
       title = LOC '$$$/ComputerVisionTagging/Preferences/Acknowledgements=Acknowledgements',
-
       vf:static_text {
         title = LOC '$$$/ComputerVisionTagging/Preferences/SimpleJSON=Simple JSON',
+        font = '<system/bold>',
       },
       vf:edit_field {
         width_in_chars = 80,
         height_in_lines = 9,
         enabled = false,
         value = 'Simple JSON encoding and decoding in pure Lua.\n\nCopyright 2010-2016 Jeffrey Friedl\nhttp://regex.info/blog/\n\nLatest version: http://regex.info/blog/lua/json\n\nThis code is released under a Creative Commons CC-BY "Attribution" License:\nhttp://creativecommons.org/licenses/by/3.0/deed.en_US\n'
+      },
+      vf:static_text {
+        title = LOC '$$$/ClarifaiTagger/Settings/KwUtils=KwUtils: Keyword Utility Functions for Lightroom',
+        font = '<system/bold>',
+      },
+      vf:edit_field {
+        width_in_chars = 80,
+        height_in_lines = 5,
+        enabled = false,
+        value = KwUtilsAttribution
+      },
+      vf:static_text {
+        title = LOC '$$$/ClarifaiTagger/Settings/Lutils=LUTILS: Lua Utility Functions for Lightroom',
+        font = '<system/bold>',
+      },
+      vf:edit_field {
+        width_in_chars = 80,
+        height_in_lines = 5,
+        enabled = false,
+        value = LutilsAttribution
       }
     }
   }

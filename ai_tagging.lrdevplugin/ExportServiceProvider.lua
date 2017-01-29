@@ -447,6 +447,10 @@ function exportServiceProvider.updateExportSettings( exportSettings )
 end
 
 function exportServiceProvider.processRenderedPhotos( functionContext, exportContext )
+
+-- Begin process of traversing keyword list to initialize globals for all keywords and their "paths"
+  _G.AllKeys, _G.AllKeyPaths = require 'KwUtils'.getAllKeywords();
+
   KmnUtils.log(KmnUtils.LogTrace, 'exportServiceProvider.processRenderedPhotos(functionContext, exportContext)');
   local exportSession = exportContext.exportSession;
   local exportParams = exportContext.propertyTable;
@@ -547,7 +551,7 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
     
       for photo, apiResult in pairs(photosToTag) do
         tagsByPhoto[photo] = {};
-        local tagDetails = ClarifaiAPI.processTagsProbibilities(apiResult);
+        local tagDetails = ClarifaiAPI.processTagsProbabilities(apiResult);
         for _, tag in ipairs(tagDetails) do
           tagsByPhoto[photo][tag.tag] = tag;
         end
@@ -559,8 +563,8 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
           tagSelectionsByPhoto[photo][taginfo.tag] = exportParams.global_auto_save_tags_p_min < taginfo.probability * 100;
         end
       end
-      KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagsByPhoto));
-      KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagSelectionsByPhoto));
+      -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagsByPhoto));
+      -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(tagSelectionsByPhoto));
       Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, progressScope);
     else 
       DialogTagging.buildDialog(photosToTag, exportParams, progressScope);
