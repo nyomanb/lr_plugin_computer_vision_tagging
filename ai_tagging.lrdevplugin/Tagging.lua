@@ -78,6 +78,7 @@ function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
         if numKeysByName == 0 then
           local checkboxState = tagSelectionsByPhoto[photo][tagName][1];
           if checkboxState == true then
+            -- catalog:createKeyword( keywordName, synonyms, includeOnExport, parent, returnExisting )
             local keyword = catalog:createKeyword(tagName, {}, true, nil, true);
             if keyword == false then -- This keyword was created in the current withWriteAccessDo block, so we can't get by using `returnExisting`.
               keyword = newKeywords[tagName];
