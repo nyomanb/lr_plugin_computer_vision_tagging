@@ -9,10 +9,10 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask.
 
 # Phase 12 - Feature
-- [ ] Branch
-- [ ] Implement Microsoft Computer Vision API (new service)
-- [ ] Allow selection of MS/Clarifai APIs in preferences
-- [ ] Save response as side car file
+- [X] Branch
+- [X] Implement Microsoft Computer Vision API (new service)
+- [X] Allow selection of MS/Clarifai APIs in preferences
+- [X] Save response as side car file
 - [ ] Add tags to main tagging dialog
 - [ ] Add tags to auto tagging
 - [ ] Version Bump
@@ -78,6 +78,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Post on docs site
 
 # Phase Future (enhancements / features)
+- [ ] Preference to show only non-API suggested, existing key words in tagging dialog
+- [ ] Ability to edit existing keywords (select/de-select) from the tagging dialog
 - [ ] Self update support based on feed.xml from main website
 - [ ] Custom metadata
     - [ ] Field(s) for tracking which services submitted to -- helps with smart collections
@@ -94,6 +96,7 @@ Please note there are not any dates listed here. The developers have day jobs an
    - [ ] Collection for each service and the images sent to the service
 - [ ] Samples to try with services added to project (pick non-special shots taken by KmN, apply CC Non Commercial license [docs, photo metadata])
 - [ ] Base implementation of Google vision
+- [ ] Base implementation of Amazon Computer Vision (https://aws.amazon.com/rekognition/)
 - [ ] Option to submit selected tags back to upstream service to help with their training
 - [ ] Ensure all strings are localized
 - [ ] Allow resizing of the tagging dialog
