@@ -34,6 +34,7 @@ local defaultPrefValues = {
   clarifai_clientsecret = '',
   clarifai_clientid = '',
   ignore_keyword_branches = '',
+  parent_tag = '',
   image_preview_window_width = 1024,
   image_preview_window_height = 768,
   log_level = KmnUtils.LogTrace,

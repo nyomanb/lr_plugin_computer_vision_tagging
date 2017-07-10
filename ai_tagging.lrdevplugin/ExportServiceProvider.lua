@@ -69,7 +69,7 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
       vf:row {
         vf:checkbox {
           title = 'Clarifai',
-          enabled = false, -- TODO: Re-enable field when more APIs are implemented
+          enabled = true, -- TODO: Re-enable field when more APIs are implemented
           checked_value = true,
           unchecked_value = false,
           value = bind 'enable_api_clarifai',
