@@ -4,6 +4,10 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase 11.5 - Fixes / Features
+- [X] Fixed keywords/tags not being included on export
+- [X] Added ability to specify parent keyword/tag for any created during CVT processing (hierarcy/hierarchical)
+
 # Phase Contrib - Lowell Montgomery Contributions
 - [X] Merge support for keyword hierarchies (By Lowell Montgomery)
 - [X] Merge misc fixes / updates (By Lowell Montgomery)
