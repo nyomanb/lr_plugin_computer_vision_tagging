@@ -22,53 +22,34 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Post on docs site
 
 # Phase 13 - Feature
-- [ ] Branch
-- [ ] Show service specific data in tagging window after tag group
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Post on docs site
+- [X] Branch
+- [X] Show service specific data in tagging window after tag group
+- [X] Version Bump
+- [X] Branch merge
+- [X] Branch cleanup
+- [X] Update Project Plan
+- [X] Post on docs site
 
 # Phase 14 - Feature
-- [ ] Branch
-- [ ] Option to show a dialog with service specific data if auto-tagging 
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Post on docs site
-
-# Phase 15 - Feature
-- [ ] Branch
+- [X] Branch
 - [X] Implement Microsoft Emotion API (new service)
-- [X] Save response as side car file
-- [ ] Show service specific data in tagging dialog
-- [ ] Show service specific data in auto tag dialog
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Post on docs site
-
-# Phase 16 - Feature
-- [ ] Branch
 - [X] Implement Microsoft Face API (new service)
-- [X] Save response as side car file
-- [ ] Show service specific data in tagging dialog
-- [ ] Show service specific data in auto tag dialog
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Post on docs site
+- [X] Save emotion response as side car file
+- [X] Save face response as side car file
+- [X] Show emotion service specific data in tagging dialog
+- [X] Show face service specific data in tagging dialog
+- [X] Version Bump
+- [X] Branch merge
+- [X] Branch cleanup
+- [X] Update Project Plan
+- [X] Post on docs site
 
-# Phase 17 - Docs
+# Phase 15 - Docs
 - [ ] Create docs for setup of Microsoft Computer Vision services (use Clarifai docs as template/model)
 - [ ] Update screenshots of application dialogs/windows/etc
 - [ ] Update other pages under "Documentation" to fill in new information specific to Microsoft Comptuer Vision services
 
-# Phase 18 - Clarifai API v2
+# Phase 16 - Clarifai API v2
 - [ ] Branch
 - [ ] Clarifai API v2
 - [ ] Version Bump
@@ -79,6 +60,7 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Phase Future (enhancements / features)
 - [ ] Preference to show only non-API suggested, existing key words in tagging dialog
+- [ ] Option to show a dialog with service specific data if auto-tagging
 - [ ] Ability to edit existing keywords (select/de-select) from the tagging dialog
 - [ ] Self update support based on feed.xml from main website
 - [ ] Custom metadata
