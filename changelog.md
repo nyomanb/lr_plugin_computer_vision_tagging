@@ -4,6 +4,11 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Fixes - Fixes / Misc Updates
+- [X] Fixed bug that prevented plugin from running twice in a row
+- [X] Minor debugging code added
+- [X] Minor code formatting updates
+
 # Phase 11.5 - Fixes / Features
 - [X] Fixed keywords/tags not being included on export
 - [X] Added ability to specify parent keyword/tag for any created during CVT processing (hierarcy/hierarchical)
