@@ -492,31 +492,7 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
       local filename = LrPathUtils.leafName( pathOrMessage );
       
       local success = false;
-      local result = nil;
-      
-      -- Process Microsoft Cognative Services Emotion
-      if exportParams.enable_ms_emotion then
-        result = MicrosoftCognativeServicesAPI.detectEmotion(pathOrMessage)
-        if result ~=nil then
-          if exportParams.global_save_sidecar then
-            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_emotion.json', exportParams.global_save_sidecar_unique);
-          end
-        end
-        result = nil;
-      end
-      
-      -- Process Microsoft Cognative Services Faces
-      if exportParams.enable_ms_face then
-        result = MicrosoftCognativeServicesAPI.detectFace(pathOrMessage, exportParams.ms_face_face_ids, exportParams.ms_face_landmarks, exportParams.ms_face_attribute_age, exportParams.ms_face_attribute_gender, exportParams.ms_face_attribute_head_pose, exportParams.ms_face_attribute_smile, exportParams.ms_face_attribute_facial_hair, exportParams.ms_face_attribute_glasses);
-        if result ~= nil then
-          if exportParams.global_save_sidecar then
-            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_faces.json', exportParams.global_save_sidecar_unique);
-          end
-        end
-        result = nil;
-      end
-      
-      result = {}
+      local result = {};
       
       -- Microsoft Computer Vision processing
       if exportParams.enable_ms_computervision then
@@ -530,6 +506,34 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
           success = true
           if exportParams.global_save_sidecar then
             KmnUtils.saveSideCarFile(rendition.photo.path, result['ms_vision'], 'ms_cognative_vision.json', exportParams.global_save_sidecar_unique);
+          end
+        end
+      end
+      
+      -- Process Microsoft Cognative Services Emotion
+      if exportParams.enable_ms_emotion then
+        result['ms_emotion'] = MicrosoftCognativeServicesAPI.detectEmotion(pathOrMessage)
+        if result['ms_emotion'] ~=nil then
+          if result['additional'] == nil then
+            result['additional'] = {}
+          end
+          result['additional']['ms_emotion'] = result['ms_emotion']
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result['ms_emotion'], 'ms_cognative_emotion.json', exportParams.global_save_sidecar_unique);
+          end
+        end
+      end
+      
+      -- Process Microsoft Cognative Services Faces
+      if exportParams.enable_ms_face then
+        result['ms_faces'] = MicrosoftCognativeServicesAPI.detectFace(pathOrMessage, exportParams.ms_face_face_ids, exportParams.ms_face_landmarks, exportParams.ms_face_attribute_age, exportParams.ms_face_attribute_gender, exportParams.ms_face_attribute_head_pose, exportParams.ms_face_attribute_smile, exportParams.ms_face_attribute_facial_hair, exportParams.ms_face_attribute_glasses);
+        if result['ms_faces'] ~= nil then
+          if result['additional'] == nil then
+            result['additional'] = {}
+          end
+          result['additional']['ms_faces'] = result['ms_faces']
+          if exportParams.global_save_sidecar then
+            KmnUtils.saveSideCarFile(rendition.photo.path, result['ms_faces'], 'ms_cognative_faces.json', exportParams.global_save_sidecar_unique);
           end
         end
       end

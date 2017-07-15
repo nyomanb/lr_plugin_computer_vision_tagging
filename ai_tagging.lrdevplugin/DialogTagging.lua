@@ -343,17 +343,29 @@ function DialogTagging.buildColumn(context, exportParams, photo, colNumber, tags
   
   if additionalSections ~= nil then
     local additionalAPIData = { title = 'Additional API Info', font = '<system/bold>'};
-    for title, data in pairs(additionalSections) do
-      additionalAPIData[#additionalAPIData +1] = vf:edit_field {
-        title = title,
-        tooltip = 'Additional Data (' .. title .. ')',
-        width_in_chars = 35,
-        height_in_lines = 4,
-        enabled = true,
-        alignment = 'left',
-        font = '<system>',
-        value = table.tostring(data),
-      }
+    for fieldtitle, data in pairs(additionalSections) do
+      KmnUtils.log(KmnUtils.LogTrace, title)
+      -- Avoid problems if the data going into the field is nil / malformed table (happens with MS APIs)
+      if not _unexpected_condition then
+        additionalAPIData[#additionalAPIData +1] = vf:row {
+         vf:static_text {
+            title = fieldtitle,
+            font = '<system/italic>'
+          }
+        }
+        additionalAPIData[#additionalAPIData +1] =  vf:row{
+          vf:edit_field {
+            title = fieldtitle,
+            tooltip = 'Additional Data (' .. fieldtitle .. ')',
+            width_in_chars = 35,
+            height_in_lines = 4,
+            enabled = true,
+            alignment = 'left',
+            font = '<system>',
+            value = table.tostring(data),
+          },
+        }
+       end
      end
      contents[#contents + 1] = vf:group_box(additionalAPIData)
    end
