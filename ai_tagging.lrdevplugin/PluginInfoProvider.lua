@@ -122,7 +122,23 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           alignment = 'left',
           value = bind 'ignore_keyword_branches',
         },
-      },      
+      },  
+      vf:row {
+        spacing = vf:label_spacing(),
+        vf:static_text {
+          title = LOC '$$$/ComputerVisionTagging/preferences/parent_tag=Parent Tag for new tags:',
+          tooltip = 'The parent tag that will contain new tags (hierarchy parent)',
+          alightment = 'left',
+        },
+        vf:edit_field {
+          tooltip = 'The parent tag that will contain new tags (hierarchy parent)',
+          width_in_chars = 35,
+          height_in_lines = 1,
+          enabled = true,
+          alightment = 'left',
+          value = bind 'parent_tag',
+        },
+      },    
       vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {

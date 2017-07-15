@@ -33,6 +33,8 @@ local KmnUtils = require 'KmnUtils'
 local KwUtils = require 'KwUtils'
 local LUTILS = require 'LUTILS'
 
+local prefs = import 'LrPrefs'.prefsForPlugin(_PLUGIN.id)
+
 Tagging = {}
 
 function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
@@ -55,6 +57,12 @@ function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
   local newKeywords = {};
   
   catalog:withWriteAccessDo('writePhotosKeywords', function(context)
+    local parent_keyword = nil
+    if prefs.parent_tag ~= '' then
+      KmnUtils.log(KmnUtils.LogDebug, 'Parent tag: ' .. prefs.parent_tag)
+      parent_keyword = catalog:createKeyword(prefs.parent_tag, {}, false, nil, true);
+    end
+  
     for photo, tags in pairs(tagsByPhoto) do
       if taggingProgress:isCanceled() then
         break;
@@ -78,7 +86,8 @@ function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
         if numKeysByName == 0 then
           local checkboxState = tagSelectionsByPhoto[photo][tagName][1];
           if checkboxState == true then
-            local keyword = catalog:createKeyword(tagName, {}, false, nil, true);
+            -- catalog:createKeyword( keywordName, synonyms, includeOnExport, parent, returnExisting )
+            local keyword = catalog:createKeyword(tagName, {}, true, parent_keyword, true);
             if keyword == false then -- This keyword was created in the current withWriteAccessDo block, so we can't get by using `returnExisting`.
               keyword = newKeywords[tagName];
             else
