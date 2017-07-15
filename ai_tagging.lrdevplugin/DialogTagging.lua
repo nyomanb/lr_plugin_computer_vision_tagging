@@ -208,7 +208,7 @@ function DialogTagging.addTagRow(photo, colNum, tagRows, tagProperties, tagNameI
   tagRows[#tagRows + 1] = vf:row(tagRow);  
 end
 
-function DialogTagging.buildColumn(context, exportParams, photo, colNumber, tags, processedTags)
+function DialogTagging.buildColumn(context, exportParams, photo, colNumber, tags, processedTags, additionalSections)
   KmnUtils.log(KmnUtils.LogTrace, 'DialogTagging.buildColumn(context, exportParams, photo, tags, processedTags)');
   local contents = {};
 
@@ -338,9 +338,26 @@ function DialogTagging.buildColumn(context, exportParams, photo, colNumber, tags
         },
       };
     end
-    contents[#contents +1] = vf:group_box(existingTagRows);
+    contents[#contents + 1] = vf:group_box(existingTagRows);
   end
-
+  
+  if additionalSections ~= nil then
+    local additionalAPIData = { title = 'Additional API Info', font = '<system/bold>'};
+    for title, data in pairs(additionalSections) do
+      additionalAPIData[#additionalAPIData +1] = vf:edit_field {
+        title = title,
+        tooltip = 'Additional Data (' .. title .. ')',
+        width_in_chars = 35,
+        height_in_lines = 4,
+        enabled = true,
+        alignment = 'left',
+        font = '<system>',
+        value = table.tostring(data),
+      }
+     end
+     contents[#contents + 1] = vf:group_box(additionalAPIData)
+   end
+  
   contents['height'] = prefs.tag_window_height - 50;
   contents['horizontal_scroller'] = false;
   contents['vertical_scroller'] = false;
@@ -422,7 +439,7 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
 
     local colNum = 1;
     for photo,tags in pairs(photosToTag) do
-      columns[colNum] = DialogTagging.buildColumn(context, exportParams, photo, colNum, tags, processedTags[photo]);
+      columns[colNum] = DialogTagging.buildColumn(context, exportParams, photo, colNum, tags, processedTags[photo], tags['additional']);
       colNum = colNum + 1;
     end
 

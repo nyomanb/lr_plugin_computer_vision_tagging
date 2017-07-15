@@ -522,6 +522,11 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
       if exportParams.enable_ms_computervision then
         result['ms_vision'] = MicrosoftCognativeServicesAPI.computerVision(pathOrMessage, exportParams.ms_computervision_visual_feature_categories, exportParams.ms_computervision_visual_feature_tags, exportParams.ms_computervision_visual_feature_description, exportParams.ms_computervision_visual_feature_faces, exportParams.ms_computervision_visual_feature_image_type, exportParams.ms_computervision_visual_feature_color, exportParams.ms_computervision_visual_feature_adult, exportParams.ms_computervision_visual_feature_celebrities);
         if result['ms_vision'] ~= nil then
+          if result['additional'] == nil then
+            result['additional'] = {}
+          end
+          result['additional']['ms_color'] = result['ms_vision']['color']
+          result['additional']['ms_adult'] = result['ms_vision']['adult']
           success = true
           if exportParams.global_save_sidecar then
             KmnUtils.saveSideCarFile(rendition.photo.path, result['ms_vision'], 'ms_cognative_vision.json', exportParams.global_save_sidecar_unique);
