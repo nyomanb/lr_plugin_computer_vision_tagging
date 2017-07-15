@@ -407,11 +407,15 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
     local colNum = 1;
     for photo,tags in pairs(photosToTag) do
       local tagsProbService = {}
-      for _, tag in ipairs(ClarifaiAPI.processTagsProbabilities(tags['clarifai'])) do
-        tagsProbService[#tagsProbService + 1] = tag
+      if exportParams.enable_api_clarifai then
+        for _, tag in ipairs(ClarifaiAPI.processTagsProbabilities(tags['clarifai'])) do
+          tagsProbService[#tagsProbService + 1] = tag
+        end
       end
-      for _, tag in ipairs(MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(tags['ms_vision'])) do
-        tagsProbService[#tagsProbService + 1] = tag
+      if exportParams.enable_ms_computervision then
+        for _, tag in ipairs(MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(tags['ms_vision'])) do
+          tagsProbService[#tagsProbService + 1] = tag
+        end
       end
       processedTags[photo], tagNamesLower[colNum] = tagsProbService
       local photoKeywords = photo:getRawMetadata('keywords');
