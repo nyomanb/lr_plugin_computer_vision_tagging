@@ -4,6 +4,9 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase Fixes - Small Bug Fix
+- [X] Fixed bug that prevented use when API token expired
+
 # Phase Fixes - Fixes / Misc Updates
 - [X] Fixed bug that prevented plugin from running twice in a row
 - [X] Minor debugging code added
