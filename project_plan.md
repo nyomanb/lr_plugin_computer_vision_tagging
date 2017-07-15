@@ -13,13 +13,13 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [X] Implement Microsoft Computer Vision API (new service)
 - [X] Allow selection of MS/Clarifai APIs in preferences
 - [X] Save response as side car file
-- [ ] Add tags to main tagging dialog
-- [ ] Add tags to auto tagging
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Post on docs site
+- [X] Add tags to main tagging dialog
+- [X] Add tags to auto tagging
+- [X] Version Bump
+- [X] Branch merge
+- [X] Branch cleanup
+- [X] Update Project Plan
+- [X] Post on docs site
 
 # Phase 13 - Feature
 - [ ] Branch
@@ -41,8 +41,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Phase 15 - Feature
 - [ ] Branch
-- [ ] Implement Microsoft Emotion API (new service)
-- [ ] Save response as side car file
+- [X] Implement Microsoft Emotion API (new service)
+- [X] Save response as side car file
 - [ ] Show service specific data in tagging dialog
 - [ ] Show service specific data in auto tag dialog
 - [ ] Version Bump
@@ -53,8 +53,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 
 # Phase 16 - Feature
 - [ ] Branch
-- [ ] Implement Microsoft Face API (new service)
-- [ ] Save response as side car file
+- [X] Implement Microsoft Face API (new service)
+- [X] Save response as side car file
 - [ ] Show service specific data in tagging dialog
 - [ ] Show service specific data in auto tag dialog
 - [ ] Version Bump
