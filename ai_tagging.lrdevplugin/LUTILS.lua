@@ -24,6 +24,8 @@ avoid including this file from causing undue bloat.
 
 local LUTILS = {}
 
+local KmnUtils = require 'KmnUtils'
+
 LUTILS.VERSION = 20161202.03 -- version history at end of file
 LUTILS.AUTHOR_NOTE = "LUTILS.lua--Lua utility functions by Lowell Montgomery (https://lowemo.photo/lightroom-lua-utils) version: " .. LUTILS.VERSION
 
@@ -63,7 +65,7 @@ function LUTILS.split(s, delim)
 end
 
 -- Merge two tables (like PHP array_merge())
-function LUTILS.tableMerge(table1, table2)    
+function LUTILS.tableMerge(table1, table2)
     for i=1,#table2 do
         table1[#table1 + 1] = table2[i]
     end
@@ -94,6 +96,7 @@ end
 -- Returns the number of seconds which were waited (for debug/monitoring purposes) or false
 -- if the timeout was reached and the variable name still didn't exist.
 function LUTILS.waitForGlobal(globalName, timeout)
+    KmnUtils.log(KmnUtils.LogTrace, 'LUTILS.waitForGlobal(globalName, timeout)');
     local sleepTimer = 0;
     local LrTasks = import 'LrTasks';
     local timeout = (timeout ~= nil) and timeout or 30;

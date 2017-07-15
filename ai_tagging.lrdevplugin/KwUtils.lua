@@ -20,6 +20,7 @@ Utility functions for Lightroom Keywords
 ------------------------------------------------------------------------------]]
 
 local LUTILS = require 'LUTILS'
+local KmnUtils = require 'KmnUtils'
 
 local KwUtils = {}
 KwUtils.catKws = nil
@@ -266,6 +267,7 @@ end
 -- if the keyword does not exist. This functionality depends on first running
 -- KwUtils.findAllKeywords() to populate the catKws table.
 function KwUtils.keywordByNameExists(keyName)
+    KmnUtils.log(KmnUtils.LogTrace, 'KwUtils.keywordByNameExists(keyName)');
     -- Set ignoreCase flag to true, by default
     keyName = string.lower(keyName);
     if _G.AllKeys[keyName] ~= nil then

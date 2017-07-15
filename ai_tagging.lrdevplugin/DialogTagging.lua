@@ -400,18 +400,7 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
     -- KmnUtils.log(KmnUtils.LogTrace, "AllPhotoTagsLower");
     -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(AllPhotoTagsLower));
     
-    -- Before we trim down our lookup table for keywords and keyword paths, we should
-    -- be sure the process of populating our global variables for these has completed.
-    local timeout = 30;
-    local timeWaited = LUTILS.waitForGlobal('AllKeys', timeout);
-    
-    if timeWaited and timeWaited < timeout then
-      KmnUtils.log(KmnUtils.LogTrace, 'Global _G.AllKeys ready for use after ' .. timeWaited .. ' seconds');
-    elseif timeWaited == false then
-      KmnUtils.log(KmnUtils.LogTrace, 'Global _G.AllKeys non-existent after waiting ' .. timeout .. ' seconds');
-      LrDialogs.showError('Problems encountered processing catalog keywords. Timed out after ' .. timeout .. ' seconds');
-      return
-    end
+    -- Original code was to wait for getting/seeing all keywords, it's been moved to just after the call to getting all keywords in export service provider
     
     -- Trim our lookup keyword and path lookup tables to include only what we need.
     -- After this _G.AllKeys and _G.AllKeyPaths will only include keywords and paths which

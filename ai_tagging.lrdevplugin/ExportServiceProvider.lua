@@ -30,6 +30,7 @@ local LrPathUtils = import 'LrPathUtils'
 local LrFileUtils = import 'LrFileUtils'
 local LrDialogs = import 'LrDialogs'
 local KmnUtils = require 'KmnUtils'
+local LUTILS = require 'LUTILS'
 local ClarifaiAPI = require 'ClarifaiAPI'
 local DialogTagging = require 'DialogTagging'
 
@@ -69,7 +70,7 @@ function exportServiceProvider.sectionsForTopOfDialog( vf, propertyTable )
       vf:row {
         vf:checkbox {
           title = 'Clarifai',
-          enabled = true, -- TODO: Re-enable field when more APIs are implemented
+          enabled = true,
           checked_value = true,
           unchecked_value = false,
           value = bind 'enable_api_clarifai',
@@ -278,11 +279,23 @@ function exportServiceProvider.updateExportSettings( exportSettings )
 end
 
 function exportServiceProvider.processRenderedPhotos( functionContext, exportContext )
-
--- Begin process of traversing keyword list to initialize globals for all keywords and their "paths"
-  _G.AllKeys, _G.AllKeyPaths = require 'KwUtils'.getAllKeywords();
-
   KmnUtils.log(KmnUtils.LogTrace, 'exportServiceProvider.processRenderedPhotos(functionContext, exportContext)');
+
+  -- Begin process of traversing keyword list to initialize globals for all keywords and their "paths"
+  require 'KwUtils'.getAllKeywords();
+  -- Before continuing, we should
+  -- be sure the process of populating our global variables for these has completed.
+  local timeout = 30;
+  local timeWaited = LUTILS.waitForGlobal('AllKeys', timeout);
+  
+  if timeWaited and timeWaited < timeout then
+    KmnUtils.log(KmnUtils.LogTrace, 'Global _G.AllKeys ready for use after ' .. timeWaited .. ' seconds');
+  elseif timeWaited == false then
+    KmnUtils.log(KmnUtils.LogTrace, 'Global _G.AllKeys non-existent after waiting ' .. timeout .. ' seconds');
+    LrDialogs.showError('Problems encountered processing catalog keywords. Timed out after ' .. timeout .. ' seconds');
+    return
+  end
+
   local exportSession = exportContext.exportSession;
   local exportParams = exportContext.propertyTable;
   
