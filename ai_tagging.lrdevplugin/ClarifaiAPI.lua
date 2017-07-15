@@ -211,6 +211,10 @@ function ClarifaiAPI.processTagsProbabilities(response)
   
   local processedTagsProbabilities = {}
   local tagNames = {}
+  KmnUtils.log(KmnUtils.LogDebug, table.tostring(response))
+  if _unexpected_condition then
+    LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again');
+  end
   for i, tag in ipairs(response['results'][1]['result']['tag']['classes']) do
     processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag, probability = response['results'][1]['result']['tag']['probs'][i], service = KmnUtils.SrvClarifai };
     tagNames[#tagNames + 1] = string.lower(tag); -- Already in lower case for our use case
