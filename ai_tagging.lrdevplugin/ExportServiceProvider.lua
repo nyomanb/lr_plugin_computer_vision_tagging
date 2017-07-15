@@ -516,24 +516,26 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
         result = nil;
       end
       
+      result = {}
+      
       -- Microsoft Computer Vision processing
       if exportParams.enable_ms_computervision then
-        result = MicrosoftCognativeServicesAPI.computerVision(pathOrMessage, exportParams.ms_computervision_visual_feature_categories, exportParams.ms_computervision_visual_feature_tags, exportParams.ms_computervision_visual_feature_description, exportParams.ms_computervision_visual_feature_faces, exportParams.ms_computervision_visual_feature_image_type, exportParams.ms_computervision_visual_feature_color, exportParams.ms_computervision_visual_feature_adult, exportParams.ms_computervision_visual_feature_celebrities);
-        if result ~= nil then
+        result['ms_vision'] = MicrosoftCognativeServicesAPI.computerVision(pathOrMessage, exportParams.ms_computervision_visual_feature_categories, exportParams.ms_computervision_visual_feature_tags, exportParams.ms_computervision_visual_feature_description, exportParams.ms_computervision_visual_feature_faces, exportParams.ms_computervision_visual_feature_image_type, exportParams.ms_computervision_visual_feature_color, exportParams.ms_computervision_visual_feature_adult, exportParams.ms_computervision_visual_feature_celebrities);
+        if result['ms_vision'] ~= nil then
+          success = true
           if exportParams.global_save_sidecar then
-            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'ms_cognative_vision.json', exportParams.global_save_sidecar_unique);
+            KmnUtils.saveSideCarFile(rendition.photo.path, result['ms_vision'], 'ms_cognative_vision.json', exportParams.global_save_sidecar_unique);
           end
         end
-        result = nil;
       end
       
       -- Get Clarifai API tags
       if exportParams.enable_api_clarifai then
-        result = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
-        if result ~= nil then
-          success = true;
+        result['clarifai'] = ClarifaiAPI.getTags(pathOrMessage, exportParams.clarifai_model, exportParams.clarifai_language);
+        if result['clarifai'] ~= nil then
+          success = true
           if exportParams.global_save_sidecar then
-            KmnUtils.saveSideCarFile(rendition.photo.path, result, 'clarifai.json', exportParams.global_save_sidecar_unique);
+            KmnUtils.saveSideCarFile(rendition.photo.path, result['clarifai'], 'clarifai.json', exportParams.global_save_sidecar_unique);
           end
         end
       end

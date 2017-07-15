@@ -28,6 +28,7 @@ local LrHttp = import 'LrHttp'
 local LrTasks = import 'LrTasks'
 local LrPathUtils = import 'LrPathUtils'
 local LrStringUtils = import 'LrStringUtils'
+local LrDialogs = import 'LrDialogs'
 local JSON = require 'JSON'
 local KmnUtils = require 'KmnUtils'
 
@@ -150,6 +151,35 @@ function MicrosoftCognativeServicesAPI.computerVision(photoPath, enableCategorie
   KmnUtils.log(KmnUtils.LogTrace, body);
   
   return JSON:decode(body);
+end
+
+function MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(response)
+  KmnUtils.log(KmnUtils.LogTrace, 'MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(response)');
+  -- Don't crash if we receive an empty response
+  -- #response will always return 0, do the check the hard way
+  local hasResponseValues = false;
+  for _, tag in pairs(response) do
+    hasResponseValues = true;
+    break;
+  end
+  if not hasResponseValues then
+    return {};
+  end
+  
+  local processedTagsProbabilities = {}
+  local tagNames = {}
+  KmnUtils.log(KmnUtils.LogDebug, table.tostring(response))
+  if _unexpected_condition then
+    LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again');
+  end
+  for i, tag in ipairs(response['tags']) do
+    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag['name'], probability = tag['confidence'], service = KmnUtils.SrvMSVision };
+    tagNames[#tagNames + 1] = string.lower(tag['name']); -- Already in lower case for our use case
+  end
+  
+  KmnUtils.log(KmnUtils.LogTrace, table.tostring(processedTagsProbabilities))
+  
+  return processedTagsProbabilities, tagNames;
 end
 
 function MicrosoftCognativeServicesAPI.detectFace(photoPath, enableFaceIds, enableLandmarks, enableAge, enableGender, enableHeadPose, enableSmile, enableFacialHair, enableGlasses)

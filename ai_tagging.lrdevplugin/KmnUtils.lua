@@ -76,6 +76,7 @@ KmnUtils.SortProb = 'prob';
 KmnUtils.SortAlpha = 'alpha';
 
 KmnUtils.SrvClarifai = 'Clarifai';
+KmnUtils.SrvMSVision = 'Microsoft Vision';
 
 KmnUtils.LogTrace = 6;
 KmnUtils.LogDebug = 5;
@@ -91,6 +92,19 @@ function KmnUtils.bool_to_string(aValue)
   end
   
   return 'false';
+end
+
+function KmnUtils.saveSideCarFile(photoPath, dataTable, fileNamePostfix, uniqueSidecar)
+  local sidecarPath = LrPathUtils.replaceExtension(photoPath, fileNamePostfix);
+  if uniqueSidecar then
+    local uniqueExtension = os.date('%Y%m%d') .. '.' .. os.date('%H%M%S') .. '.json';
+    KmnUtils.log(KmnUtils.LogTrace, uniqueExtension);
+    sidecarPath = LrPathUtils.replaceExtension(sidecarPath, uniqueExtension);
+  end
+  local out = io.open(sidecarPath, 'w');
+  io.output(out);
+  io.write(table.tostring(dataTable));
+  io.close(out);
 end
 
 function KmnUtils.log(level, value)

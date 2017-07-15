@@ -39,6 +39,7 @@ local LrTasks = import 'LrTasks'
 local KmnUtils = require 'KmnUtils'
 local Tagging = require 'Tagging'
 local ClarifaiAPI = require 'ClarifaiAPI'
+local MicrosoftCognativeServicesAPI = require 'MicrosoftCognativeServicesAPI'
 local KwUtils = require 'KwUtils'
 local LUTILS = require 'LUTILS'
 
@@ -376,7 +377,14 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
     local AllPhotoTagsLower = {};
     local colNum = 1;
     for photo,tags in pairs(photosToTag) do
-      processedTags[photo], tagNamesLower[colNum] = ClarifaiAPI.processTagsProbabilities(tags);
+      local tagsProbService = {}
+      for _, tag in ipairs(ClarifaiAPI.processTagsProbabilities(tags['clarifai'])) do
+        tagsProbService[#tagsProbService + 1] = tag
+      end
+      for _, tag in ipairs(MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(tags['ms_vision'])) do
+        tagsProbService[#tagsProbService + 1] = tag
+      end
+      processedTags[photo], tagNamesLower[colNum] = tagsProbService
       local photoKeywords = photo:getRawMetadata('keywords');
       local photoKeywordLowerNames = KwUtils.getKeywordNames(photoKeywords, true);
       photoKeywordTables[#photoKeywordTables + 1] = photoKeywords;
