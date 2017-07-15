@@ -99,9 +99,22 @@ end
 -- Main methods API consumers should call (everything is wrapped in tasks as appropriate)
 function ClarifaiAPI.getToken()
   KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getToken()');
+  local tokenReceived = false
   LrTasks.startAsyncTask(function()
     ClarifaiAPI.getTokenUnsafe();
+    tokenReceived = true
   end, 'ClarifaiAPI.getToken');
+  
+  local sleepTimer = 0;
+  local timeout = 30;
+  while (not tokenReceived) do
+        LrTasks.sleep(1);
+        sleepTimer = sleepTimer + 1;
+  end
+  
+  if not tokenReceived then
+      LrDialogs.showError('Could not get ClarifaiAPI token. Timed out after ' .. timeout .. ' seconds');
+  end
 end
 
 function ClarifaiAPI.getInfo()
