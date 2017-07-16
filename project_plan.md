@@ -15,6 +15,8 @@ Please note there are not any dates listed here. The developers have day jobs an
 - [ ] Branch merge
 - [ ] Branch cleanup
 - [ ] Update Project Plan
+- [ ] Update setup docs for new auth tokens/similar
+- [ ] Upgrade from v1 to v2 Clarifai API instructions for existing users
 - [ ] Post on docs site
 
 # Phase 17 - Clarifai API v2 (Docs)
