@@ -172,9 +172,11 @@ function MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(response)
   if _unexpected_condition then
     LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again');
   end
-  for i, tag in ipairs(response['tags']) do
-    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag['name'], probability = tag['confidence'], service = KmnUtils.SrvMSVision };
-    tagNames[#tagNames + 1] = string.lower(tag['name']); -- Already in lower case for our use case
+  if response['tags'] ~= nil then
+    for i, tag in ipairs(response['tags']) do
+      processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag['name'], probability = tag['confidence'], service = KmnUtils.SrvMSVision };
+      tagNames[#tagNames + 1] = string.lower(tag['name']); -- Already in lower case for our use case
+    end
   end
   
   KmnUtils.log(KmnUtils.LogTrace, table.tostring(processedTagsProbabilities))
