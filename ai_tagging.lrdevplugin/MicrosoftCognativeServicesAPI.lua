@@ -170,7 +170,7 @@ function MicrosoftCognativeServicesAPI.processVisionTagsProbabilities(response)
   local tagNames = {}
   KmnUtils.log(KmnUtils.LogDebug, table.tostring(response))
   if _unexpected_condition then
-    LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again');
+    LrDialogs.showError('Error processing tag probabilities(' .. response .. '). Please check your settings and try again');
   end
   if response['tags'] ~= nil then
     for i, tag in ipairs(response['tags']) do
