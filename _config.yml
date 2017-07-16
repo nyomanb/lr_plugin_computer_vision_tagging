@@ -26,6 +26,7 @@ navbar-links:
   Documentation: 
     - Install: "docs/install"
     - Clarifai API Setup: "docs/clarifai_api_setup"
+    - Microsoft API Setup: "docs/ms_api_setup"
     - Tagging Photos: "docs/tagging_photos"
     - FAQ/Pro Tips: "docs/pro_tips"
     - Plugin Preferences: "docs/plugin_prefs"

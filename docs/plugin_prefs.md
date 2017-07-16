@@ -8,7 +8,7 @@ subtitle: A breakdown of the preferences available for this plugin
 
 [![Plugin_Settings.png]({{ '/img/screenshots/Plugin_Settings.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="384"}]({{ '/img/screenshots/Plugin_Settings.png' | prepend: site.baseurl | replace: '//', '/' }})
 
-# General Section
+# Computer Vision Tagging Plugin Section
 Website
 : A clickable link that will take you to the plugins main website
 
@@ -25,6 +25,12 @@ Version
 : A static field showing the current version installed
 
 # Global Section
+Ignore keywords branches
+: A comma separated list of top level keywords that should be ignored during tagging
+
+Parent Tag For new tags:
+: The parent keyword to use for new tags created by the plugin. If you use keyword hierarchies, you'll probably want to set this
+
 Log Level
 : Sets the log output level for the plugin. Logs can be found in a file named "info.kemonine.lrcvt.log" in the usual Lightroom log location.
 
@@ -50,7 +56,13 @@ Tagging window height
 Thumbnail size
 : The size (in pixels) of thumbnails to show in the tagging window. The window will show a square with the specified dimensions for images in the tagging window.
 
-# Clarifai Settings
+Image preview window width
+: The width (in pixels) of the image preview window. Currently the image preview window cannot be resized once it is shown. Use this field to adjust the size of the window shown.
+
+Image preview window height
+: The height (in pixels) of the image preview window. Currently the image preview window cannot be resized once it is shown. Use this field to adjust the size of the window shown.
+
+# Clarifai Settings Section
 Client ID
 : The generated application client ID from the Clarifai website
 
@@ -69,5 +81,14 @@ Generate New Access Token
 Clear Access Token
 : A button that will clear the access token. This can be helpful if you're having trouble with an access token and want to clear it out. It is also helpful for clearing the whole state of the Clarifai API/service configuration if necessary/desired.
 
+# Microsoft API Settings Section
+Computer Vision API key
+: The API key to use with the Microsoft Computer Vision API
+
+Emotion API Key
+: The API key to use with the Microsoft Emotion API
+
+Face API key
+: The API key to use with the Microsoft Face API
 
 ![Creative Commons License]({{ '/img/CC-BY-SA-NC-4.0.png' | prepend: site.baseurl | replace: '//', '/' }})

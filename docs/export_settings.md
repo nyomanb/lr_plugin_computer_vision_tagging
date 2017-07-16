@@ -9,7 +9,7 @@ subtitle: A breakdown of the export settings available for this plugin
 [![Export_Dialog.png]({{ '/img/screenshots/Export_Dialog.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="384"}]({{ '/img/screenshots/Export_Dialog.png' | prepend: site.baseurl | replace: '//', '/' }})
 
 # Global Settings Section
-This section allows you to select which APIs/services are used for tagging. Currently only the Clarifai API/service is implemented. More services will be added as they are implemented by the plugin
+This section allows you to select which APIs/services are used for tagging. You'll need to setup any selected services API keys in the plugin's preferences prior to use.
 
 # Image Quality Section
 Size (Mpx)
@@ -44,6 +44,58 @@ Model
 
 Language
 : Which of the Clarifai API languages to use. Note the tags will be returned in this language.
+
+# Microsoft Computer Vision Settings
+Enable Categories
+: Turn on the "Categories" API feature. Currently not shown during tagging. Available via the json side car file.
+
+Enable Tags
+: Turn on the "Tags" API feature. Shows the generated tags in the tagging dialog.
+
+Enable Description Generation
+: Turn on the "Description Generation" API feature. Currently not shown during tagging. Available via the json side car file.
+
+Enable Color Detection
+: Turn on "Color" API feature. Shows dominant and secondary colors. Shows at bottom of tagging dialog for copy/paste.
+
+Enable NSFW Detection
+: Turn on "NSFW Detection" API feature. Shows how "racy" or "adult" a photo is. Shows at bottom of tagging dialog for copy/paste.
+
+Enable Face Detection
+: Turn on "Face Detection" API feature. Shows bounding box coordinates for found faces. Shows at bottom of tagging dialog for copy/paste.
+
+Enable Image Type
+: Turn on "Image Type Detection" API feature. Currently not shown during tagging. Avaialble via the json side car file.
+
+Enable Celebrity Detection
+: Turn on "Celebrity Detection" API feature. Currently not shown during tagging. Available via the json side car file.
+
+# Microsoft Face Settings
+Note, all features that are enabled are shown in one section of the tagging dialog at the bottom
+
+Enable IDs
+: Enable "Face IDs" API feature
+
+Enable Landmarks
+: Enable "Landmarks" API feature. Shows detects factial features
+
+Enable Smile Detection
+: Shows if someone is smiling
+
+Enable Gender Detection
+: Detects the gender of a face
+
+Enable Age Detection
+: Detects the age of a face
+
+Enable Glasses Detection
+: Detects if a face is wearing glasses
+
+Enable Facial hair Detection
+: Detects facial hair (including type) on a face
+
+Enable Head Pose Detection
+: Detects the pose a head has in a photo
 
 # Output Sharpening Section
 This is the standard Lightroom Output Sharpening export section

@@ -17,9 +17,15 @@ subtitle: How to setup the Clarifai API with the Lightroom Computer Vision Plugi
     [![create_application.png]({{ '/img/clarifai_api_setup/create_application.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/create_application.png' | prepend: site.baseurl | replace: '//', '/' }})
 1. Give the application a name that makes sense for you and click "Create Application"  
     [![name_create.png]({{ '/img/clarifai_api_setup/name_create.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/name_create.png' | prepend: site.baseurl | replace: '//', '/' }})
-1. A new screen will show with fields named "Client Id" and "Client Secret". These values are used within the plugin for access to the Clarifai API setup.
-    - *Note: I've blacked out a large portion of the Client Id and Client Secret in the screenshot, your values will be much longer*  
-    [![client_id_client_secret.png]({{ '/img/clarifai_api_setup/client_id_client_secret.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/client_id_client_secret.png' | prepend: site.baseurl | replace: '//', '/' }})
+1. You will be returned to your application list after creation.
+1. Click the "Edit" button on the newly created app to open the details for the application  
+    [![app_details.png]({{ '/img/clarifai_api_setup/app_details.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/app_details.png' | prepend: site.baseurl | replace: '//', '/' }})
+1. Click the "Show Legacy Authorization" heading on the screen that pops up.
+- *Note: as of this writing the legacy authorization tokens are required, a future update will change this*  
+    [![show_legacy_auth.png]({{ '/img/clarifai_api_setup/show_legacy_auth.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/show_legacy_auth.png' | prepend: site.baseurl | replace: '//', '/' }})
+1. The screen will now show with fields named "Client Id" and "Client Secret". These values are used within the plugin for access to the Clarifai API setup.
+   - *Note: I've blacked out a large portion of the Client Id and Client Secret in the screenshot, your values will be much longer*  
+   [![client_id_client_secret.png]({{ '/img/clarifai_api_setup/client_id_client_secret.png' | prepend: site.baseurl | replace: '//', '/' }}){:height="128px"}]({{ '/img/clarifai_api_setup/client_id_client_secret.png' | prepend: site.baseurl | replace: '//', '/' }})
 
 # Setup Lightroom Computer Vision for Clarifai API usage
 1. Open Lightroom
