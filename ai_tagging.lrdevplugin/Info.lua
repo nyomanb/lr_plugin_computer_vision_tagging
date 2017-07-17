@@ -28,7 +28,7 @@ Summary information for computer vision tagging plugin
 --                    { title = LOC '$$$/ComputerVisionTagging/menuClarifaiUsage=Clarifai API Usage', file = 'MenuClarifaiUsage.lua' },
 --}
 
-local version = { major=2017, minor=07, revision=16, build=2, };
+local version = { major=2017, minor=07, revision=17, build=1, };
 version.display = version.major .. version.minor .. version.revision .. '.' .. version.build;
 
 return {
