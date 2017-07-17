@@ -37,6 +37,7 @@ navbar-links:
     - Changelog: "changelog"
     - Release Archive: "releases"
     - Screenshots: "docs/screenshots"
+    - Clarifai API Setup (legacy): "docs/clarifai_api_setup_legacy"
   Source Code: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging"
   Issues/Bugs: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/issues"
   Download: "https://github.com/mcrosson/lr_plugin_computer_vision_tagging/releases"

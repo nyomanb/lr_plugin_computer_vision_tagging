@@ -4,6 +4,18 @@ title: Changelog
 subtitle: Changes / updates / fixes by phase
 ---
 
+# Phase 16 - Clarifai API v2
+- [X] Branch
+- [X] Clarifai API v2
+- [X] Version Bump
+- [X] Branch merge
+- [X] Branch cleanup
+- [X] Update Project Plan
+- [X] Update setup docs for new auth tokens/similar
+- [X] Upgrade from v1 to v2 Clarifai API instructions for existing users
+- [X] Note in docs that menu items are no longer available due to lack of support in v2 of API
+- [X] Post on docs site
+
 # Phase 15 - Microsoft API Docs
 - [X] Create docs for setup of Microsoft Computer Vision services (use Clarifai docs as template/model)
 - [X] Update screenshots of application dialogs/windows/etc

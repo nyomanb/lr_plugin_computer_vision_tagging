@@ -63,6 +63,16 @@ Image preview window height
 : The height (in pixels) of the image preview window. Currently the image preview window cannot be resized once it is shown. Use this field to adjust the size of the window shown.
 
 # Clarifai Settings Section
+
+#### Releases starting with 20170717.1 release
+
+API Key
+: The generated application API Key from the Clarifai website
+
+# Clarifai Settings Section 
+
+#### Releases prior to 20170717.1 release
+
 Client ID
 : The generated application client ID from the Clarifai website
 

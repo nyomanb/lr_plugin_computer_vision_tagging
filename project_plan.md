@@ -8,35 +8,43 @@ This document outlines the rough roadmap the developers will loosely follow. Ove
 
 Please note there are not any dates listed here. The developers have day jobs and will **NOT** commit to deadlines. Don't ask.
 
-# Phase 16 - Clarifai API v2
-- [X] Branch
-- [X] Clarifai API v2
-- [ ] Version Bump
-- [ ] Branch merge
-- [ ] Branch cleanup
-- [ ] Update Project Plan
-- [ ] Update setup docs for new auth tokens/similar
-- [ ] Upgrade from v1 to v2 Clarifai API instructions for existing users
-- [ ] Note in docs that menu items are no longer available due to lack of support in v2 of API
-- [ ] Post on docs site
-
 # Phase 17 - Custom Metadata
+- [ ] Branch
 - [ ] Field(s) for tracking which services submitted to -- helps with smart collections
 - [ ] Field(s) to hold raw service response data
 - [ ] Field(s) to hold/show service specific data elements (processed to something human readable/sane -- everything but tags)
 - [ ] Field(s) to hold/show tags returned by services (show service + tag tuple)
 - [ ] Menu items for saving custom metadata fields as json side cars (think XMP sidecars)
+- [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
+- [ ] Update Project Plan / Changelog / Release post
 
 # Phase 18 - Smart Collections
+- [ ] Branch
 - [ ] All photos submitted
 - [ ] Collection for each service and the images sent to the service
+- [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
+- [ ] Update Project Plan / Changelog / Release post
 
 # Phase 19 - Custom Badges
+- [ ] Branch
 - [ ] Badge/overlay for files sent to services
 - [ ] Badge/overlay for each service
+- [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
+- [ ] Update Project Plan / Changelog / Release post
 
 # Phase 20 - Search Filters
+- [ ] Branch
 - [ ] Additional filters for search
+- [ ] Version Bump
+- [ ] Branch merge
+- [ ] Branch cleanup
+- [ ] Update Project Plan / Changelog / Release post
 
 # Phase Future (enhancements / features)
 - [ ] Preference to show only non-API suggested, existing key words in tagging dialog
