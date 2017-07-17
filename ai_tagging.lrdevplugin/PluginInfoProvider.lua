@@ -313,39 +313,6 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           value = bind 'clarifai_apikey',
         },
       },
-      vf:row {
-        spacing = vf:control_spacing(),
-        vf:push_button {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/VerifySettings=Verify Settings',
-          action = function(button)
-                      LrFunctionContext.postAsyncTaskWithContext('ClarifaiSettings.VerifySettingsButton', function()
-                        local clarifaiInfo = ClarifaiAPI.getInfo();
-                        local hasClarifaiInfo = false; -- do this the "dumb" way thanks to #clarifaiInfo not working properly
-                        for _,__ in pairs(clarifaiInfo) do
-                          hasClarifaiInfo = true;
-                          break;
-                        end
-                        if clarifaiInfo ~= nil and hasClarifaiInfo then
-                          get_info_result.message = 'Success';
-                          get_info_result.color = LrColor('green');
-                        else
-                          get_info_result.message = 'Failure';
-                          get_info_result.color = LrColor('red');
-                        end
-                        get_info_result.visible = true;
-                      end); 
-                   end
-        },
-      },
-      vf:row {
-        spacing = vf:label_spacing(),
-        vf:static_text {
-          bind_to_object = get_info_result,
-          title = bind 'message',
-          text_color = bind 'color',
-          visible = bind 'visible',
-        },
-      },
     },
     {
       title = LOC '$$$/ComputerVisionTagging/Preferences/MicrosoftSettings=Microsoft API Settings',
