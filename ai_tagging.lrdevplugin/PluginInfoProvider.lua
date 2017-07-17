@@ -306,33 +306,11 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
       vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/ClientID=Client ID',
+          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/APIKey=API Key',
         },
-        vf:edit_field {
-          fill_horizonal = 1,
-          width_in_chars = 35,
-          value = bind 'clarifai_clientid',
-        },
-      },
-      vf:row {
-        spacing = vf:control_spacing(),
-        vf:static_text {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/ClientSecret=Client Secret',
-        },
-        vf:password_field {
-          width_in_chars = 35,
-          value = bind 'clarifai_clientsecret',
-        },
-      },
-      vf:row {
-        spacing = vf:control_spacing(),
-        vf:static_text {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/AccessToken=Access Token',
-        },
-        vf:edit_field {
-          enabled = false,
-          width_in_chars = 35,
-          value = bind 'clarifai_accesstoken',
+        vf: password_field {
+          width_in_chars = 25,
+          value = bind 'clarifai_apikey',
         },
       },
       vf:row {
@@ -356,18 +334,6 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
                         end
                         get_info_result.visible = true;
                       end); 
-                   end
-        },
-        vf:push_button {
-          title = LOC '$$$/ComputerVisionTagging/Preferences/ClarifaiSettings/GenerateAccessToken=Generate New Access Token',
-          action = function(button)
-                      ClarifaiAPI.getToken()
-                   end
-        },
-        vf:push_button {
-          title = 'Clear Access Token',
-          action = function(button)
-                      prefs.clarifai_accesstoken = '';
                    end
         },
       },

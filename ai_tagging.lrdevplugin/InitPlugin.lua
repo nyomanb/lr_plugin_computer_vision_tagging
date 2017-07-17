@@ -33,6 +33,7 @@ local defaultPrefValues = {
   auto_select_existing_keywords = true,
   clarifai_clientsecret = '',
   clarifai_clientid = '',
+  clarifai_apikey = '',
   ignore_keyword_branches = '',
   parent_tag = '',
   image_preview_window_width = 1024,

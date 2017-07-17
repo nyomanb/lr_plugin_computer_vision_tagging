@@ -32,105 +32,20 @@ local LrRecursionGuard = import 'LrRecursionGuard'
 local JSON = require 'JSON'
 local KmnUtils = require 'KmnUtils'
 
-local tokenAPIURL = 'https://api.clarifai.com/v1/token/'
-local infoAPIURL = 'https://api.clarifai.com/v1/info/'
-local usageAPIURL = 'https://api.clarifai.com/v1/usage/'
-local tagAPIURL   = 'https://api.clarifai.com/v1/tag/'
+local infoAPIURL = 'https://api.clarifai.com/v2/info/'
+local usageAPIURL = 'https://api.clarifai.com/v2/usage/'
+local tagAPIURLPrefix   = 'https://api.clarifai.com/v2/models/'
+local tagAPIURLPostfix = '/outputs'
 
 local prefs = import 'LrPrefs'.prefsForPlugin(_PLUGIN.id)
 local getInfoGuard =  LrRecursionGuard('getInfoguard')
 
 ClarifaiAPI = {}
 
-function ClarifaiAPI.isTokenValid()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.isTokenValid()');
-  if prefs.clarifai_accesstoken ~= nil and prefs.clarifai_accesstoken ~= '' then
-    return true;
-  end
-  
-  return false;
-end
-
-function ClarifaiAPI.isSecretValid()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.isSecretValid()');
-  if prefs.clarifai_clientsecret ~= nil and prefs.clarifai_clientsecret ~= '' then
-    return true;
-  end
-  
-  return false;
-end
-  
-function ClarifaiAPI.isClientIdValid()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.isClientIdValid()');
-  if prefs.clarifai_clientid ~= nil and prefs.clarifai_clientid ~= '' then
-    return true;
-  end
-  
-  return false;
-end
-
-function ClarifaiAPI.getTokenUnsafe()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getTokenUnsafe()');
-  if not ClarifaiAPI.isClientIdValid() or not ClarifaiAPI.isSecretValid() then
-    return
-  end
-
-  local headers = {
-    { field = 'Content-Type', value = 'application/x-www-form-urlencoded' },
-  };
-
-  local data = 'grant_type=client_credentials&client_id=' .. prefs.clarifai_clientid .. '&client_secret=' .. prefs.clarifai_clientsecret;
-  local body, reshdrs = LrHttp.post(tokenAPIURL, data, headers);
-
-  KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
-  KmnUtils.log(KmnUtils.LogInfo, body);
-
-  if reshdrs.status == 401
-    --and (reshdrs.status_code == 'TOKEN_APP_INVALID' or reshdrs.status_code == 'TOKEN_INVALID' or reshdrs.status_code == 'TOKEN_NONE' or reshdrs.status_code == 'TOKEN_NO_SCOPE')
-  then
-    LrDialogs.showError('Bad Clarifai Client ID or Client Secret. Please check your settings and try again');
-    return
-  end
-
-  local json = JSON:decode(body);
-  prefs.clarifai_accesstoken = json.access_token;
-end
-
--- Main methods API consumers should call (everything is wrapped in tasks as appropriate)
-function ClarifaiAPI.getToken()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getToken()');
-  local tokenReceived = false
-  LrTasks.startAsyncTask(function()
-    ClarifaiAPI.getTokenUnsafe();
-    tokenReceived = true
-  end, 'ClarifaiAPI.getToken');
-  
-  local sleepTimer = 0;
-  local timeout = 30;
-  while (not tokenReceived) do
-        LrTasks.sleep(1);
-        sleepTimer = sleepTimer + 1;
-  end
-  
-  if not tokenReceived then
-      LrDialogs.showError('Could not get ClarifaiAPI token. Timed out after ' .. timeout .. ' seconds');
-  end
-end
-
 function ClarifaiAPI.getInfo()
   KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getInfo()');
-  -- Ensure token is valid before running an operation
-  if not ClarifaiAPI.isTokenValid() then
-    ClarifaiAPI.getTokenUnsafe();
-  end
-  
-  -- If token still isn't valid, return empty table
-  if not ClarifaiAPI.isTokenValid() then
-    return {};
-  end
-
   local headers = {
-    { field = 'Authorization', value = 'Bearer ' .. prefs.clarifai_accesstoken }, 
+    { field = 'Authorization', value = 'Key ' .. prefs.clarifai_apikey }, 
   }
   
   local body, reshdrs = LrHttp.get(infoAPIURL, headers);
@@ -138,28 +53,12 @@ function ClarifaiAPI.getInfo()
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);
 
-  if reshdrs.status == 401 then
-    ClarifaiAPI.getTokenUnsafe();
-    return getInfoGuard:performWithGuard(function () ClarifaiAPI.getInfo() end);
-  end
-  
   return JSON:decode(body);
 end
 
 function ClarifaiAPI.getUsage()
-  KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getUsage()');
-  -- Make sure token is valid before running any operations
-  if not ClarifaiAPI.isTokenValid() then
-    ClarifaiAPI.getTokenUnsafe();
-  end
-  
-  -- If token is still invalid, return empty table
-  if not ClarifaiAPI.isTokenValid() then
-    return {};
-  end
-
   local headers = {
-    { field = 'Authorization', value = 'Bearer ' .. prefs.clarifai_accesstoken }, 
+    { field = 'Authorization', value = 'Key ' .. prefs.clarifai_apikey }, 
   }
   
   local body, reshdrs = LrHttp.get(usageAPIURL, headers);
@@ -167,45 +66,50 @@ function ClarifaiAPI.getUsage()
   KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
   KmnUtils.log(KmnUtils.LogInfo, body);
 
-  if reshdrs.status == 401 then
-    ClarifaiAPI.getTokenUnsafe();
-    return getInfoGuard:performWithGuard(function () ClarifaiAPI.getUsage() end);
-  end
-  
   return JSON:decode(body);
 end
 
 function ClarifaiAPI.getTags(photoPath, model, language)
   KmnUtils.log(KmnUtils.LogTrace, 'ClarifaiAPI.getTags(photoPath, model, language)');
   
-  if not ClarifaiAPI.isTokenValid() then
-    ClarifaiAPI.getTokenUnsafe();
-  end
-  
-  -- If token still isn't valid, return empty table
-  if not ClarifaiAPI.isTokenValid() then
-    return {};
-  end
+  local tagAPIURL = tagAPIURLPrefix .. model .. tagAPIURLPostfix;
   
   local fileName = LrPathUtils.leafName(photoPath);
 
   local headers = {
-    { field = 'Authorization', value = 'Bearer ' .. prefs.clarifai_accesstoken },
+    { field = 'Authorization', value = 'Key ' .. prefs.clarifai_apikey },
+    { field = 'Content-Type', value = 'application/json'},
   };
   
-  local mimeChunks = {
-    { name = 'model', value = model },
-    { name = 'language', value = language },
-    { name = 'encoded_data', fileName = fileName, filePath = photoPath, contentType = 'application/octet-stream' };
-  };
-
-  local body, reshdrs = LrHttp.postMultipart(tagAPIURL, mimeChunks, headers);
+  local f = io.open(photoPath, "rb");
+  local content = f:read("*all");
+  f:close();
+  local b64enc = require('Base64').encode(content);
+  KmnUtils.log(KmnUtils.LogTrace, b64enc);
   
-  if reshdrs.status == 401 then
-    ClarifaiAPI.getTokenUnsafe();
-    return getInfoGuard:performWithGuard(function () ClarifaiAPI.getTags(photoPath, model, language) end);
-  end
-
+  local body = {}
+  body['inputs'] = {}
+  local index = #body['inputs']+1
+  body['inputs'][index] = {}
+  body['inputs'][index]['data'] = {}
+  body['inputs'][index]['data']['image'] = {}
+  body['inputs'][index]['data']['image']['base64'] = b64enc
+  
+  body['model'] = {}
+  body['model']['output_info'] = {}
+  body['model']['output_info']['output_config'] = {}
+  body['model']['output_info']['output_config']['language'] = language
+  
+  local jsonlib = require 'JSON'
+  local jsonBody = jsonlib:encode(body)
+ 
+  KmnUtils.log(KmnUtils.LogTrace, jsonBody)
+ 
+  local body, reshdrs = LrHttp.post(tagAPIURL, jsonBody, headers)
+  
+  KmnUtils.log(KmnUtils.LogInfo, table.tostring(reshdrs));
+  KmnUtils.log(KmnUtils.LogInfo, body);
+  
   return JSON:decode(body);
 end
 
@@ -225,12 +129,13 @@ function ClarifaiAPI.processTagsProbabilities(response)
   local processedTagsProbabilities = {}
   local tagNames = {}
   KmnUtils.log(KmnUtils.LogDebug, table.tostring(response))
-  if response['detail'] ~= nil then
-    LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again. (' .. response['detail'] .. ')');
+  if response['status']['description'] ~= 'Ok' then
+    LrDialogs.showError('Error processing tag probabilities. Please check your settings and try again. (' .. response['status'] .. ')');
   end
-  for i, tag in ipairs(response['results'][1]['result']['tag']['classes']) do
-    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag, probability = response['results'][1]['result']['tag']['probs'][i], service = KmnUtils.SrvClarifai };
-    tagNames[#tagNames + 1] = string.lower(tag); -- Already in lower case for our use case
+  for i, tag in ipairs(response['outputs'][1]['data']['concepts']) do
+    KmnUtils.log(KmnUtils.LogTrace, table.tostring(tag))
+    processedTagsProbabilities[#processedTagsProbabilities + 1] = { tag = tag['name'], probability = tag['value'], service = KmnUtils.SrvClarifai };
+    tagNames[#tagNames + 1] = string.lower(tag['name']); -- Already in lower case for our use case
   end
   
   return processedTagsProbabilities, tagNames;
