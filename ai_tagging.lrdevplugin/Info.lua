@@ -24,9 +24,9 @@ Summary information for computer vision tagging plugin
 
 ------------------------------------------------------------------------------]]
 
-local menuItems = { { title = LOC '$$$/ComputerVisionTagging/MenuClarifaiInfo=Clarifai API Info', file = 'MenuClarifaiInfo.lua' },
-                    { title = LOC '$$$/ComputerVisionTagging/menuClarifaiUsage=Clarifai API Usage', file = 'MenuClarifaiUsage.lua' },
-}
+--local menuItems = { { title = LOC '$$$/ComputerVisionTagging/MenuClarifaiInfo=Clarifai API Info', file = 'MenuClarifaiInfo.lua' },
+--                    { title = LOC '$$$/ComputerVisionTagging/menuClarifaiUsage=Clarifai API Usage', file = 'MenuClarifaiUsage.lua' },
+--}
 
 local version = { major=2017, minor=07, revision=16, build=2, };
 version.display = version.major .. version.minor .. version.revision .. '.' .. version.build;
