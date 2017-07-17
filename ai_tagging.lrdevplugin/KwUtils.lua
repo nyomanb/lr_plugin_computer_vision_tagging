@@ -219,11 +219,11 @@ end
 -- variable exists before attempting to access its contents. (For this, you
 -- could use LUTILS.waitForGlobal("AllKeys", timeout), which would time out after
 -- timeout seconds if _G.AllKeys doesn't exist.
-function KwUtils.getAllKeywords()
+function KwUtils.getAllKeywords(force)
     local LrTasks = import 'LrTasks';
     LrTasks.startAsyncTask(function()
         local catalog = import 'LrApplication'.activeCatalog();
-        if KwUtils.catKws == nil then
+        if KwUtils.catKws == nil or force then
             KwUtils.catKws = {}
             KwUtils.catKwPaths = {}
             local topLevelKeywords = catalog:getKeywords()

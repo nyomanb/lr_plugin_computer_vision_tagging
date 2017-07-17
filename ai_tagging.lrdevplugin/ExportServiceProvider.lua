@@ -460,7 +460,9 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
   KmnUtils.log(KmnUtils.LogTrace, 'exportServiceProvider.processRenderedPhotos(functionContext, exportContext)');
 
   -- Begin process of traversing keyword list to initialize globals for all keywords and their "paths"
-  require 'KwUtils'.getAllKeywords();
+  _G.AllKeys = nil
+  _G.AllKeyPaths = nil
+  require 'KwUtils'.getAllKeywords(true);
   -- Before continuing, we should
   -- be sure the process of populating our global variables for these has completed.
   local timeout = 30;

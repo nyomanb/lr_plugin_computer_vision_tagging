@@ -85,15 +85,14 @@ function ClarifaiAPI.getTags(photoPath, model, language)
   local content = f:read("*all");
   f:close();
   local b64enc = require('Base64').encode(content);
-  KmnUtils.log(KmnUtils.LogTrace, b64enc);
+  -- KmnUtils.log(KmnUtils.LogTrace, b64enc);
   
   local body = {}
   body['inputs'] = {}
-  local index = #body['inputs']+1
-  body['inputs'][index] = {}
-  body['inputs'][index]['data'] = {}
-  body['inputs'][index]['data']['image'] = {}
-  body['inputs'][index]['data']['image']['base64'] = b64enc
+  body['inputs'][1] = {}
+  body['inputs'][1]['data'] = {}
+  body['inputs'][1]['data']['image'] = {}
+  body['inputs'][1]['data']['image']['base64'] = b64enc
   
   body['model'] = {}
   body['model']['output_info'] = {}
@@ -103,7 +102,7 @@ function ClarifaiAPI.getTags(photoPath, model, language)
   local jsonlib = require 'JSON'
   local jsonBody = jsonlib:encode(body)
  
-  KmnUtils.log(KmnUtils.LogTrace, jsonBody)
+  -- KmnUtils.log(KmnUtils.LogTrace, jsonBody)
  
   local body, reshdrs = LrHttp.post(tagAPIURL, jsonBody, headers)
   

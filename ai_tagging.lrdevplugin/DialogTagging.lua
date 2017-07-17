@@ -448,6 +448,7 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
     -- correspond to tags returned by the service
     _G.AllKeys, _G.AllKeyPaths = KwUtils.trimKeywordTablesToKeys(AllPhotoTagsLower);
     
+    
     -- KmnUtils.log(KmnUtils.LogTrace, "Catalog Keywords");
     -- KmnUtils.log(KmnUtils.LogTrace, table.tostring( _G.AllKeys ));
     -- KmnUtils.log(KmnUtils.LogTrace, "Catalog Keyword Paths");
@@ -481,6 +482,8 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
       local tagSelectionsByPhoto = {}
 
       for photo, tagValues in pairs(properties) do
+        KmnUtils.log(KmnUtils.LogTrace, '-------')
+        KmnUtils.log(KmnUtils.LogTrace, processedTags[photo])
         tagsByPhoto[photo] = {}
         tagSelectionsByPhoto[photo] = {}
         for _, taginfo in ipairs(processedTags[photo]) do
@@ -504,7 +507,8 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
       end
       Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, mainProgress);
     end
-  end))
+  end
+  ))
 end
 
 return DialogTagging;
