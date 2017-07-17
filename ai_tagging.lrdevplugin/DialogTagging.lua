@@ -50,7 +50,7 @@ local bind = LrView.bind;
 local share = LrView.share
 
 local DialogTagging = {};
-local properties = {};
+local properties;
 local photoKeywordTables = {}; -- Store array of keywords for each photo
 local photoKeywordLowerNamesTable = {}; -- Store array of keyword names for each photo
 local allPhotoKeywordLowerNames = {}; -- Store collection of keyword names for all selected photos
@@ -382,6 +382,8 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
   KmnUtils.log(KmnUtils.LogTrace, 'DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)');
   -- KmnUtils.log(KmnUtils.LogTrace, table.tostring(photosToTag));
 
+  properties = {} -- reset properties on each run of dialog (prevents old values from being re-used)
+
   LrFunctionContext.callWithContext('DialogTagger', (function(context)
     -- If don't have photos to tag (empty table), bail out with error
     -- Note #photosToTag will ALWAYS return 0, do the check the hard way
@@ -417,14 +419,14 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
           tagsProbService[#tagsProbService + 1] = tag
         end
       end
-      processedTags[photo], tagNamesLower[colNum] = tagsProbService
+      processedTags[photo.localIdentifier], tagNamesLower[colNum] = tagsProbService
       local photoKeywords = photo:getRawMetadata('keywords');
       local photoKeywordLowerNames = KwUtils.getKeywordNames(photoKeywords, true);
       photoKeywordTables[#photoKeywordTables + 1] = photoKeywords;
       photoKeywordLowerNamesTable[#photoKeywordLowerNamesTable + 1] = photoKeywordLowerNames;
       
       -- Add to array of all returned tags (for the current selection of photos)
-      for _,tagInfo in ipairs(processedTags[photo]) do
+      for _,tagInfo in ipairs(processedTags[photo.localIdentifier]) do
         if not (LUTILS.inTable(string.lower(tagInfo.tag), AllPhotoTagsLower)) then
           AllPhotoTagsLower[#AllPhotoTagsLower + 1] = string.lower(tagInfo.tag);
         end
@@ -456,7 +458,7 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
 
     local colNum = 1;
     for photo,tags in pairs(photosToTag) do
-      columns[colNum] = DialogTagging.buildColumn(context, exportParams, photo, colNum, tags, processedTags[photo], tags['additional']);
+      columns[colNum] = DialogTagging.buildColumn(context, exportParams, photo, colNum, tags, processedTags[photo.localIdentifier], tags['additional']);
       colNum = colNum + 1;
     end
 
@@ -467,7 +469,7 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
       vertical_scroller = true,
       vf:row(columns)
     };
-
+    
     local result = LrDialogs.presentModalDialog({
       title = 'Computer Vision Tagging',
       contents = contents,
@@ -482,11 +484,9 @@ function DialogTagging.buildDialog(photosToTag, exportParams, mainProgress)
       local tagSelectionsByPhoto = {}
 
       for photo, tagValues in pairs(properties) do
-        KmnUtils.log(KmnUtils.LogTrace, '-------')
-        KmnUtils.log(KmnUtils.LogTrace, processedTags[photo])
         tagsByPhoto[photo] = {}
         tagSelectionsByPhoto[photo] = {}
-        for _, taginfo in ipairs(processedTags[photo]) do
+        for _, taginfo in ipairs(processedTags[photo.localIdentifier]) do
           local tagName = taginfo.tag;
           tagsByPhoto[photo][tagName] = taginfo;
           -- Tag labels have an extra index from 1 to as many keywords have the name
