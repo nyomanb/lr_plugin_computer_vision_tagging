@@ -111,11 +111,11 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         spacing = vf:label_spacing(),
         vf:static_text {
           title = LOC '$$$/ComputerVisionTagging/preferences/ignoreKeywordTreeBranches=Ignore keywords branches:',
-          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
+          tooltip = 'Comma-separated list of keyword terms to ignore (including children and descendants).',
           alignment = 'left',
         },
         viewFactory:edit_field {
-          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
+          tooltip = 'Comma-separated list of keyword terms to ignore (including children and descendants).',
           width_in_chars = 35,
           height_in_lines = 4,
           enabled = true,
