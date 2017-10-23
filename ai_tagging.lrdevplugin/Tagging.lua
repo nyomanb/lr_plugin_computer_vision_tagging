@@ -100,12 +100,14 @@ function Tagging.tagPhotos(tagsByPhoto, tagSelectionsByPhoto, parentProgress)
             local checkboxState = tagSelectionsByPhoto[photo][tagName][i];
             local keyword = _G.AllKeys[tagLower][i];
             if numKeysByName == 1 and (checkboxState ~= LUTILS.inTable(tagLower, existingPhotoKeywordNamesLower)) then
-              KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
-            elseif numKeysByName > 1 then
+				if prefs.tag_add_keyword_parents then KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
+				else KwUtils.addOrRemoveKeywordWithoutParents(photo, keyword, checkboxState) end
+			elseif numKeysByName > 1 then
             -- We need to use more accurate (less performant) means to verify the actual keyword
             -- is (or is not) already associated with the photo.
               if checkboxState ~= KwUtils.hasKeywordById(photo, keyword) then
-                KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
+                if prefs.tag_add_keyword_parents then KwUtils.addOrRemoveKeyword(photo, keyword, checkboxState)
+				else KwUtils.addOrRemoveKeywordWithoutParents(photo, keyword, checkboxState) end
               end
             end
           end

@@ -35,10 +35,10 @@ KwUtils.Attribution = "This plugin uses KwUtils, Lightroom keyword utilities, ©
 
 function KwUtils.addKeywordWithParents(photo, keyword)
     photo:addKeyword(keyword)
-    local parent = keyword:getParent()
-    if parent ~= nil then
+		local parent = keyword:getParent()
+     	if parent ~= nil then
         KwUtils.addKeywordWithParents(photo, parent)
-    end
+   end
 end
 
 -- Call this function with just a keyword object. This recursively calls kw:getParent,
@@ -89,6 +89,16 @@ function KwUtils.addOrRemoveKeyword(photo, keyword, state)
         KwUtils.addKeywordWithParents(photo, keyword)
     else
       -- We cannot assume parents should be removed if already there.
+        photo:removeKeyword(keyword)
+    end
+end
+
+-- Add or remove a keyword based on the "state" of the associated checkbox.
+-- (not adding keyword parents)
+function KwUtils.addOrRemoveKeywordWithoutParents(photo, keyword, state)
+    if state then
+        photo:addKeyword(keyword)
+    else
         photo:removeKeyword(keyword)
     end
 end

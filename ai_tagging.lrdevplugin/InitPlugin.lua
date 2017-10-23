@@ -45,6 +45,7 @@ local defaultPrefValues = {
   tag_window_width = 1024,
   tag_window_show_probabilities = true,
   tag_window_show_services = true,
+  tag_add_keyword_parents = true,
   tag_window_sort = KmnUtils.SortProb,
   tag_window_thumbnail_size = 256,
 }

@@ -111,11 +111,11 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
         spacing = vf:label_spacing(),
         vf:static_text {
           title = LOC '$$$/ComputerVisionTagging/preferences/ignoreKeywordTreeBranches=Ignore keywords branches:',
-          tooltip = 'Comma-separated list of keyword terms to ignore (including children and descendants).',
+          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
           alignment = 'left',
         },
         viewFactory:edit_field {
-          tooltip = 'Comma-separated list of keyword terms to ignore (including children and descendants).',
+          tooltip = 'Comma-separated list of keyword terms to ignore (including chilren and descendants).',
           width_in_chars = 35,
           height_in_lines = 4,
           enabled = true,
@@ -214,6 +214,15 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           unchecked_value = false,
           value = bind 'tag_window_show_services',
         },
+	  },
+	  vf:row {
+        spacing = vf:control_spacing(),
+        vf:checkbox {
+          title = 'Add keyword *and* keyword parents',
+          checked_value = true,
+          unchecked_value = false,
+          value = bind 'tag_add_keyword_parents',
+        },	
       },
       vf:row {
         spacing = vf:control_spacing(),
