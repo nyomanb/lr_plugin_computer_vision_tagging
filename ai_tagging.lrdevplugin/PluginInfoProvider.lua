@@ -138,7 +138,23 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
           alightment = 'left',
           value = bind 'parent_tag',
         },
-      },    
+      }, 
+	  vf:row {
+        spacing = vf:control_spacing(),
+        vf:static_text {
+          title = 'Keyword parsing timeout',
+          tooltip = 'Increase the timeout value if you encounter problem processing catalog keywords (useful for large keyword hierarchies/older hardware)',
+        },
+        vf:edit_field {
+          value = bind 'keyword_parsing_timeout',
+          tooltip = 'Seconds to timeout',
+          min = 1,
+          max = 900,
+          width_in_chars = 3,
+          increment = 1,
+          precision = 0,
+        }
+      },
       vf:row {
         spacing = vf:control_spacing(),
         vf:static_text {
@@ -218,7 +234,7 @@ function InfoProvider.sectionsForTopOfDialog(viewFactory, properties)
 	  vf:row {
         spacing = vf:control_spacing(),
         vf:checkbox {
-          title = 'Add keyword *and* keyword parents',
+          title = 'Add keyword *and* keyword parent(s)',
           checked_value = true,
           unchecked_value = false,
           value = bind 'tag_add_keyword_parents',

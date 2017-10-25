@@ -36,6 +36,8 @@ local defaultPrefValues = {
   clarifai_apikey = '',
   ignore_keyword_branches = '',
   parent_tag = '',
+  keyword_parsing_timeout = 30,
+  tag_add_keyword_parents = true, 
   image_preview_window_width = 1024,
   image_preview_window_height = 768,
   log_level = KmnUtils.LogTrace,
@@ -45,7 +47,6 @@ local defaultPrefValues = {
   tag_window_width = 1024,
   tag_window_show_probabilities = true,
   tag_window_show_services = true,
-  tag_add_keyword_parents = true,
   tag_window_sort = KmnUtils.SortProb,
   tag_window_thumbnail_size = 256,
 }

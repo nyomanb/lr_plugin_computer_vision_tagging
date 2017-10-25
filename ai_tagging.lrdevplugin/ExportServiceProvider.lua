@@ -465,7 +465,7 @@ function exportServiceProvider.processRenderedPhotos( functionContext, exportCon
   require 'KwUtils'.getAllKeywords(true);
   -- Before continuing, we should
   -- be sure the process of populating our global variables for these has completed.
-  local timeout = 30;
+  local timeout = prefs.keyword_parsing_timeout;
   local timeWaited = LUTILS.waitForGlobal('AllKeys', timeout);
   
   if timeWaited and timeWaited < timeout then
